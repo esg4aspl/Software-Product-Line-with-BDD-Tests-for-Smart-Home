@@ -1,51 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <configuration>
-	<feature name="SmartHome"/>
-	<feature name="HVACManagement"/>
-	<feature name="HeatingControl"/>
-	<feature name="ManualHeating"/>
-	<feature name="AutomatedHeating"/>
-	<feature name="RemoteHeatingControl"/>
-	<feature name="AirConditioningControl"/>
-	<feature name="ManualAirConditioningControl"/>
-	<feature name="AutomatedAirConditioningControl"/>
-	<feature name="RemoteAirConditioningControl"/>
-	<feature name="VentilationControl"/>
-	<feature name="ManualVentilationControl"/>
-	<feature name="AutomatedVentilationControl"/>
-	<feature name="FullAutomatedHVACControl"/>
-	<feature name="FullManualHVACControl"/>
-	<feature name="WindowsManagement"/>
-	<feature name="ManualWindows"/>
-	<feature name="AutomatedWindows"/>
-	<feature name="LightManagement"/>
-	<feature name="ManualIllumination"/>
-	<feature name="AutomatedIllumination"/>
-	<feature name="AutomatedPerimeterIllumination"/>
-	<feature name="AutomatedInhouseIllumination"/>
-	<feature name="UI"/>
-	<feature name="TouchScreen"/>
-	<feature name="Internet"/>
-	<feature name="Privacy"/>
-	<feature name="EncryptionAlgorithm"/>
-	<feature name="RSA"/>
-	<feature name="DES"/>
-	<feature name="PresenceSimulation"/>
-	<feature name="LightSimulation"/>
-	<feature name="BlindsSimulation"/>
-	<feature name="AVSimulation"/>
-	<feature name="FireControl"/>
-	<feature name="FirstAidGroup"/>
-	<feature name="FireDepartment"/>
-	<feature name="OtherGroup"/>
-	<feature name="FireSprinklers"/>
-	<feature name="IrrigationSprinklers"/>
-	<feature name="SimpleControl"/>
-	<feature name="AutomatedSprinklers"/>
-	<feature name="Alarm"/>
-	<feature name="Siren"/>
-	<feature name="Bell"/>
-	<feature name="Lights"/>
+	<feature automatic="selected" name="SmartHome"/>
+	<feature automatic="selected" manual="selected" name="Core"/>
+	<feature name="Moods"/>
+	<feature name="AVManagement"/>
+	<feature name="AutomatedAV"/>
+	<feature name="BlindsManagement"/>
+	<feature name="ManualBlinds"/>
+	<feature name="AutomatedBlinds"/>
 	<feature name="Security"/>
 	<feature name="AuthenticationDevice"/>
 	<feature name="Keypad"/>
@@ -54,10 +16,49 @@
 	<feature name="IntrusionDetectionDevice"/>
 	<feature name="GlassbreakSensors"/>
 	<feature name="Cameras"/>
-	<feature name="BlindsManagement"/>
-	<feature name="ManualBlinds"/>
-	<feature name="AutomatedBlinds"/>
-	<feature name="AVManagement"/>
-	<feature name="AutomatedAV"/>
-	<feature name="Moods"/>
+	<feature automatic="selected" manual="selected" name="Alarm"/>
+	<feature manual="selected" name="Siren"/>
+	<feature manual="selected" name="Bell"/>
+	<feature name="Lights"/>
+	<feature name="IrrigationSprinklers"/>
+	<feature name="SimpleControl"/>
+	<feature name="AutomatedSprinklers"/>
+	<feature name="FireControl"/>
+	<feature name="FirstAidGroup"/>
+	<feature name="FireDepartment"/>
+	<feature name="OtherGroup"/>
+	<feature name="FireSprinklers"/>
+	<feature name="PresenceSimulation"/>
+	<feature name="LightSimulation"/>
+	<feature name="BlindsSimulation"/>
+	<feature name="AVSimulation"/>
+	<feature automatic="selected" name="UI"/>
+	<feature name="TouchScreen"/>
+	<feature name="Internet"/>
+	<feature name="Privacy"/>
+	<feature name="EncryptionAlgorithm"/>
+	<feature name="RSA"/>
+	<feature name="DES"/>
+	<feature automatic="selected" name="LightManagement"/>
+	<feature automatic="selected" name="ManualIllumination"/>
+	<feature name="AutomatedIllumination"/>
+	<feature name="AutomatedPerimeterIllumination"/>
+	<feature name="AutomatedInhouseIllumination"/>
+	<feature automatic="selected" name="WindowsManagement"/>
+	<feature automatic="selected" name="ManualWindows"/>
+	<feature name="AutomatedWindows"/>
+	<feature automatic="selected" manual="selected" name="HVACManagement"/>
+	<feature name="HeatingControl"/>
+	<feature name="ManualHeating"/>
+	<feature name="AutomatedHeating"/>
+	<feature name="RemoteHeatingControl"/>
+	<feature automatic="selected" manual="selected" name="AirConditioningControl"/>
+	<feature automatic="selected" name="ManualAirConditioningControl"/>
+	<feature automatic="selected" manual="selected" name="AutomatedAirConditioningControl"/>
+	<feature manual="selected" name="RemoteAirConditioningControl"/>
+	<feature name="VentilationControl"/>
+	<feature name="ManualVentilationControl"/>
+	<feature name="AutomatedVentilationControl"/>
+	<feature name="FullAutomatedHVACControl"/>
+	<feature name="FullManualHVACControl"/>
 </configuration>
