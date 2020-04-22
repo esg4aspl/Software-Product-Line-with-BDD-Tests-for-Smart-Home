@@ -13,7 +13,6 @@
 		<and abstract="true" mandatory="true" name="SmartHome">
 			<and name="Core">
 				<graphics key="collapsed" value="false"/>
-				<feature name="Moods"/>
 				<and name="AVManagement">
 					<feature name="AutomatedAV"/>
 				</and>
@@ -21,6 +20,7 @@
 					<feature mandatory="true" name="ManualBlinds"/>
 					<feature name="AutomatedBlinds"/>
 				</and>
+				<feature name="Moods"/>
 				<and name="Security">
 					<or mandatory="true" name="AuthenticationDevice">
 						<feature name="Keypad"/>
@@ -37,16 +37,16 @@
 					<feature name="Bell"/>
 					<feature name="Lights"/>
 				</or>
-				<and name="IrrigationSprinklers">
-					<feature mandatory="true" name="SimpleControl"/>
-					<feature name="AutomatedSprinklers"/>
-				</and>
 				<and name="FireControl">
 					<and mandatory="true" name="FirstAidGroup">
 						<feature mandatory="true" name="FireDepartment"/>
 						<feature name="OtherGroup"/>
 					</and>
 					<feature name="FireSprinklers"/>
+				</and>
+				<and name="IrrigationSprinklers">
+					<feature mandatory="true" name="SimpleControl"/>
+					<feature name="AutomatedSprinklers"/>
 				</and>
 				<or name="PresenceSimulation">
 					<feature name="LightSimulation"/>

@@ -6,6 +6,7 @@ import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
 import redis.clients.jedis.JedisPubSub; 
 import java.time.Duration;
+import business.*;
 
 /**
  * TODO description
@@ -32,25 +33,25 @@ public class App {
 	
 	class Publisher extends Thread {
 		String[][] messages = {
-			{"AirConditioningControl", "Automatic increase airflow."},
+			{Channel.AIR_CONDITIONING_CONTROL.toString(), "Automatic increase airflow."},
 			
-			{"ManualAirConditioningControl", "Increase heat."},
+			{Channel.MANUAL_AIR_CONDITIONING_CONTROL.toString(), "Increase heat."},
 			
-			{"Home", "Initiate lawn sprinklers."},
+			{Channel.HOME.toString(), "Initiate lawn sprinklers."},
 			
-			{"ManualAirConditioningControl", "Decrease heat."},
+			{Channel.MANUAL_AIR_CONDITIONING_CONTROL.toString(), "Decrease heat."},
 			
-			{"Home", "Turn on kitchen lights."},
+			{Channel.HOME.toString(), "Turn on kitchen lights."},
 			
-			{"HVACManagement", "Activate automated ventilation."},
+			{Channel.HVAC_MANAGEMENT.toString(), "Activate automated ventilation."},
 			
-			{"AirConditioningControl", "Automatic decrease airflow."},
+			{Channel.AIR_CONDITIONING_CONTROL.toString(), "Automatic decrease airflow."},
 			
-			{"Home", "Glass break"},
+			{Channel.HOME.toString(), "Glass break"},
 			
-			{"ManualAirConditioningControl", "Increase heat."},
+			{Channel.MANUAL_AIR_CONDITIONING_CONTROL.toString(), "Increase heat."},
 			
-			{"ManualAirConditioningControl", "Turn off AC."},
+			{Channel.MANUAL_AIR_CONDITIONING_CONTROL.toString(), "Turn off AC."},
 		};
 			
 		
