@@ -41,9 +41,9 @@
 	<feature name="DES"/>
 	<feature automatic="selected" name="LightManagement"/>
 	<feature automatic="selected" name="ManualIllumination"/>
-	<feature name="AutomatedIllumination"/>
+	<feature automatic="selected" name="AutomatedIllumination"/>
 	<feature name="AutomatedPerimeterIllumination"/>
-	<feature name="AutomatedInhouseIllumination"/>
+	<feature manual="selected" name="AutomatedInhouseIllumination"/>
 	<feature automatic="selected" name="WindowsManagement"/>
 	<feature automatic="selected" name="ManualWindows"/>
 	<feature name="AutomatedWindows"/>

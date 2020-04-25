@@ -14,8 +14,8 @@ public abstract class AbstractSystem implements ISystem {
 	
 	protected List<ISystem> subsystems;
 	protected ISystem parentSystem;
-	protected Subscriber subscriber;
-	protected Publisher publisher;
+	protected ISubscriber subscriber;
+	protected IPublisher publisher;
 	protected List<Command> commands;
 	
 	//CONSTRUCTORS
@@ -26,8 +26,8 @@ public abstract class AbstractSystem implements ISystem {
 	public AbstractSystem(ISystem parentSystem) {
 		this.parentSystem = parentSystem;
 		this.subsystems = new ArrayList<ISystem>();
-		this.subscriber = new Subscriber();
-		this.publisher = new Publisher();
+		this.subscriber = createSubscriber();
+		this.publisher = createPublisher();
 		this.commands = new ArrayList<Command>();
 		
 		subscriber.start();
@@ -57,7 +57,15 @@ public abstract class AbstractSystem implements ISystem {
 	
 	
 	//PUB-SUB THREADS
-	protected class Subscriber extends Thread {
+	protected ISubscriber createSubscriber() {
+		return new Subscriber();
+	}
+	
+	protected IPublisher createPublisher() {
+		return new Publisher();
+	}
+	
+	protected class Subscriber extends Thread implements ISubscriber {
 		@Override
 		public void run() {
 			super.run();
@@ -79,7 +87,7 @@ public abstract class AbstractSystem implements ISystem {
 		}
 	}
 	
-	protected class Publisher extends Thread {
+	protected class Publisher extends Thread implements IPublisher {
 				
 		public void publish(String command) {
 			Command c = new Command(command);

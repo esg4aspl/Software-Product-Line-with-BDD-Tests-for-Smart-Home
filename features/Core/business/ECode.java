@@ -14,6 +14,7 @@ public enum ECode {
 	//ENVIRONMENT
 	AIR,
 	TEMPERATURE,
+	PRESENCE,
 	CLOCK,
 	GLASSBREAK,
 	

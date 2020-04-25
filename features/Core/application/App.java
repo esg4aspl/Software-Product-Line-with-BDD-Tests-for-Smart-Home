@@ -4,7 +4,6 @@ import smarthome.Home;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
-import redis.clients.jedis.JedisPubSub; 
 import java.time.Duration;
 import business.*;
 
@@ -29,11 +28,17 @@ public class App {
 		pool = new JedisPool(poolConfig, "localhost");
 		Home home = new Home();
 		home.init();
-		//(new Publisher()).start();
+		(new Publisher()).start();
 	}
 	
 	class Publisher extends Thread {
-		String[] commands = {};
+		String[] messages = {
+				"ENV:CLOCK=07:00@HOME&TEMPERATURE=20@HOME",
+				"ENV:CLOCK=12:00@HOME&TEMPERATURE=20@HOME",
+				"ENV:CLOCK=16:00@HOME&TEMPERATURE=20@HOME",
+				"ENV:CLOCK=19:00@HOME&TEMPERATURE=21@HOME",
+				"ENV:CLOCK=23:00@HOME&TEMPERATURE=21@HOME"
+		};
 			
 		
 		@Override
@@ -43,15 +48,14 @@ public class App {
 			Jedis jPublisher = null;
 			try {
 				jPublisher = App.getJedis();
-				for (int i = 0; i < commands.length; i++) {
+				for (int i = 0; i < messages.length; i++) {
 					try {
-						Thread.sleep(1000);						
+						Thread.sleep(2000);						
 					} catch (Exception e) {
 						e.printStackTrace();
 					}
-					Command c = new Command(commands[i]);
-					//System.out.println("\n" + i + " Triggers " + messages[i][0]);
-					jPublisher.publish(c.getChannel().toString(), c.toString());
+					
+					jPublisher.publish("HOME", messages[i]);
 					
 				}
 			} finally {

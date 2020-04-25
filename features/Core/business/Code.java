@@ -21,7 +21,11 @@ public class Code {
 	public Code(String commandString) {
 		String[] parts = commandString.split(DIVIDER);
 		this.eCode = ECode.parseECode(parts[0]);
-		this.data = parts[1];
+		if (parts.length == 2) {
+			this.data = parts[1];
+		} else {
+			this.data = "";
+		}
 	}
 	
 	public ECode getECode() {
@@ -35,5 +39,17 @@ public class Code {
 	public String toString() {
 		return eCode.toString() + DIVIDER + data;
 	}
+	
+	@Override
+    public boolean equals(Object o) {
+        if (o == this) { 
+            return true; 
+        }
+        if (!(o instanceof Code)) { 
+            return false; 
+        }
+        Code c = (Code) o; 
+        return eCode == c.getECode() && data.equals(c.getData()); 
+    } 
 
 }
