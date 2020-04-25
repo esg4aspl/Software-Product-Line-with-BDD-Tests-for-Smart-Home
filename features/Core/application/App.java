@@ -28,6 +28,7 @@ public class App {
 		final JedisPoolConfig poolConfig = buildPoolConfig();
 		pool = new JedisPool(poolConfig, "localhost");
 		Home home = new Home();
+		home.init();
 		//(new Publisher()).start();
 	}
 	

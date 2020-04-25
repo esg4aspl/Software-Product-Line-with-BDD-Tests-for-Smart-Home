@@ -22,9 +22,6 @@ public class UI extends AbstractSystem {
 	
 	public UI(ISystem parentSystem) {
 		super(parentSystem);
-		
-		createConsole();
-		init();
 	}
 	
 	public Channel getChannel() {
@@ -32,6 +29,8 @@ public class UI extends AbstractSystem {
 	}
 	
 	public void init() {
+		createConsole();
+		
 		List<Command> allCommands = parentSystem.render();
 		console.append("Available Commands:\n");
 		for (Command c : allCommands) {
