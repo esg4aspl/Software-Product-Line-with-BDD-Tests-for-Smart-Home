@@ -16,6 +16,7 @@ public abstract class AbstractSystem implements ISystem {
 	protected ISystem parentSystem;
 	protected Subscriber subscriber;
 	protected Publisher publisher;
+	protected List<Command> commands;
 	
 	//CONSTRUCTORS
 	public AbstractSystem() {
@@ -25,31 +26,34 @@ public abstract class AbstractSystem implements ISystem {
 	public AbstractSystem(ISystem parentSystem) {
 		this.parentSystem = parentSystem;
 		this.subsystems = new ArrayList<ISystem>();
-		subscriber = new Subscriber();
-		publisher = new Publisher();
+		this.subscriber = new Subscriber();
+		this.publisher = new Publisher();
+		this.commands = new ArrayList<Command>();
 		
 		subscriber.start();
 		publisher.start();
 	}
 	
-	//ABSTRACT METHODS
-	public abstract List<Code> render();
+	//ABSTRACT
 	public abstract Channel getChannel();
+
+	//PUBLIC METHODS
+	public void respond(Command command) {
+		System.out.println(getChannel() + " responding to " + command.getCode());
+	}
 	
-	public void respond(Code code) {
-		System.out.println(getChannel() + " responding to " + code);
-    	if (parentSystem != null)
-    		parentSystem.respond(code);
+	public List<Command> render() {
+		List<Command> result = new ArrayList<Command>();
+		result.addAll(commands);
+		for (ISystem s : subsystems) {
+			result.addAll(s.render());
+		}
+		return result;
 	}
 	
 	//GETTERS
-	public List<ISystem> getSubsystems() {
-		return subsystems;
-	}
-	
-	public ISystem getParentSystem() {
-		return parentSystem;
-	}
+	public List<ISystem> getSubsystems() 	{ return subsystems; 	}
+	public ISystem getParentSystem() 		{ return parentSystem; 	}
 	
 	
 	//PUB-SUB THREADS
@@ -64,7 +68,7 @@ public abstract class AbstractSystem implements ISystem {
 				jSubscriber.subscribe(new JedisPubSub() {
 				    @Override
 				    public void onMessage(String channel, String message) {
-				    	respond(Code.parseCode(message));
+				    	respond(new Command(message));
 				    }
 				}, getChannel().toString());
 			} finally {
@@ -76,12 +80,13 @@ public abstract class AbstractSystem implements ISystem {
 	}
 	
 	protected class Publisher extends Thread {
-		
-		public void publish(Channel channel, String message) {
+				
+		public void publish(String command) {
+			Command c = new Command(command);
 			Jedis jPublisher = null;
 			try {
 				jPublisher = App.getJedis();
-				jPublisher.publish(channel.toString(), message);
+				jPublisher.publish(c.getChannel().toString(), c.toString());
 			} finally {
 				if (jPublisher != null)
 					jPublisher.close();

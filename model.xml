@@ -11,7 +11,7 @@
 	</properties>
 	<struct>
 		<and abstract="true" mandatory="true" name="SmartHome">
-			<and name="Core">
+			<and mandatory="true" name="Core">
 				<graphics key="collapsed" value="false"/>
 				<and name="BlindsManagement">
 					<feature mandatory="true" name="ManualBlinds"/>
@@ -89,7 +89,7 @@
 						</and>
 					</and>
 					<and name="VentilationControl">
-						<feature name="ManualVentilationControl"/>
+						<feature mandatory="true" name="ManualVentilationControl"/>
 						<feature name="AutomatedVentilationControl"/>
 					</and>
 					<feature name="FullAutomatedHVACControl"/>

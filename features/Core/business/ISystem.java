@@ -8,8 +8,8 @@ import business.Channel;
  */
 public interface ISystem {
 	
-	public void respond(Code code);
-	public List<Code> render();
+	public void respond(Command command);
+	public List<Command> render();
 	
 	public List<ISystem> getSubsystems();
 	public ISystem getParentSystem();

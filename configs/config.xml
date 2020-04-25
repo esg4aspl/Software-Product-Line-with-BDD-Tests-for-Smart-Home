@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <configuration>
 	<feature automatic="selected" name="SmartHome"/>
-	<feature automatic="selected" manual="selected" name="Core"/>
+	<feature automatic="selected" name="Core"/>
 	<feature name="BlindsManagement"/>
 	<feature name="ManualBlinds"/>
 	<feature name="AutomatedBlinds"/>
@@ -47,18 +47,18 @@
 	<feature automatic="selected" name="WindowsManagement"/>
 	<feature automatic="selected" name="ManualWindows"/>
 	<feature name="AutomatedWindows"/>
-	<feature automatic="selected" manual="selected" name="HVACManagement"/>
+	<feature name="HVACManagement"/>
 	<feature name="HeatingControl"/>
 	<feature name="ManualHeating"/>
 	<feature name="AutomatedHeating"/>
 	<feature name="RemoteHeatingControl"/>
-	<feature automatic="selected" manual="selected" name="AirConditioningControl"/>
-	<feature automatic="selected" name="ManualAirConditioningControl"/>
-	<feature automatic="selected" manual="selected" name="AutomatedAirConditioningControl"/>
-	<feature manual="selected" name="RemoteAirConditioningControl"/>
-	<feature automatic="selected" manual="selected" name="VentilationControl"/>
-	<feature manual="selected" name="ManualVentilationControl"/>
-	<feature manual="selected" name="AutomatedVentilationControl"/>
-	<feature manual="selected" name="FullAutomatedHVACControl"/>
-	<feature manual="selected" name="FullManualHVACControl"/>
+	<feature name="AirConditioningControl"/>
+	<feature name="ManualAirConditioningControl"/>
+	<feature name="AutomatedAirConditioningControl"/>
+	<feature name="RemoteAirConditioningControl"/>
+	<feature name="VentilationControl"/>
+	<feature name="ManualVentilationControl"/>
+	<feature name="AutomatedVentilationControl"/>
+	<feature name="FullAutomatedHVACControl"/>
+	<feature name="FullManualHVACControl"/>
 </configuration>

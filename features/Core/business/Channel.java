@@ -63,6 +63,17 @@ public enum Channel {
 	TOUCH_SCREEN,
 	UI,
 	VENTILATION_CONTROL,
-	WINDOWS_MANAGEMENT
+	WINDOWS_MANAGEMENT,
+	
+	UNIDENTIFIED_CHANNEL;
+	
+	public static Channel parseChannel(String channelString) {
+		Channel[] allChannels = Channel.values();
+		for (Channel c : allChannels)
+			if (c.toString().equals(channelString))
+				return c;
+		
+		return UNIDENTIFIED_CHANNEL;
+	}
 
 }

@@ -28,31 +28,11 @@ public class App {
 		final JedisPoolConfig poolConfig = buildPoolConfig();
 		pool = new JedisPool(poolConfig, "localhost");
 		Home home = new Home();
-		(new Publisher()).start();
+		//(new Publisher()).start();
 	}
 	
 	class Publisher extends Thread {
-		String[][] messages = {
-			{Channel.AIR_CONDITIONING_CONTROL.toString(), "Automatic increase airflow."},
-			
-			{Channel.MANUAL_AIR_CONDITIONING_CONTROL.toString(), "Increase heat."},
-			
-			{Channel.HOME.toString(), "Initiate lawn sprinklers."},
-			
-			{Channel.MANUAL_AIR_CONDITIONING_CONTROL.toString(), "Decrease heat."},
-			
-			{Channel.HOME.toString(), "Turn on kitchen lights."},
-			
-			{Channel.HVAC_MANAGEMENT.toString(), "Activate automated ventilation."},
-			
-			{Channel.AIR_CONDITIONING_CONTROL.toString(), "Automatic decrease airflow."},
-			
-			{Channel.HOME.toString(), "Glass break"},
-			
-			{Channel.MANUAL_AIR_CONDITIONING_CONTROL.toString(), "Increase heat."},
-			
-			{Channel.MANUAL_AIR_CONDITIONING_CONTROL.toString(), "Turn off AC."},
-		};
+		String[] commands = {};
 			
 		
 		@Override
@@ -62,14 +42,15 @@ public class App {
 			Jedis jPublisher = null;
 			try {
 				jPublisher = App.getJedis();
-				for (int i = 0; i < 10; i++) {
+				for (int i = 0; i < commands.length; i++) {
 					try {
 						Thread.sleep(1000);						
 					} catch (Exception e) {
 						e.printStackTrace();
 					}
-					System.out.println("\n" + i + " Triggers " + messages[i][0]);
-					jPublisher.publish(messages[i][0], messages[i][1]);
+					Command c = new Command(commands[i]);
+					//System.out.println("\n" + i + " Triggers " + messages[i][0]);
+					jPublisher.publish(c.getChannel().toString(), c.toString());
 					
 				}
 			} finally {

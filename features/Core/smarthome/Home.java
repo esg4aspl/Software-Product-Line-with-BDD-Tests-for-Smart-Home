@@ -1,7 +1,5 @@
 package smarthome;
 
-import java.util.ArrayList;
-import java.util.List;
 import business.*;
 
 /**
@@ -11,16 +9,12 @@ public class Home extends AbstractSystem {
 	
 	public Home() {
 		super();
+		commands.add(new Command("TURN_ON=All Locks@HOME"));
+		commands.add(new Command("TURN_OFF=All Locks@HOME"));
 	}
 	
 	public Channel getChannel() {
 		return Channel.HOME;
-	}
-	
-	@Override
-	public List<Code> render() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 	
 }
