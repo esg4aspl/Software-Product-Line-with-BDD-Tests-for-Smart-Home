@@ -6,20 +6,20 @@ import business.*;
 /**
  * TODO description
  */
-public class Alarm extends AbstractSystem {
+public class AutomatedVentilationControl extends AbstractSystem {
 	
-	public Alarm(ISystem parentSystem) {
+	public AutomatedVentilationControl(ISystem parentSystem) {
 		super(parentSystem);
 	}
 	
 	public Channel getChannel() {
-		return Channel.ALARM;
+		return Channel.AUTOMATED_VENTILATION_CONTROL;
 	}
-	
+
 	@Override
 	public List<Code> render() {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
+
 }

@@ -1,14 +1,12 @@
 package smarthome;
 
-import business.Code;
-
 /**
  * TODO description
  */
 public class Home {
 	
 	public Home() {
-		this.subsystems.add(new Alarm(this));
+		this.subsystems.add(new Security(this));
 	}
 
 }

@@ -13,14 +13,13 @@
 		<and abstract="true" mandatory="true" name="SmartHome">
 			<and name="Core">
 				<graphics key="collapsed" value="false"/>
-				<and name="AVManagement">
-					<feature name="AutomatedAV"/>
-				</and>
 				<and name="BlindsManagement">
 					<feature mandatory="true" name="ManualBlinds"/>
 					<feature name="AutomatedBlinds"/>
 				</and>
-				<feature name="Moods"/>
+				<and name="AVManagement">
+					<feature name="AutomatedAV"/>
+				</and>
 				<and name="Security">
 					<or mandatory="true" name="AuthenticationDevice">
 						<feature name="Keypad"/>
@@ -32,6 +31,7 @@
 						<feature name="Cameras"/>
 					</or>
 				</and>
+				<feature name="Moods"/>
 				<or name="Alarm">
 					<feature name="Siren"/>
 					<feature name="Bell"/>

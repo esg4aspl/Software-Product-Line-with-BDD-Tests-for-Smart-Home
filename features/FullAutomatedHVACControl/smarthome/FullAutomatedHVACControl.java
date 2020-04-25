@@ -6,20 +6,22 @@ import business.*;
 /**
  * TODO description
  */
-public class Alarm extends AbstractSystem {
+public class FullAutomatedHVACControl extends AbstractSystem {
 	
-	public Alarm(ISystem parentSystem) {
+	public FullAutomatedHVACControl(ISystem parentSystem) {
 		super(parentSystem);
 	}
 	
+	@Override
 	public Channel getChannel() {
-		return Channel.ALARM;
+		return Channel.FULL_AUTOMATED_HVAC_CONTROL;
 	}
-	
+
 	@Override
 	public List<Code> render() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 	
+
 }

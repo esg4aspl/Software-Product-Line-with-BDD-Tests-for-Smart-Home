@@ -18,7 +18,7 @@ public class AirConditioningControl extends AbstractSystem {
 	}
 
 	@Override
-	public List<String> render() {
+	public List<Code> render() {
 		// TODO Auto-generated method stub
 		return null;
 	}

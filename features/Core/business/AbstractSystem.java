@@ -33,7 +33,7 @@ public abstract class AbstractSystem implements ISystem {
 	}
 	
 	//ABSTRACT METHODS
-	public abstract List<String> render();
+	public abstract List<Code> render();
 	public abstract Channel getChannel();
 	
 	public void respond(Code code) {
@@ -53,7 +53,7 @@ public abstract class AbstractSystem implements ISystem {
 	
 	
 	//PUB-SUB THREADS
-	class Subscriber extends Thread {
+	protected class Subscriber extends Thread {
 		@Override
 		public void run() {
 			super.run();
@@ -75,7 +75,7 @@ public abstract class AbstractSystem implements ISystem {
 		}
 	}
 	
-	class Publisher extends Thread {
+	protected class Publisher extends Thread {
 		
 		public void publish(Channel channel, String message) {
 			Jedis jPublisher = null;

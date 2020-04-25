@@ -16,11 +16,11 @@ public class Home extends AbstractSystem {
 	public Channel getChannel() {
 		return Channel.HOME;
 	}
-
+	
 	@Override
-	public List<String> render() {
+	public List<Code> render() {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
+	
 }

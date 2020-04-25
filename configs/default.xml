@@ -2,12 +2,11 @@
 <configuration>
 	<feature automatic="selected" name="SmartHome"/>
 	<feature automatic="selected" manual="selected" name="Core"/>
-	<feature name="Moods"/>
-	<feature name="AVManagement"/>
-	<feature name="AutomatedAV"/>
 	<feature name="BlindsManagement"/>
 	<feature name="ManualBlinds"/>
 	<feature name="AutomatedBlinds"/>
+	<feature name="AVManagement"/>
+	<feature name="AutomatedAV"/>
 	<feature name="Security"/>
 	<feature name="AuthenticationDevice"/>
 	<feature name="Keypad"/>
@@ -16,18 +15,19 @@
 	<feature name="IntrusionDetectionDevice"/>
 	<feature name="GlassbreakSensors"/>
 	<feature name="Cameras"/>
-	<feature automatic="selected" manual="selected" name="Alarm"/>
-	<feature manual="selected" name="Siren"/>
-	<feature manual="selected" name="Bell"/>
+	<feature name="Moods"/>
+	<feature name="Alarm"/>
+	<feature name="Siren"/>
+	<feature name="Bell"/>
 	<feature name="Lights"/>
-	<feature name="IrrigationSprinklers"/>
-	<feature name="SimpleControl"/>
-	<feature name="AutomatedSprinklers"/>
 	<feature name="FireControl"/>
 	<feature name="FirstAidGroup"/>
 	<feature name="FireDepartment"/>
 	<feature name="OtherGroup"/>
 	<feature name="FireSprinklers"/>
+	<feature name="IrrigationSprinklers"/>
+	<feature name="SimpleControl"/>
+	<feature name="AutomatedSprinklers"/>
 	<feature name="PresenceSimulation"/>
 	<feature name="LightSimulation"/>
 	<feature name="BlindsSimulation"/>
@@ -56,9 +56,9 @@
 	<feature automatic="selected" name="ManualAirConditioningControl"/>
 	<feature automatic="selected" manual="selected" name="AutomatedAirConditioningControl"/>
 	<feature manual="selected" name="RemoteAirConditioningControl"/>
-	<feature name="VentilationControl"/>
-	<feature name="ManualVentilationControl"/>
-	<feature name="AutomatedVentilationControl"/>
-	<feature name="FullAutomatedHVACControl"/>
-	<feature name="FullManualHVACControl"/>
+	<feature automatic="selected" manual="selected" name="VentilationControl"/>
+	<feature manual="selected" name="ManualVentilationControl"/>
+	<feature manual="selected" name="AutomatedVentilationControl"/>
+	<feature manual="selected" name="FullAutomatedHVACControl"/>
+	<feature manual="selected" name="FullManualHVACControl"/>
 </configuration>

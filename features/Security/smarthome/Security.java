@@ -1,19 +1,20 @@
 package smarthome;
 
 import java.util.List;
+
 import business.*;
 
 /**
  * TODO description
  */
-public class Alarm extends AbstractSystem {
+public class Security extends AbstractSystem {
 	
-	public Alarm(ISystem parentSystem) {
+	public Security(ISystem parentSystem) {
 		super(parentSystem);
 	}
 	
 	public Channel getChannel() {
-		return Channel.ALARM;
+		return Channel.SECURITY;
 	}
 	
 	@Override
@@ -21,5 +22,5 @@ public class Alarm extends AbstractSystem {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
+
 }

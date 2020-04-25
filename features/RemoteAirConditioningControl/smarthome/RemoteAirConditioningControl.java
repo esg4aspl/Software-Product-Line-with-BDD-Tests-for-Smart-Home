@@ -1,25 +1,25 @@
 package smarthome;
 
 import java.util.List;
+
 import business.*;
 
 /**
  * TODO description
  */
-public class Alarm extends AbstractSystem {
+public class RemoteAirConditioningControl extends AbstractSystem {
 	
-	public Alarm(ISystem parentSystem) {
+	public RemoteAirConditioningControl(ISystem parentSystem) {
 		super(parentSystem);
 	}
 	
 	public Channel getChannel() {
-		return Channel.ALARM;
+		return Channel.REMOTE_AIR_CONDITIONING_CONTROL;
 	}
-	
+
 	@Override
 	public List<Code> render() {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
 }

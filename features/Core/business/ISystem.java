@@ -9,7 +9,7 @@ import business.Channel;
 public interface ISystem {
 	
 	public void respond(Code code);
-	public List<String> render();
+	public List<Code> render();
 	
 	public List<ISystem> getSubsystems();
 	public ISystem getParentSystem();
