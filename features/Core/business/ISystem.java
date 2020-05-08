@@ -14,5 +14,7 @@ public interface ISystem {
 	public List<ISystem> getSubsystems();
 	public ISystem getParentSystem();
 	public Channel getChannel();
+	
+	public void addSubsystem(ISystem subsystem);
 
 }

@@ -19,9 +19,13 @@ public class UI extends AbstractSystem {
 	
 	private JTextArea console;
 	private boolean started = false;
+	private boolean authMode = true;
+	
+	private Map<String, Boolean> authDevices;
 	
 	public UI(ISystem parentSystem) {
 		super(parentSystem);
+		authDevices = new HashMap<String, Boolean>();
 	}
 	
 	public Channel getChannel() {
@@ -36,7 +40,28 @@ public class UI extends AbstractSystem {
 		for (Command c : allCommands) {
 			console.append(c.toString() + "\n");
 		}
-		console.append("Press ENTER to start.\n");
+		startAuthentication();
+	}
+	
+	private void startAuthentication() {
+		console.append("Press ENTER to authenticate.\n");
+	}
+	
+	private void authenticate(String input) {
+		checkAuthentication();
+	}
+	
+	private void checkAuthentication() {
+		boolean result = true;
+		for (Map.Entry<String, Boolean> entry : authDevices.entrySet()) {
+			if (entry.getValue() != true) {
+				result = false;
+				break;
+			}
+		}
+		if (result == true) {
+			authMode = false;
+		}
 	}
 	
 	private void handleInput(String input) {
@@ -66,19 +91,31 @@ public class UI extends AbstractSystem {
             public void keyPressed(KeyEvent e) {  
                 synchronized (frame) {
 					try {
-						if (e.getKeyChar() == '\n') {
-							if (!started) {
-								console.append("Enter the command you want to run: \n");
-								started = true;
-							} else {
+						if (authMode) {
+							if (e.getKeyChar() == '\n') {
 								String[] parts = console.getText().split("\n");
 								String input = parts[parts.length-1].trim().replace("\n", "");
 								if (input.contentEquals("QUIT")) {
 									System.exit(0);
 								}
-								handleInput(input);
+								authenticate(input);
+							}
+						} else {
+							if (e.getKeyChar() == '\n') {
+								if (!started) {
+									console.append("Enter the command you want to run: \n");
+									started = true;
+								} else {
+									String[] parts = console.getText().split("\n");
+									String input = parts[parts.length-1].trim().replace("\n", "");
+									if (input.contentEquals("QUIT")) {
+										System.exit(0);
+									}
+									handleInput(input);
+								}
 							}
 						}
+						
 					} catch (Exception e1) {
 						console.append(e1.getMessage());
 					}

@@ -2,32 +2,24 @@
 <configuration>
 	<feature automatic="selected" name="SmartHome"/>
 	<feature automatic="selected" name="Core"/>
-	<feature name="BlindsManagement"/>
-	<feature name="ManualBlinds"/>
-	<feature name="AutomatedBlinds"/>
-	<feature name="AVManagement"/>
-	<feature name="AutomatedAV"/>
-	<feature name="Security"/>
-	<feature name="AuthenticationDevice"/>
-	<feature name="Keypad"/>
+	<feature automatic="selected" manual="selected" name="Alarm"/>
+	<feature name="Siren"/>
+	<feature manual="selected" name="Bell"/>
+	<feature name="Lights"/>
+	<feature automatic="selected" name="Security"/>
+	<feature automatic="selected" name="AuthenticationDevice"/>
+	<feature manual="selected" name="Keypad"/>
 	<feature name="RetinaScanner"/>
 	<feature name="FingerprintReader"/>
-	<feature name="IntrusionDetectionDevice"/>
-	<feature name="GlassbreakSensors"/>
+	<feature automatic="selected" name="IntrusionDetectionDevice"/>
+	<feature manual="selected" name="GlassbreakSensors"/>
 	<feature name="Cameras"/>
 	<feature name="Moods"/>
-	<feature name="Alarm"/>
-	<feature name="Siren"/>
-	<feature name="Bell"/>
-	<feature name="Lights"/>
 	<feature name="FireControl"/>
 	<feature name="FirstAidGroup"/>
 	<feature name="FireDepartment"/>
 	<feature name="OtherGroup"/>
 	<feature name="FireSprinklers"/>
-	<feature name="IrrigationSprinklers"/>
-	<feature name="SimpleControl"/>
-	<feature name="AutomatedSprinklers"/>
 	<feature name="PresenceSimulation"/>
 	<feature name="LightSimulation"/>
 	<feature name="BlindsSimulation"/>
@@ -39,6 +31,11 @@
 	<feature name="EncryptionAlgorithm"/>
 	<feature name="RSA"/>
 	<feature name="DES"/>
+	<feature name="AVManagement"/>
+	<feature name="AutomatedAV"/>
+	<feature name="BlindsManagement"/>
+	<feature name="ManualBlinds"/>
+	<feature name="AutomatedBlinds"/>
 	<feature automatic="selected" name="LightManagement"/>
 	<feature automatic="selected" name="ManualIllumination"/>
 	<feature automatic="selected" name="AutomatedIllumination"/>
@@ -47,6 +44,9 @@
 	<feature automatic="selected" name="WindowsManagement"/>
 	<feature automatic="selected" name="ManualWindows"/>
 	<feature name="AutomatedWindows"/>
+	<feature name="IrrigationSprinklers"/>
+	<feature name="SimpleControl"/>
+	<feature name="AutomatedSprinklers"/>
 	<feature name="HVACManagement"/>
 	<feature name="HeatingControl"/>
 	<feature name="ManualHeating"/>

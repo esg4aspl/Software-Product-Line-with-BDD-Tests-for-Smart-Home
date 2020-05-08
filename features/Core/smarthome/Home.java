@@ -2,9 +2,11 @@ package smarthome;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import application.App;
 import business.*;
+import io.*;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPubSub;
 
@@ -14,10 +16,13 @@ import redis.clients.jedis.JedisPubSub;
 public class Home extends AbstractSystem {
 	
 	private List<Rule> rules;
+	private Map<Channel, List<Rule>> ruleMap;
 	
 	public Home() {
 		super();
 		rules = new ArrayList<Rule>();
+		RuleReader ruleReader = new RuleReader();
+		ruleMap = ruleReader.getMap();
 	}
 	
 	public Channel getChannel() {
@@ -39,7 +44,6 @@ public class Home extends AbstractSystem {
 		for (String logString : logStrings) {
 			logs.add((new Command(logString).getCode()));
 		}
-		
 		
 		for (Rule r : rules) {
 			if (r.match(logs)) {

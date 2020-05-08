@@ -12,8 +12,6 @@ public class AutomatedInhouseIllumination extends AbstractSystem {
 	public AutomatedInhouseIllumination(ISystem parentSystem) {
 		super(parentSystem);
 		automation = true;
-		commands.add(new Command("AUTOMATE" + Code.DIVIDER + "On" + Command.DIVIDER + "AUTOMATED_INHOUSE_ILLUMINATION"));
-		commands.add(new Command("AUTOMATE" + Code.DIVIDER + "Off" + Command.DIVIDER + "AUTOMATED_INHOUSE_ILLUMINATION"));
 	}
 	
 	public Channel getChannel() {

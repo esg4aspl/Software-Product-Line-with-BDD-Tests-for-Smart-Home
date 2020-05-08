@@ -1,6 +1,7 @@
 package smarthome;
 
 import business.*;
+import io.*;
 
 /**
  * TODO description
@@ -9,16 +10,13 @@ public class ManualIllumination extends AbstractSystem {
 	
 	public ManualIllumination(ISystem parentSystem) {
 		super(parentSystem);
-		commands.add(new Command("TURN_ON" + Code.DIVIDER + "Kitchen" + Command.DIVIDER + "LIGHT_MANAGEMENT"));
-		commands.add(new Command("TURN_ON" + Code.DIVIDER + "Living Room" + Command.DIVIDER + "LIGHT_MANAGEMENT"));
-		commands.add(new Command("TURN_ON" + Code.DIVIDER + "Bathroom" + Command.DIVIDER + "LIGHT_MANAGEMENT"));
-		commands.add(new Command("TURN_ON" + Code.DIVIDER + "Bedroom" + Command.DIVIDER + "LIGHT_MANAGEMENT"));
-		commands.add(new Command("TURN_ON" + Code.DIVIDER + "All" + Command.DIVIDER + "LIGHT_MANAGEMENT"));
-		commands.add(new Command("TURN_OFF" + Code.DIVIDER + "Kitchen" + Command.DIVIDER + "LIGHT_MANAGEMENT"));
-		commands.add(new Command("TURN_OFF" + Code.DIVIDER + "Living Room" + Command.DIVIDER + "LIGHT_MANAGEMENT"));
-		commands.add(new Command("TURN_OFF" + Code.DIVIDER + "Bathroom" + Command.DIVIDER + "LIGHT_MANAGEMENT"));
-		commands.add(new Command("TURN_OFF" + Code.DIVIDER + "Bedroom" + Command.DIVIDER + "LIGHT_MANAGEMENT"));
-		commands.add(new Command("TURN_OFF" + Code.DIVIDER + "All" + Command.DIVIDER + "LIGHT_MANAGEMENT"));
+	}
+	
+	@Override
+	public void respond(Command command) {
+		System.out.println(getChannel() + " forwarding " + command.getCode() + " to " + Channel.LIGHT_MANAGEMENT);
+		publisher.publish((new Command(Channel.LIGHT_MANAGEMENT, command.getCode()).toString()));
+		
 	}
 	
 	public Channel getChannel() {

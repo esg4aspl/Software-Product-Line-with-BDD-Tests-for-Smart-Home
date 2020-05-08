@@ -3,6 +3,8 @@ package business;
 import java.util.List;
 
 import application.App;
+import io.CommandReader;
+
 import java.util.ArrayList;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPubSub;
@@ -29,6 +31,9 @@ public abstract class AbstractSystem implements ISystem {
 		this.subscriber = createSubscriber();
 		this.publisher = createPublisher();
 		this.commands = new ArrayList<Command>();
+		List<Command> commandsToAdd = CommandReader.getInstance().getMap().get(getChannel());
+		if (commandsToAdd != null)
+			this.commands.addAll(commandsToAdd);
 		
 		subscriber.start();
 		publisher.start();
@@ -36,6 +41,10 @@ public abstract class AbstractSystem implements ISystem {
 	
 	//ABSTRACT
 	public abstract Channel getChannel();
+	
+	public void addSubsystem(ISystem subsystem) {
+		this.subsystems.add(subsystem);
+	}
 
 	//PUBLIC METHODS
 	public void respond(Command command) {

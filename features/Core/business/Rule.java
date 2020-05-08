@@ -7,7 +7,7 @@ import java.util.*;
  */
 public class Rule {
 	
-	private static final String CONDITION_DIVIDER = "&";
+	private static final String CONDITION_DIVIDER = "&&";
 	private List<Condition> inputConditions;
 	private Command outputCommand;
 	

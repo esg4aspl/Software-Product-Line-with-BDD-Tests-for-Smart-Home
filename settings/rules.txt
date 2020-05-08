@@ -1,0 +1,10 @@
+[AUTOMATED_INHOUSE_ILLUMINATION]
+if CLOCK=07:00 then TURN_ON=All Inhouse
+if CLOCK=12:00 then TURN_OFF=All Inhouse
+if CLOCK=19:00 then TURN_ON=All Inhouse
+if CLOCK=23:00 then TURN_OFF=All Inhouse
+if CLOCK=23:00 then TURN_ON=Midnight Alarms at ALARM
+
+[GLASSBREAK_SENSORS]
+//Turn on alarms if there is a glass break
+if GLASSBREAK=Kitchen then TURN_ON=Kitchen at ALARM
