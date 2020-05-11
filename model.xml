@@ -18,6 +18,17 @@
 					<feature name="Bell"/>
 					<feature name="Lights"/>
 				</or>
+				<and mandatory="true" name="UI">
+					<feature name="TouchScreen"/>
+					<and name="Internet">
+						<and name="Privacy">
+							<alt name="EncryptionAlgorithm">
+								<feature name="RSA"/>
+								<feature name="DES"/>
+							</alt>
+						</and>
+					</and>
+				</and>
 				<and name="Security">
 					<or mandatory="true" name="AuthenticationDevice">
 						<feature name="Keypad"/>
@@ -42,17 +53,6 @@
 					<feature name="BlindsSimulation"/>
 					<feature name="AVSimulation"/>
 				</or>
-				<and mandatory="true" name="UI">
-					<feature name="TouchScreen"/>
-					<and name="Internet">
-						<and name="Privacy">
-							<alt name="EncryptionAlgorithm">
-								<feature name="RSA"/>
-								<feature name="DES"/>
-							</alt>
-						</and>
-					</and>
-				</and>
 				<and name="AVManagement">
 					<feature name="AutomatedAV"/>
 				</and>

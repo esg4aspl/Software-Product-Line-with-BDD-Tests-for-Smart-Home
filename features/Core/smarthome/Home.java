@@ -30,11 +30,16 @@ public class Home extends AbstractSystem {
 	}
 	
 	public void init() {
+		System.out.println("STARTED HOME");
 		for (ISystem s : subsystems) {
 			if (s instanceof UI) {
 				((UI) s).init();
 			}
 		}
+	}
+	
+	public void kill() {
+		System.out.println("STOPPED HOME");
 	}
 	
 	public void respondToEnvironment(String environmentLog) {

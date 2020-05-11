@@ -3,7 +3,13 @@ if CLOCK=07:00 then TURN_ON=All Inhouse
 if CLOCK=12:00 then TURN_OFF=All Inhouse
 if CLOCK=19:00 then TURN_ON=All Inhouse
 if CLOCK=23:00 then TURN_OFF=All Inhouse
+
+[ALARM]
 if CLOCK=23:00 then TURN_ON=Midnight Alarms at ALARM
+
+[AUTOMATED_PERIMETER_ILLUMINATION]
+if CLOCK=09:00 then TURN_OFF=All Perimeter
+if CLOCK=21:00 then TURN_ON=All Perimeter
 
 [GLASSBREAK_SENSORS]
 //Turn on alarms if there is a glass break

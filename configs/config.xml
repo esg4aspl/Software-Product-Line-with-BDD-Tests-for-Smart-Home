@@ -6,6 +6,13 @@
 	<feature name="Siren"/>
 	<feature manual="selected" name="Bell"/>
 	<feature name="Lights"/>
+	<feature automatic="selected" name="UI"/>
+	<feature name="TouchScreen"/>
+	<feature name="Internet"/>
+	<feature name="Privacy"/>
+	<feature name="EncryptionAlgorithm"/>
+	<feature name="RSA"/>
+	<feature name="DES"/>
 	<feature automatic="selected" name="Security"/>
 	<feature automatic="selected" name="AuthenticationDevice"/>
 	<feature manual="selected" name="Keypad"/>
@@ -24,13 +31,6 @@
 	<feature name="LightSimulation"/>
 	<feature name="BlindsSimulation"/>
 	<feature name="AVSimulation"/>
-	<feature automatic="selected" name="UI"/>
-	<feature name="TouchScreen"/>
-	<feature name="Internet"/>
-	<feature name="Privacy"/>
-	<feature name="EncryptionAlgorithm"/>
-	<feature name="RSA"/>
-	<feature name="DES"/>
 	<feature name="AVManagement"/>
 	<feature name="AutomatedAV"/>
 	<feature name="BlindsManagement"/>
@@ -39,7 +39,7 @@
 	<feature automatic="selected" name="LightManagement"/>
 	<feature automatic="selected" name="ManualIllumination"/>
 	<feature automatic="selected" name="AutomatedIllumination"/>
-	<feature name="AutomatedPerimeterIllumination"/>
+	<feature manual="selected" name="AutomatedPerimeterIllumination"/>
 	<feature manual="selected" name="AutomatedInhouseIllumination"/>
 	<feature automatic="selected" name="WindowsManagement"/>
 	<feature automatic="selected" name="ManualWindows"/>

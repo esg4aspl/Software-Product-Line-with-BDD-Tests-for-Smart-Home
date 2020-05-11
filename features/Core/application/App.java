@@ -13,6 +13,7 @@ import business.*;
 public class App {
 	
 	private static JedisPool pool;
+	public Home home;
 	
 	public static Jedis getJedis() {
 		return pool.getResource();
@@ -26,9 +27,9 @@ public class App {
 	public void init() {
 		final JedisPoolConfig poolConfig = buildPoolConfig();
 		pool = new JedisPool(poolConfig, "localhost");
-		Home home = new Home();
-		home.init();
-		(new Publisher()).start();
+		home = new Home();
+		//home.init();
+		//(new Publisher()).start();
 	}
 	
 	class Publisher extends Thread {

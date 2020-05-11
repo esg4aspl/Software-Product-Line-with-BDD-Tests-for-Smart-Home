@@ -18,14 +18,11 @@ import business.*;
 public class UI extends AbstractSystem {
 	
 	private JTextArea console;
-	private boolean started = false;
-	private boolean authMode = true;
-	
-	private Map<String, Boolean> authDevices;
+	private boolean outputMode = false;
+	private char c;
 	
 	public UI(ISystem parentSystem) {
 		super(parentSystem);
-		authDevices = new HashMap<String, Boolean>();
 	}
 	
 	public Channel getChannel() {
@@ -36,45 +33,35 @@ public class UI extends AbstractSystem {
 		createConsole();
 		
 		List<Command> allCommands = parentSystem.render();
-		console.append("Available Commands:\n");
+		println("Available Commands:");
 		for (Command c : allCommands) {
-			console.append(c.toString() + "\n");
+			println(c.toString());
 		}
-		startAuthentication();
+
+		println("Enter the command you want to run:");
 	}
 	
-	private void startAuthentication() {
-		console.append("Press ENTER to authenticate.\n");
-	}
-	
-	private void authenticate(String input) {
-		checkAuthentication();
-	}
-	
-	private void checkAuthentication() {
-		boolean result = true;
-		for (Map.Entry<String, Boolean> entry : authDevices.entrySet()) {
-			if (entry.getValue() != true) {
-				result = false;
-				break;
-			}
-		}
-		if (result == true) {
-			authMode = false;
-		}
-	}
 	
 	private void handleInput(String input) {
-		if (!started) {
-			return;
-		}
-		console.append("->Running: " + (new Command(input)).toString() + "\n");
+		if (input.contentEquals("QUIT"))
+			System.exit(0);
+		
+		println("->Running: " + (new Command(input)).toString());
 		publisher.publish(input);
-		console.append("Enter the command you want to run:\n");
-		console.setCaretPosition(console.getDocument().getLength());
+		println("Enter the command you want to run:");
 	}
 	
-
+	private String readLine() {
+		if (c == '\n') {
+			c = ' ';
+			String[] parts = console.getText().split("\n");
+			String input = parts[parts.length-1].trim();
+			System.out.println("\nUI Input: " + input);
+			return input;
+		} else {	
+			return null;
+		}
+	}
 	
 	private void createConsole() {
 		final JFrame frame = new JFrame(); 
@@ -82,42 +69,21 @@ public class UI extends AbstractSystem {
         frame.setLocation(20, 50);
 
 		console = new JTextArea(1, 1);
-	    console.setBackground(Color.BLACK);
-	    console.setForeground(Color.LIGHT_GRAY);
-	    console.setFont(new Font(Font.MONOSPACED, Font.PLAIN, 12));
 	    
         console.addKeyListener(new KeyListener() {
             @Override 
             public void keyPressed(KeyEvent e) {  
                 synchronized (frame) {
+                	if (outputMode)
+                		return;
+                	c = e.getKeyChar();
 					try {
-						if (authMode) {
-							if (e.getKeyChar() == '\n') {
-								String[] parts = console.getText().split("\n");
-								String input = parts[parts.length-1].trim().replace("\n", "");
-								if (input.contentEquals("QUIT")) {
-									System.exit(0);
-								}
-								authenticate(input);
-							}
-						} else {
-							if (e.getKeyChar() == '\n') {
-								if (!started) {
-									console.append("Enter the command you want to run: \n");
-									started = true;
-								} else {
-									String[] parts = console.getText().split("\n");
-									String input = parts[parts.length-1].trim().replace("\n", "");
-									if (input.contentEquals("QUIT")) {
-										System.exit(0);
-									}
-									handleInput(input);
-								}
-							}
-						}
-						
+						String input = readLine();
+						if (input == null)
+							return;
+						handleInput(input);
 					} catch (Exception e1) {
-						console.append(e1.getMessage());
+						println(e1.getMessage());
 					}
                 }  
             }  
@@ -132,6 +98,14 @@ public class UI extends AbstractSystem {
         JScrollPane scrollPane = new JScrollPane(console);
 	    frame.add(scrollPane);
         frame.setVisible(true);
+	}
+	
+	private void println(String str) {
+		outputMode = true;
+		console.append(str);
+		console.append("\n");
+		console.setCaretPosition(console.getDocument().getLength());
+		outputMode = false;
 	}
 
 }
