@@ -9,7 +9,9 @@ import business.Rule;
 public class Home {
 	
 	public Home() {
-		rules.addAll(ruleMap.get(Channel.AUTOMATED_INHOUSE_ILLUMINATION));
+		List<Rule> automatedInhouseIlluminationRules = ruleMap.get(Channel.AUTOMATED_INHOUSE_ILLUMINATION);
+		if (automatedInhouseIlluminationRules != null)
+			rules.addAll(automatedInhouseIlluminationRules);
 	}
 
 }

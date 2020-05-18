@@ -7,5 +7,6 @@ public interface IPublisher {
 	
 	public void start();
 	public void publish(String command);
+	public void kill();
 
 }

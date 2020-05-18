@@ -14,3 +14,7 @@ if CLOCK=21:00 then TURN_ON=All Perimeter
 [GLASSBREAK_SENSORS]
 //Turn on alarms if there is a glass break
 if GLASSBREAK=Kitchen then TURN_ON=Kitchen at ALARM
+
+[AUTOMATED_WINDOWS]
+if CLOCK=09:00 then TURN_ON=All
+if CLOCK=19:00 then TURN_OFF=All

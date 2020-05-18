@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<configuration>
+	<feature automatic="selected" name="SmartHome"/>
+	<feature automatic="selected" name="Core"/>
+	<feature name="Alarm"/>
+	<feature name="Siren"/>
+	<feature name="Bell"/>
+	<feature name="Lights"/>
+	<feature automatic="selected" name="UI"/>
+	<feature automatic="selected" name="TouchScreen"/>
+	<feature automatic="selected" manual="selected" name="Internet"/>
+	<feature automatic="selected" manual="selected" name="Privacy"/>
+	<feature automatic="selected" name="EncryptionAlgorithm"/>
+	<feature manual="selected" name="RSA"/>
+	<feature automatic="unselected" name="DES"/>
+	<feature name="Security"/>
+	<feature name="AuthenticationDevice"/>
+	<feature name="Keypad"/>
+	<feature name="RetinaScanner"/>
+	<feature name="FingerprintReader"/>
+	<feature name="IntrusionDetectionDevice"/>
+	<feature name="GlassbreakSensors"/>
+	<feature name="Cameras"/>
+	<feature name="Moods"/>
+	<feature name="FireControl"/>
+	<feature name="FirstAidGroup"/>
+	<feature name="FireDepartment"/>
+	<feature name="OtherGroup"/>
+	<feature name="FireSprinklers"/>
+	<feature name="PresenceSimulation"/>
+	<feature name="LightSimulation"/>
+	<feature name="BlindsSimulation"/>
+	<feature name="AVSimulation"/>
+	<feature name="AVManagement"/>
+	<feature name="AutomatedAV"/>
+	<feature name="BlindsManagement"/>
+	<feature name="ManualBlinds"/>
+	<feature name="AutomatedBlinds"/>
+	<feature automatic="selected" name="LightManagement"/>
+	<feature automatic="selected" name="ManualIllumination"/>
+	<feature automatic="selected" name="AutomatedIllumination"/>
+	<feature manual="selected" name="AutomatedPerimeterIllumination"/>
+	<feature manual="selected" name="AutomatedInhouseIllumination"/>
+	<feature automatic="selected" name="WindowsManagement"/>
+	<feature automatic="selected" name="ManualWindows"/>
+	<feature manual="selected" name="AutomatedWindows"/>
+	<feature name="IrrigationSprinklers"/>
+	<feature name="SimpleControl"/>
+	<feature name="AutomatedSprinklers"/>
+	<feature name="HVACManagement"/>
+	<feature name="HeatingControl"/>
+	<feature name="ManualHeating"/>
+	<feature name="AutomatedHeating"/>
+	<feature name="RemoteHeatingControl"/>
+	<feature name="AirConditioningControl"/>
+	<feature name="ManualAirConditioningControl"/>
+	<feature name="AutomatedAirConditioningControl"/>
+	<feature name="RemoteAirConditioningControl"/>
+	<feature name="VentilationControl"/>
+	<feature name="ManualVentilationControl"/>
+	<feature name="AutomatedVentilationControl"/>
+	<feature name="FullAutomatedHVACControl"/>
+	<feature name="FullManualHVACControl"/>
+</configuration>

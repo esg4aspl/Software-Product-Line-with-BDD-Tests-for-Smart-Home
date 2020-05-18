@@ -38,12 +38,12 @@ public class Home extends AbstractSystem {
 		}
 	}
 	
-	public void kill() {
+	public void turnOff() {
 		System.out.println("STOPPED HOME");
 	}
 	
 	public void respondToEnvironment(String environmentLog) {
-		System.out.println("\n" + getChannel() + " analyzing environment logs: " + environmentLog);
+		System.out.println(getChannel() + " analyzing environment logs: " + environmentLog);
 		String[] logStrings = environmentLog.split("&");
 		List<Code> logs = new ArrayList<Code>();
 		for (String logString : logStrings) {
@@ -72,6 +72,8 @@ public class Home extends AbstractSystem {
 	}
 	
 	protected class Subscriber extends Thread implements ISubscriber {
+		private boolean alive = true;
+		
 		@Override
 		public void run() {
 			super.run();
@@ -82,6 +84,9 @@ public class Home extends AbstractSystem {
 				jSubscriber.subscribe(new JedisPubSub() {
 				    @Override
 				    public void onMessage(String channel, String message) {
+				    	if (!alive)
+				    		return;
+				    	
 				    	if (message.substring(0, 3).equals("ENV")) {
 				    		respondToEnvironment(message.substring(4));
 				    	} else {
@@ -94,6 +99,10 @@ public class Home extends AbstractSystem {
 					jSubscriber.close();
 			}
 			
+		}
+		
+		public void kill() {
+			alive = false;
 		}
 	}
 	

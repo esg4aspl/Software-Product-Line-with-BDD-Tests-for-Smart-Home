@@ -127,7 +127,16 @@ public class GherkinCreator {
 				"manualIllumination",
 				"manualIlluminationAndAutomatedInhouse",
 				"manualIlluminationAndAutomatedPerimeter",
-				"manualIlluminationAndAutomatedInhouseAndAutomatedPerimeter"
+				"manualIlluminationAndAutomatedInhouseAndAutomatedPerimeter",
+				"manualWindows",
+				"manualWindowsAndAutomatedWindows",
+				"touchScreen",
+				"internet",
+				"touchScreenAndInternet",
+				"internetAndPrivacy",
+				"touchScreenAndInternetAndPrivacy",
+				"internetAndPrivacyAndRSA",
+				"touchScreenAndInternetAndPrivacyAndRSA",
 				};
 		
 		String sourcePrefix = "./sequences/" + type + "/";

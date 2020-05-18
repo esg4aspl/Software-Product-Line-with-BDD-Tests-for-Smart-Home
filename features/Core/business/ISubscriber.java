@@ -6,5 +6,6 @@ package business;
 public interface ISubscriber {
 	
 	public void start();
+	public void kill();
 
 }

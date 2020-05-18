@@ -24,7 +24,8 @@ public class AutomatedPerimeterIllumination extends AbstractSystem {
 			if (!automation)
 				return;
 			System.out.println(getChannel() + " forwarding " + command.getCode() + " to " + Channel.LIGHT_MANAGEMENT);
-			publisher.publish((new Command(Channel.LIGHT_MANAGEMENT, command.getCode()).toString()));
+			parentSystem.getParentSystem().respond(command);
+			//publisher.publish((new Command(Channel.LIGHT_MANAGEMENT, command.getCode()).toString()));
 		} else {
 			if (command.getCode().getData().equals("On")) {
 				automation = true;

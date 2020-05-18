@@ -19,10 +19,10 @@
 					<feature name="Lights"/>
 				</or>
 				<and mandatory="true" name="UI">
-					<feature name="TouchScreen"/>
+					<feature mandatory="true" name="TouchScreen"/>
 					<and name="Internet">
 						<and name="Privacy">
-							<alt name="EncryptionAlgorithm">
+							<alt mandatory="true" name="EncryptionAlgorithm">
 								<feature name="RSA"/>
 								<feature name="DES"/>
 							</alt>

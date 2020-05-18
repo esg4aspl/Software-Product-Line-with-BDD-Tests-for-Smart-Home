@@ -24,6 +24,14 @@ public abstract class AbstractSystem implements ISystem {
 	public AbstractSystem() {
 		this(null);
 	}
+	
+	public void kill() { 
+		publisher.kill();
+		subscriber.kill();
+		for (ISystem s : subsystems) {
+			s.kill();
+		}
+	}
 
 	public AbstractSystem(ISystem parentSystem) {
 		this.parentSystem = parentSystem;
@@ -75,6 +83,8 @@ public abstract class AbstractSystem implements ISystem {
 	}
 	
 	protected class Subscriber extends Thread implements ISubscriber {
+		private boolean alive = true;
+		
 		@Override
 		public void run() {
 			super.run();
@@ -85,7 +95,8 @@ public abstract class AbstractSystem implements ISystem {
 				jSubscriber.subscribe(new JedisPubSub() {
 				    @Override
 				    public void onMessage(String channel, String message) {
-				    	respond(new Command(message));
+				    	if (alive)
+				    		respond(new Command(message));
 				    }
 				}, getChannel().toString());
 			} finally {
@@ -94,11 +105,18 @@ public abstract class AbstractSystem implements ISystem {
 			}
 			
 		}
+		
+		public void kill() {
+			alive = false;
+		}
 	}
 	
 	protected class Publisher extends Thread implements IPublisher {
-				
+		private boolean alive = true;
+		
 		public void publish(String command) {
+			if (!alive)
+				return;
 			Command c = new Command(command);
 			Jedis jPublisher = null;
 			try {
@@ -113,6 +131,10 @@ public abstract class AbstractSystem implements ISystem {
 		@Override
 		public void run() {
 			super.run();
+		}
+		
+		public void kill() {
+			alive = false;
 		}
 	}
 

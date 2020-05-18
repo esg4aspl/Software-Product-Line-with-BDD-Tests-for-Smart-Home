@@ -9,7 +9,9 @@ import business.Rule;
 public class Home {
 	
 	public Home() {
-		rules.addAll(ruleMap.get(Channel.AUTOMATED_PERIMETER_ILLUMINATION));
+		List<Rule> automatedPerimeterIlluminationRules = ruleMap.get(Channel.AUTOMATED_PERIMETER_ILLUMINATION);
+		if (automatedPerimeterIlluminationRules != null)
+			rules.addAll(automatedPerimeterIlluminationRules);
 	}
 
 }

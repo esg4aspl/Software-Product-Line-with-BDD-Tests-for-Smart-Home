@@ -18,6 +18,11 @@ public enum ECode {
 	CLOCK,
 	GLASSBREAK,
 	
+	//UI
+	TOUCH,
+	INTERNET,
+	INTERNET_SEND,
+	
 	UNIDENTIFIED_CODE;
 	
 	public static ECode parseECode(String codeString) {

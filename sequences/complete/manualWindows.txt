@@ -1,0 +1,1 @@
+[, Turn on, UI output, Manual window open, UI output, Manual window close, UI output, Turn off, ]

@@ -22,6 +22,7 @@ public class App {
 	public static void main(String[] args) {	
 		App app = new App();
 		app.init();
+
 	}
 	
 	public void init() {
@@ -29,12 +30,13 @@ public class App {
 		pool = new JedisPool(poolConfig, "localhost");
 		home = new Home();
 		//home.init();
-		//(new Publisher()).start();
+		//(new App.Publisher()).start();
 	}
 	
 	class Publisher extends Thread {
 		String[] messages = {
 				"ENV:CLOCK=07:00@HOME&TEMPERATURE=20@HOME&GLASSBREAK=Kitchen@HOME",
+				"ENV:CLOCK=09:00@HOME&TEMPERATURE=20@HOME",
 				"ENV:CLOCK=12:00@HOME&TEMPERATURE=20@HOME",
 				"ENV:CLOCK=16:00@HOME&TEMPERATURE=20@HOME",
 				"ENV:CLOCK=19:00@HOME&TEMPERATURE=21@HOME",
@@ -57,6 +59,8 @@ public class App {
 					}
 					
 					jPublisher.publish("HOME", messages[i]);
+					jPublisher.publish("TOUCH_SCREEN", "TOUCH=True@TOUCH_SCREEN");
+					jPublisher.publish("INTERNET", "INTERNET=Input@INTERNET");
 					
 				}
 			} finally {

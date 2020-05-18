@@ -5,17 +5,17 @@ import business.*;
 /**
  * TODO description
  */
-public class AutomatedInhouseIllumination extends AbstractSystem {
+public class AutomatedWindows extends AbstractSystem {
 	
 	private boolean automation;
 	
-	public AutomatedInhouseIllumination(ISystem parentSystem) {
+	public AutomatedWindows(ISystem parentSystem) {
 		super(parentSystem);
 		automation = true;
 	}
 	
 	public Channel getChannel() {
-		return Channel.AUTOMATED_INHOUSE_ILLUMINATION;
+		return Channel.AUTOMATED_WINDOWS;
 	}
 	
 	@Override
@@ -23,9 +23,9 @@ public class AutomatedInhouseIllumination extends AbstractSystem {
 		if (command.getCode().getECode() != ECode.AUTOMATE) {
 			if (!automation)
 				return;
-			System.out.println(getChannel() + " forwarding " + command.getCode() + " to " + Channel.LIGHT_MANAGEMENT);
-			parentSystem.getParentSystem().respond(command);
-			//publisher.publish((new Command(Channel.LIGHT_MANAGEMENT, command.getCode()).toString()));
+			System.out.println(getChannel() + " forwarding " + command.getCode() + " to " + Channel.WINDOWS_MANAGEMENT);
+			parentSystem.respond(command);
+			//publisher.publish((new Command(Channel.WINDOWS_MANAGEMENT, command.getCode()).toString()));
 		} else {
 			if (command.getCode().getData().equals("On")) {
 				automation = true;

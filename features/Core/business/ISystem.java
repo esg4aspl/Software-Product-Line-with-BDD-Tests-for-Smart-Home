@@ -16,5 +16,7 @@ public interface ISystem {
 	public Channel getChannel();
 	
 	public void addSubsystem(ISystem subsystem);
+	
+	public void kill();
 
 }
