@@ -1,0 +1,1 @@
+[, turn on, output to console, open fire sprinklers, output to console, close fire sprinklers, output to console, call other group for fire, output to console, call fire department, output to console, turn off, ]

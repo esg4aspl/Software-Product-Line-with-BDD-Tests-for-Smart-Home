@@ -1,0 +1,1 @@
+[, turn on, output to console, open blinds automatic, output to console, close blinds automatic, output to console, close blinds manual, output to console, open blinds manual, output to console, turn off, ]

@@ -2,10 +2,10 @@
 <configuration>
 	<feature automatic="selected" name="SmartHome"/>
 	<feature automatic="selected" name="Core"/>
-	<feature name="Alarm"/>
-	<feature name="Siren"/>
-	<feature name="Bell"/>
-	<feature name="Lights"/>
+	<feature automatic="selected" name="Alarm"/>
+	<feature manual="selected" name="Siren"/>
+	<feature manual="selected" name="Bell"/>
+	<feature manual="selected" name="Lights"/>
 	<feature automatic="selected" name="UI"/>
 	<feature automatic="selected" name="TouchScreen"/>
 	<feature automatic="selected" manual="selected" name="Internet"/>
@@ -21,21 +21,22 @@
 	<feature name="IntrusionDetectionDevice"/>
 	<feature name="GlassbreakSensors"/>
 	<feature name="Cameras"/>
-	<feature name="Moods"/>
-	<feature name="FireControl"/>
-	<feature name="FirstAidGroup"/>
-	<feature name="FireDepartment"/>
-	<feature name="OtherGroup"/>
-	<feature name="FireSprinklers"/>
+	<feature manual="selected" name="MoodsManagement"/>
+	<feature automatic="selected" name="AutomatedMoods"/>
+	<feature automatic="selected" name="FireControl"/>
+	<feature automatic="selected" manual="selected" name="FirstAidGroup"/>
+	<feature automatic="selected" name="FireDepartment"/>
+	<feature manual="selected" name="OtherGroup"/>
+	<feature manual="selected" name="FireSprinklers"/>
 	<feature name="PresenceSimulation"/>
 	<feature name="LightSimulation"/>
 	<feature name="BlindsSimulation"/>
 	<feature name="AVSimulation"/>
-	<feature name="AVManagement"/>
-	<feature name="AutomatedAV"/>
-	<feature name="BlindsManagement"/>
-	<feature name="ManualBlinds"/>
-	<feature name="AutomatedBlinds"/>
+	<feature manual="selected" name="AVManagement"/>
+	<feature automatic="selected" name="AutomatedAV"/>
+	<feature automatic="selected" name="BlindsManagement"/>
+	<feature automatic="selected" manual="selected" name="ManualBlinds"/>
+	<feature manual="selected" name="AutomatedBlinds"/>
 	<feature automatic="selected" name="LightManagement"/>
 	<feature automatic="selected" name="ManualIllumination"/>
 	<feature automatic="selected" name="AutomatedIllumination"/>
@@ -45,7 +46,7 @@
 	<feature automatic="selected" name="ManualWindows"/>
 	<feature manual="selected" name="AutomatedWindows"/>
 	<feature name="IrrigationSprinklers"/>
-	<feature name="SimpleControl"/>
+	<feature name="ManualSprinklers"/>
 	<feature name="AutomatedSprinklers"/>
 	<feature name="HVACManagement"/>
 	<feature name="HeatingControl"/>
@@ -59,6 +60,5 @@
 	<feature name="VentilationControl"/>
 	<feature name="ManualVentilationControl"/>
 	<feature name="AutomatedVentilationControl"/>
-	<feature name="FullAutomatedHVACControl"/>
-	<feature name="FullManualHVACControl"/>
+	<feature name="RemoteVentilationControl"/>
 </configuration>

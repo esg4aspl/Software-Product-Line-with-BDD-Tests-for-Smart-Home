@@ -9,6 +9,10 @@ public class Home {
 	
 	public Home() {
 		this.subsystems.add(new Alarm(this));
+		
+		List<Rule> automatedAlarmRules = ruleMap.get(Channel.ALARM);
+		if (automatedAlarmRules != null)
+			rules.addAll(automatedAlarmRules);
 	}
 	
 }

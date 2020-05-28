@@ -1,1 +1,0 @@
-[, Turn on, UI output, Internet input, Encrypt input with RSA, Send private input message, Decrypt input with RSA, Internet output, Encrypt output with RSA, Send private output message, Decrypt output with RSA, UI output, Touchscreen input, Touchscreen output, UI output, Turn off, ]

@@ -1,0 +1,1 @@
+[, turn on, output to console, open windows automatic, output to console, close windows automatic, output to console, close windows manual, output to console, open windows manual, output to console, turn off, ]

@@ -1,0 +1,1 @@
+[, turn on, output to console, turn on bell, output to console, turn off bell, output to console, turn off siren, output to console, turn on siren, output to console, turn off, ]

@@ -52,6 +52,7 @@ public class Home extends AbstractSystem {
 		
 		for (Rule r : rules) {
 			if (r.match(logs)) {
+				
 				publisher.publish(r.getOutputCommand().toString());
 			}
 		}

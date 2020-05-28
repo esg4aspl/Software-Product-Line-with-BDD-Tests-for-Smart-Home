@@ -21,7 +21,8 @@
 	<feature name="IntrusionDetectionDevice"/>
 	<feature name="GlassbreakSensors"/>
 	<feature name="Cameras"/>
-	<feature name="Moods"/>
+	<feature name="MoodsManagement"/>
+	<feature name="AutomatedMoods"/>
 	<feature name="FireControl"/>
 	<feature name="FirstAidGroup"/>
 	<feature name="FireDepartment"/>
@@ -45,7 +46,7 @@
 	<feature automatic="selected" name="ManualWindows"/>
 	<feature name="AutomatedWindows"/>
 	<feature name="IrrigationSprinklers"/>
-	<feature name="SimpleControl"/>
+	<feature name="ManualSprinklers"/>
 	<feature name="AutomatedSprinklers"/>
 	<feature name="HVACManagement"/>
 	<feature name="HeatingControl"/>
@@ -59,6 +60,5 @@
 	<feature name="VentilationControl"/>
 	<feature name="ManualVentilationControl"/>
 	<feature name="AutomatedVentilationControl"/>
-	<feature name="FullAutomatedHVACControl"/>
-	<feature name="FullManualHVACControl"/>
+	<feature name="RemoteVentilationControl"/>
 </configuration>

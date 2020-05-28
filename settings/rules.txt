@@ -5,7 +5,8 @@ if CLOCK=19:00 then TURN_ON=All Inhouse
 if CLOCK=23:00 then TURN_OFF=All Inhouse
 
 [ALARM]
-if CLOCK=23:00 then TURN_ON=Midnight Alarms at ALARM
+if CLOCK=07:00 then TURN_ON=Morning Alarms at ALARM
+if CLOCK=07:01 then TURN_OFF=Morning Alarms at ALARM
 
 [AUTOMATED_PERIMETER_ILLUMINATION]
 if CLOCK=09:00 then TURN_OFF=All Perimeter
@@ -18,3 +19,36 @@ if GLASSBREAK=Kitchen then TURN_ON=Kitchen at ALARM
 [AUTOMATED_WINDOWS]
 if CLOCK=09:00 then TURN_ON=All
 if CLOCK=19:00 then TURN_OFF=All
+
+[AUTOMATED_BLINDS]
+if CLOCK=09:00 then TURN_ON=All
+if CLOCK=19:00 then TURN_OFF=All
+
+[AUTOMATED_AV]
+if CLOCK=07:00 then TURN_ON=Turn On
+if CLOCK=10:00 then TURN_ON=Start
+if CLOCK=19:00 then TURN_OFF=Stop
+if CLOCK=22:00 then TURN_OFF=Turn Off
+
+[AUTOMATED_MOODS]
+if CLOCK=07:00 then TURN_ON=Turn On
+if CLOCK=20:00 then TURN_ON=Dim
+if CLOCK=16:00 then TURN_ON=Brighten
+if CLOCK=22:00 then TURN_OFF=Turn Off
+
+[AUTOMATED_SPRINKLERS]
+if CLOCK=14:00 then TURN_ON=All
+if CLOCK=15:00 then TURN_OFF=All
+
+[FIRST_AID_GROUP]
+if FIRE=On then CALL=Group
+
+[FIRE_SPRINKLERS]
+if FIRE=On then TURN_ON=All
+if FIRE=Off then TURN_OFF=All
+
+
+
+
+
+

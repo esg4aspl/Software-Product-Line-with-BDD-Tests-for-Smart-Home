@@ -1,0 +1,1 @@
+[, turn on, output to console, turn on inhouse light automatic, output to console, turn off inhouse light automatic, output to console, turn on perimeter light automatic, output to console, turn off perimeter light automatic, output to console, turn on light manual, output to console, turn off light manual, output to console, turn off, ]

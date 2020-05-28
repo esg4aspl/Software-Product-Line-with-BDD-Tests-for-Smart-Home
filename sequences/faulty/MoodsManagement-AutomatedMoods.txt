@@ -1,0 +1,1 @@
+[, turn on, output to console, turn on moods automatic, output to console, turn off moods automatic, output to console, dim moods automatic, output to console, brighten moods automatic, output to console, turn off, ]

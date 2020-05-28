@@ -40,7 +40,9 @@
 						<feature name="Cameras"/>
 					</or>
 				</and>
-				<feature name="Moods"/>
+				<and name="MoodsManagement">
+					<feature mandatory="true" name="AutomatedMoods"/>
+				</and>
 				<and name="FireControl">
 					<and mandatory="true" name="FirstAidGroup">
 						<feature mandatory="true" name="FireDepartment"/>
@@ -54,7 +56,7 @@
 					<feature name="AVSimulation"/>
 				</or>
 				<and name="AVManagement">
-					<feature name="AutomatedAV"/>
+					<feature mandatory="true" name="AutomatedAV"/>
 				</and>
 				<and name="BlindsManagement">
 					<feature mandatory="true" name="ManualBlinds"/>
@@ -72,7 +74,7 @@
 					<feature name="AutomatedWindows"/>
 				</and>
 				<and name="IrrigationSprinklers">
-					<feature mandatory="true" name="SimpleControl"/>
+					<feature mandatory="true" name="ManualSprinklers"/>
 					<feature name="AutomatedSprinklers"/>
 				</and>
 				<and name="HVACManagement">
@@ -90,12 +92,32 @@
 					</and>
 					<and name="VentilationControl">
 						<feature mandatory="true" name="ManualVentilationControl"/>
-						<feature name="AutomatedVentilationControl"/>
+						<and name="AutomatedVentilationControl">
+							<feature name="RemoteVentilationControl"/>
+						</and>
 					</and>
-					<feature name="FullAutomatedHVACControl"/>
-					<feature name="FullManualHVACControl"/>
 				</and>
 			</and>
 		</and>
 	</struct>
+	<constraints>
+		<rule>
+			<imp>
+				<var>FireDepartment</var>
+				<var>Siren</var>
+			</imp>
+		</rule>
+		<rule>
+			<imp>
+				<var>GlassbreakSensors</var>
+				<var>Bell</var>
+			</imp>
+		</rule>
+		<rule>
+			<imp>
+				<var>Cameras</var>
+				<var>Lights</var>
+			</imp>
+		</rule>
+	</constraints>
 </featureModel>

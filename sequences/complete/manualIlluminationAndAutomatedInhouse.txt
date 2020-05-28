@@ -1,1 +1,0 @@
-[, Turn on, UI output, Automated inhouse light on, UI output, Automated inhouse light off, UI output, Manual light on, UI output, Manual light off, UI output, Turn off, ]

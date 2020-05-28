@@ -1,0 +1,1 @@
+[, turn on, output to console, input via Internet, output via Internet, output to console, input via touchscreen, output via touchscreen, output to console, turn off, ]

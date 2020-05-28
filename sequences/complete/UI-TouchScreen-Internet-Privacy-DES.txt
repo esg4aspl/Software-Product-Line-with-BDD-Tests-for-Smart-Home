@@ -1,0 +1,1 @@
+[, turn on, output to console, input via Internet, send DES encrypted input message, output via Internet, send DES encrypted output message, output to console, input via touchscreen, output via touchscreen, output to console, turn off, ]

@@ -17,11 +17,15 @@ public enum ECode {
 	PRESENCE,
 	CLOCK,
 	GLASSBREAK,
+	FIRE,
 	
 	//UI
 	TOUCH,
 	INTERNET,
 	INTERNET_SEND,
+	
+	//FIRE
+	CALL,
 	
 	UNIDENTIFIED_CODE;
 	

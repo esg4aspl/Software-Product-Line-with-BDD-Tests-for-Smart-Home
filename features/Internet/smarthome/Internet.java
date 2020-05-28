@@ -17,9 +17,9 @@ public class Internet extends AbstractSystem {
 	}
 	
 	public void respond(Command command) {
-		//System.out.println(getChannel() + " responding to " + command.getCode());
 		if (command.getCode().getData().equals("Input")) {
-			//Send request here...
+			System.out.println(getChannel() + " creates response.");
+			parentSystem.respond(command);
 		}
 	}
 	

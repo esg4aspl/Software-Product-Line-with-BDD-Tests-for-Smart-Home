@@ -88,7 +88,7 @@ public class GherkinCreator {
 	
 	private static List<String> parseTestSequence(String sequence) {
 		List<String> result = new ArrayList<String>();
-		String[] steps = sequence.split(",");
+		String[] steps = sequence.strip().split(",");
 		
 		int decrement = 0;
 		if (steps[steps.length-1].strip().equals("]"))
@@ -116,28 +116,39 @@ public class GherkinCreator {
 		
 		
 		
-		String type = "complete"; //complete or faulty
+		String type = "faulty"; //complete or faulty
+		
+		String[] products = {
+				"Core",
+				//"WindowsManagement-ManualWindows",
+				//"WindowsManagement-ManualWindows-AutomatedWindows",
+				//"BlindsManagement-ManualBlinds",
+				//"BlindsManagement-ManualBlinds-AutomatedBlinds",
+				//"LightManagement-ManualIllumination",
+				//"LightManagement-ManualIllumination-AutomatedInhouseIllumination",
+				//"LightManagement-ManualIllumination-AutomatedInhouseIllumination-AutomatedPerimeterIllumination",
+				//"AVManagement-AutomatedAV",
+				//"MoodsManagement-AutomatedMoods",
+				//"IrrigationSprinklers-ManualSprinklers",
+				//"IrrigationSprinklers-ManualSprinklers-AutomatedSprinklers",
+				//"UI-TouchScreen",
+				//"UI-TouchScreen-Internet",
+				//"UI-TouchScreen-Internet-Privacy-RSA",
+				//"UI-TouchScreen-Internet-Privacy-DES",
+				//"FireControl-FireDepartment",
+				//"FireControl-FireDepartment-OtherGroup",
+				//"FireControl-FireDepartment-FireSprinklers",
+				//"FireControl-FireDepartment-OtherGroup-FireSprinklers",
+				//"Alarm-Bell",
+				//"Alarm-Lights",
+				//"Alarm-Siren",
+				//"Alarm-Bell-Lights",
+				//"Alarm-Bell-Siren",
+				//"Alarm-Lights-Siren",
+				//"Alarm-Bell-Lights-Siren",
+		};
 		
 		
-		
-		
-		
-		
-		String[] products = { 
-				"manualIllumination",
-				"manualIlluminationAndAutomatedInhouse",
-				"manualIlluminationAndAutomatedPerimeter",
-				"manualIlluminationAndAutomatedInhouseAndAutomatedPerimeter",
-				"manualWindows",
-				"manualWindowsAndAutomatedWindows",
-				"touchScreen",
-				"internet",
-				"touchScreenAndInternet",
-				"internetAndPrivacy",
-				"touchScreenAndInternetAndPrivacy",
-				"internetAndPrivacyAndRSA",
-				"touchScreenAndInternetAndPrivacyAndRSA",
-				};
 		
 		String sourcePrefix = "./sequences/" + type + "/";
 		

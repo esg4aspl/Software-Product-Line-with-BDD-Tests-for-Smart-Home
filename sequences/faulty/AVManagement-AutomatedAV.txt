@@ -1,0 +1,1 @@
+[, turn on, output to console, turn on AV automated, output to console, turn off AV automated, output to console, start AV automated, output to console, stop AV automated, output to console, turn off, ]
