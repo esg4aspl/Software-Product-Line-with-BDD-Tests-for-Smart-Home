@@ -14,7 +14,7 @@ public class ManualBlinds extends AbstractSystem {
 	
 	@Override
 	public void respond(Command command) {
-		System.out.println(getChannel() + " forwarding " + command.getCode() + " to " + Channel.BLINDS_MANAGEMENT);
+		output(getChannel() + " forwarding " + command.getCode() + " to " + Channel.BLINDS_MANAGEMENT);
 		publisher.publish((new Command(Channel.BLINDS_MANAGEMENT, command.getCode()).toString()));
 		
 	}

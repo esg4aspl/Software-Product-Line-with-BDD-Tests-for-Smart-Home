@@ -23,16 +23,16 @@ public class AutomatedAV extends AbstractSystem {
 		if (command.getCode().getECode() != ECode.AUTOMATE) {
 			if (!automation)
 				return;
-			System.out.println(getChannel() + " forwarding " + command.getCode() + " to " + Channel.AV_MANAGEMENT);
+			output(getChannel() + " forwarding " + command.getCode() + " to " + Channel.AV_MANAGEMENT);
 			parentSystem.respond(command);
 			//publisher.publish((new Command(Channel.WINDOWS_MANAGEMENT, command.getCode()).toString()));
 		} else {
 			if (command.getCode().getData().equals("On")) {
 				automation = true;
-				System.out.println(getChannel() + " has turned on automation.");
+				output(getChannel() + " has turned on automation.");
 			} else if (command.getCode().getData().equals("Off")) {
 				automation = false;
-				System.out.println(getChannel() + " has turned off automation.");
+				output(getChannel() + " has turned off automation.");
 			}
 		}
 	}

@@ -33,21 +33,21 @@ public class TouchScreen extends AbstractSystem {
 	}
 	
 	public void init() {
-		createConsole();
-		
-		List<Command> allCommands = parentSystem.getParentSystem().render();
-		println("Available Commands:");
-		for (Command c : allCommands) {
-			println(c.toString());
-		}
-
-		println("Enter the command you want to run:");
+//		createConsole();
+//		
+//		List<Command> allCommands = parentSystem.getParentSystem().render();
+//		println("Available Commands:");
+//		for (Command c : allCommands) {
+//			println(c.toString());
+//		}
+//
+//		println("Enter the command you want to run:");
 	}
 	
 	@Override
 	public void respond(Command command) {
 		if (command.getCode().getECode() == ECode.TOUCH)
-			System.out.println(getChannel() + " responding to " + command.getCode());
+			output(getChannel() + " responding to " + command.getCode());
 	}
 	
 	private void handleInput(String input) {
@@ -64,7 +64,7 @@ public class TouchScreen extends AbstractSystem {
 			c = ' ';
 			String[] parts = console.getText().split("\n");
 			String input = parts[parts.length-1].trim();
-			//System.out.println("\nUI Input: " + input);
+			//output("\nUI Input: " + input);
 			respond(new Command("TOUCH=Input@TOUCH_SCREEN"));
 			return input;
 		} else {	

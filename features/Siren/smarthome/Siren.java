@@ -20,7 +20,7 @@ public class Siren extends AbstractSystem {
 	
 	@Override
 	public void respond(Command command) {
-		System.out.println("Siren responding to " + command.getCode());
+		output("Siren responding to " + command.getCode());
 	}
 	
 }

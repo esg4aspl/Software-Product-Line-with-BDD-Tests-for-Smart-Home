@@ -4,6 +4,7 @@ import java.util.List;
 
 import application.App;
 import io.CommandReader;
+import smarthome.Home;
 
 import java.util.ArrayList;
 import redis.clients.jedis.Jedis;
@@ -47,6 +48,10 @@ public abstract class AbstractSystem implements ISystem {
 		publisher.start();
 	}
 	
+	protected void output(String str) {
+		OutputBag.getInstance().addOutput(str);
+	}
+	
 	//ABSTRACT
 	public abstract Channel getChannel();
 	
@@ -56,7 +61,12 @@ public abstract class AbstractSystem implements ISystem {
 
 	//PUBLIC METHODS
 	public void respond(Command command) {
-		System.out.println(getChannel() + " responding to " + command.getCode());
+		if (parentSystem instanceof Home) {
+			if (!((Home) parentSystem).isStarted())
+				return;
+		}
+		output(getChannel() + " responding to " + command.getCode());
+		//System.out.println(getChannel() + " responding to " + command.getCode());
 	}
 	
 	public List<Command> render() {

@@ -17,7 +17,7 @@ public class Bell extends AbstractSystem {
 	
 	@Override
 	public void respond(Command command) {
-		System.out.println("Bell responding to " + command.getCode());
+		output("Bell responding to " + command.getCode());
 	}
 	
 }

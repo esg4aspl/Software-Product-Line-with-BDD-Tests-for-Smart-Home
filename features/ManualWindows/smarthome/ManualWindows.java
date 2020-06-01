@@ -14,7 +14,7 @@ public class ManualWindows extends AbstractSystem {
 	
 	@Override
 	public void respond(Command command) {
-		System.out.println(getChannel() + " forwarding " + command.getCode() + " to " + Channel.WINDOWS_MANAGEMENT);
+		output(getChannel() + " forwarding " + command.getCode() + " to " + Channel.WINDOWS_MANAGEMENT);
 		publisher.publish((new Command(Channel.WINDOWS_MANAGEMENT, command.getCode()).toString()));
 		
 	}

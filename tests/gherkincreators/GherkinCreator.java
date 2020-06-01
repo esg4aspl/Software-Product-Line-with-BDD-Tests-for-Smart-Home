@@ -9,6 +9,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
+import testrunners.FeatureExtractor;
+
 public class GherkinCreator {
 	
 	private String featureName;
@@ -102,6 +104,61 @@ public class GherkinCreator {
 		return result;
 	}
 	
+	private static String[] getProductsByConfiguration(String configName) {
+		List<String> features = new FeatureExtractor("SmartHome", "./configs/" + configName + ".xml").getFeatures();
+		
+		
+		
+		String[] allProducts = {
+				"AVManagement-AutomatedAV",
+				"BlindsManagement-ManualBlinds",
+				"BlindsManagement-ManualBlinds-AutomatedBlinds",
+				"Core",
+//				"FireControl-FireDepartment",
+//				"FireControl-FireDepartment-OtherGroup",
+//				"FireControl-FireDepartment-FireSprinklers",
+//				"FireControl-FireDepartment-OtherGroup-FireSprinklers",
+				"IrrigationSprinklers-ManualSprinklers",
+				"IrrigationSprinklers-ManualSprinklers-AutomatedSprinklers",
+				"LightManagement-ManualIllumination",
+				"LightManagement-ManualIllumination-AutomatedInhouseIllumination",
+				"LightManagement-ManualIllumination-AutomatedInhouseIllumination-AutomatedPerimeterIllumination",
+				"MoodsManagement-AutomatedMoods",
+				"UI-TouchScreen",
+				"UI-TouchScreen-Internet",
+				"UI-TouchScreen-Internet-Privacy-RSA",
+				"UI-TouchScreen-Internet-Privacy-DES",
+				"WindowsManagement-ManualWindows",
+				"WindowsManagement-ManualWindows-AutomatedWindows",
+//				"Alarm-Bell",
+//				"Alarm-Lights",
+//				"Alarm-Siren",
+//				"Alarm-Bell-Lights",
+//				"Alarm-Bell-Siren",
+//				"Alarm-Lights-Siren",
+//				"Alarm-Bell-Lights-Siren",
+		};
+		
+		List<String> productsList = new ArrayList<String>();
+		
+		for (String ap : allProducts) {
+			String[] apFeatures = ap.split("-");
+			boolean isIncluded = true;
+			for (String apf : apFeatures) {
+				if (!features.contains(apf)) {
+					isIncluded = false;
+					break;
+				}
+			}
+			if (isIncluded) {
+				productsList.add(ap);
+			}
+		}
+		
+		String[] products = productsList.toArray(new String[productsList.size()]);
+		return products;
+	}
+	
 	public static void main(String[] args) {
 		
 		String resultPrefix = "./tests/gherkinfeatures/";
@@ -113,43 +170,9 @@ public class GherkinCreator {
 		       System.out.println("Failed to delete "+file);
 		
 		
+		String[] products = getProductsByConfiguration("all");
 		
-		
-		
-		String type = "faulty"; //complete or faulty
-		
-		String[] products = {
-				"Core",
-				//"WindowsManagement-ManualWindows",
-				//"WindowsManagement-ManualWindows-AutomatedWindows",
-				//"BlindsManagement-ManualBlinds",
-				//"BlindsManagement-ManualBlinds-AutomatedBlinds",
-				//"LightManagement-ManualIllumination",
-				//"LightManagement-ManualIllumination-AutomatedInhouseIllumination",
-				//"LightManagement-ManualIllumination-AutomatedInhouseIllumination-AutomatedPerimeterIllumination",
-				//"AVManagement-AutomatedAV",
-				//"MoodsManagement-AutomatedMoods",
-				//"IrrigationSprinklers-ManualSprinklers",
-				//"IrrigationSprinklers-ManualSprinklers-AutomatedSprinklers",
-				//"UI-TouchScreen",
-				//"UI-TouchScreen-Internet",
-				//"UI-TouchScreen-Internet-Privacy-RSA",
-				//"UI-TouchScreen-Internet-Privacy-DES",
-				//"FireControl-FireDepartment",
-				//"FireControl-FireDepartment-OtherGroup",
-				//"FireControl-FireDepartment-FireSprinklers",
-				//"FireControl-FireDepartment-OtherGroup-FireSprinklers",
-				//"Alarm-Bell",
-				//"Alarm-Lights",
-				//"Alarm-Siren",
-				//"Alarm-Bell-Lights",
-				//"Alarm-Bell-Siren",
-				//"Alarm-Lights-Siren",
-				//"Alarm-Bell-Lights-Siren",
-		};
-		
-		
-		
+		String type = "complete"; //complete or faulty
 		String sourcePrefix = "./sequences/" + type + "/";
 		
 		for (String product : products) {

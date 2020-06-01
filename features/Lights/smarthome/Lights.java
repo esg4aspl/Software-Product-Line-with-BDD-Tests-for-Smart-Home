@@ -17,7 +17,7 @@ public class Lights extends AbstractSystem {
 	
 	@Override
 	public void respond(Command command) {
-		System.out.println("Lights responding to " + command.getCode());
+		output("Lights responding to " + command.getCode());
 	}
 	
 }

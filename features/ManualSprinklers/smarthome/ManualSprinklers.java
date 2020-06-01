@@ -14,7 +14,7 @@ public class ManualSprinklers extends AbstractSystem {
 	
 	@Override
 	public void respond(Command command) {
-		System.out.println(getChannel() + " forwarding " + command.getCode() + " to " + Channel.IRRIGATION_SPRINKLERS);
+		output(getChannel() + " forwarding " + command.getCode() + " to " + Channel.IRRIGATION_SPRINKLERS);
 		publisher.publish((new Command(Channel.IRRIGATION_SPRINKLERS, command.getCode()).toString()));
 	}
 	

@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import application.App;
+import business.OutputBag;
 import cucumber.api.Scenario;
 import cucumber.api.java.After;
 import cucumber.api.java.AfterStep;
@@ -20,24 +21,54 @@ import redis.clients.jedis.Jedis;
 
 public class StepDefinitions {
 	
+	
+	
 	//Core
 	@Then("turn on")
 	public void turn_on() {
-	    app.home.init();
+		try {			
+			app.home.init();
+		} catch (Exception e) {
+			fail();
+		}
+		
 	}
 	
 	@Then("turn off")
 	public void turn_off() {
-	    app.home.turnOff();
+		assertTrue(outputBag.isEmpty());	
+	    try {
+			app.home.turnOff();
+		} catch (Exception e) {
+			fail();
+		}
+	    
+	}
+	
+	private void fail() {
+		assertTrue(false);
 	}
 
+	private void readOutputs() {
+		List<String> outputs = outputBag.clearOutputs();
+		for (String s : outputs) {
+			homeOutputs.add(s);
+		}
+	}
 	
 	@When("output to console")
 	public void output_to_console() {
+		
+		readOutputs();
+		
 		switch(previousStep()) {
+			//FCES
+			case "[": fail(); break;
+			case "output to console": fail(); break;
+			
 			//Core
-			case "turn on": assertEquals("STARTED HOME", getLastLog()); break;
-			case "turn off": assertEquals("STOPPED HOME", getLastLog()); break;
+			case "turn on": assertEquals("STARTED HOME", getLastOutput()); break;
+			case "turn off": assertEquals("STOPPED HOME", getLastOutput()); fail(); break;
 			//WindowsManagement
 			case "open windows manual": assertTrue(getLast20().contains("WINDOWS_MANAGEMENT responding to TURN_ON=All")); break;
 			case "close windows manual": assertTrue(getLast20().contains("WINDOWS_MANAGEMENT responding to TURN_OFF=All")); break;
@@ -89,85 +120,85 @@ public class StepDefinitions {
 	
 	//Windows Management
 	@Given("close windows manual")
-	public void close_windows_manual() { p.publish("MANUAL_WINDOWS", "TURN_OFF=All@MANUAL_WINDOWS"); }
+	public void close_windows_manual() { assertTrue(outputBag.isEmpty()); p.publish("MANUAL_WINDOWS", "TURN_OFF=All@MANUAL_WINDOWS"); }
 	@Then("open windows manual")
-	public void open_windows_manual() { p.publish("MANUAL_WINDOWS", "TURN_ON=All@MANUAL_WINDOWS"); }
+	public void open_windows_manual() { assertTrue(outputBag.isEmpty()); p.publish("MANUAL_WINDOWS", "TURN_ON=All@MANUAL_WINDOWS");  }
 	@Given("open windows automatic")
-	public void open_windows_automatic() { p.publish("HOME", "ENV:CLOCK=09:00@HOME"); }
+	public void open_windows_automatic() { assertTrue(outputBag.isEmpty()); p.publish("HOME", "ENV:CLOCK=09:00@HOME");  }
 	@Then("close windows automatic")
-	public void close_windows_automatic() { p.publish("HOME", "ENV:CLOCK=19:00@HOME"); }
+	public void close_windows_automatic() { assertTrue(outputBag.isEmpty()); p.publish("HOME", "ENV:CLOCK=19:00@HOME");  }
 	
 	//BlindsManagement
 	@Given("close blinds manual")
-	public void close_blinds_manual() { p.publish("MANUAL_BLINDS", "TURN_OFF=All@MANUAL_BLINDS"); }
+	public void close_blinds_manual() { assertTrue(outputBag.isEmpty()); p.publish("MANUAL_BLINDS", "TURN_OFF=All@MANUAL_BLINDS"); }
 	@Then("open blinds manual")
-	public void open_blinds_manual() { p.publish("MANUAL_BLINDS", "TURN_ON=All@MANUAL_BLINDS"); }
+	public void open_blinds_manual() { assertTrue(outputBag.isEmpty()); p.publish("MANUAL_BLINDS", "TURN_ON=All@MANUAL_BLINDS");  }
 	@Given("open blinds automatic")
-	public void open_blinds_automatic() { p.publish("HOME", "ENV:CLOCK=09:00@HOME"); }
+	public void open_blinds_automatic() { assertTrue(outputBag.isEmpty()); p.publish("HOME", "ENV:CLOCK=09:00@HOME");  }
 	@Then("close blinds automatic")
-	public void close_blinds_automatic() { p.publish("HOME", "ENV:CLOCK=19:00@HOME"); }
+	public void close_blinds_automatic() { assertTrue(outputBag.isEmpty()); p.publish("HOME", "ENV:CLOCK=19:00@HOME");  }
 	
 	//LightManagement
 	@Given("turn on light manual")
-	public void turn_on_light_manual() { p.publish("MANUAL_ILLUMINATION", "TURN_ON=All@MANUAL_ILLUMINATION"); }
+	public void turn_on_light_manual() { assertTrue(outputBag.isEmpty()); p.publish("MANUAL_ILLUMINATION", "TURN_ON=All@MANUAL_ILLUMINATION");  }
 	@Then("turn off light manual")
-	public void turn_off_light_manual() { p.publish("MANUAL_ILLUMINATION", "TURN_OFF=All@MANUAL_ILLUMINATION"); }
+	public void turn_off_light_manual() { assertTrue(outputBag.isEmpty()); p.publish("MANUAL_ILLUMINATION", "TURN_OFF=All@MANUAL_ILLUMINATION");  }
 	@Given("turn on inhouse light automatic")
-	public void turn_on_inhouse_light_automatic() { p.publish("HOME", "ENV:CLOCK=07:00@HOME"); }
+	public void turn_on_inhouse_light_automatic() { assertTrue(outputBag.isEmpty()); p.publish("HOME", "ENV:CLOCK=07:00@HOME");  }
 	@Then("turn off inhouse light automatic")
-	public void turn_off_inhouse_light_automatic() { p.publish("HOME", "ENV:CLOCK=23:00@HOME"); }
+	public void turn_off_inhouse_light_automatic() { assertTrue(outputBag.isEmpty()); p.publish("HOME", "ENV:CLOCK=23:00@HOME");  }
 	@Given("turn on perimeter light automatic")
-	public void turn_on_perimeter_light_automatic() { p.publish("HOME", "ENV:CLOCK=21:00@HOME"); }
+	public void turn_on_perimeter_light_automatic() { assertTrue(outputBag.isEmpty()); p.publish("HOME", "ENV:CLOCK=21:00@HOME");  }
 	@Then("turn off perimeter light automatic")
-	public void turn_off_perimeter_light_automatic() { p.publish("HOME", "ENV:CLOCK=09:00@HOME"); }
+	public void turn_off_perimeter_light_automatic() { assertTrue(outputBag.isEmpty()); p.publish("HOME", "ENV:CLOCK=09:00@HOME");  }
 	
 	//AVManagement
 	@Given("start AV automated")
-	public void start_AV_automated() { p.publish("HOME", "ENV:CLOCK=10:00@HOME"); }
+	public void start_AV_automated() { assertTrue(outputBag.isEmpty()); p.publish("HOME", "ENV:CLOCK=10:00@HOME");  }
 	@Then("stop AV automated")
-	public void stop_AV_automated() { p.publish("HOME", "ENV:CLOCK=19:00@HOME"); }
+	public void stop_AV_automated() { assertTrue(outputBag.isEmpty()); p.publish("HOME", "ENV:CLOCK=19:00@HOME");  }
 	@Given("turn on AV automated")
-	public void turn_on_AV_automated() { p.publish("HOME", "ENV:CLOCK=07:00@HOME"); }
+	public void turn_on_AV_automated() { assertTrue(outputBag.isEmpty()); p.publish("HOME", "ENV:CLOCK=07:00@HOME");  }
 	@Then("turn off AV automated")
-	public void turn_off_AV_automated() { p.publish("HOME", "ENV:CLOCK=22:00@HOME"); }
+	public void turn_off_AV_automated() { assertTrue(outputBag.isEmpty()); p.publish("HOME", "ENV:CLOCK=22:00@HOME");  }
 	
 	//MoodsManagement
 	@Then("brighten moods automatic")
-	public void brighten_moods_automatic() { p.publish("HOME", "ENV:CLOCK=16:00@HOME"); }
+	public void brighten_moods_automatic() { assertTrue(outputBag.isEmpty()); p.publish("HOME", "ENV:CLOCK=16:00@HOME");  }
 	@Given("dim moods automatic")
-	public void dim_moods_automatic() { p.publish("HOME", "ENV:CLOCK=20:00@HOME"); }
+	public void dim_moods_automatic() { assertTrue(outputBag.isEmpty()); p.publish("HOME", "ENV:CLOCK=20:00@HOME");  }
 	@Given("turn on moods automatic")
-	public void turn_on_moods_automatic() { p.publish("HOME", "ENV:CLOCK=07:00@HOME"); }
+	public void turn_on_moods_automatic() { assertTrue(outputBag.isEmpty()); p.publish("HOME", "ENV:CLOCK=07:00@HOME");  }
 	@Then("turn off moods automatic")
-	public void turn_off_moods_automatic() { p.publish("HOME", "ENV:CLOCK=22:00@HOME"); }
+	public void turn_off_moods_automatic() { assertTrue(outputBag.isEmpty()); p.publish("HOME", "ENV:CLOCK=22:00@HOME");  }
 	
 	//IrrigationSprinklers
 	@Then("turn on irrigation sprinklers manual")
-	public void turn_on_irrigation_sprinklers_manual() { p.publish("MANUAL_SPRINKLERS", "TURN_ON=All@MANUAL_SPRINKLERS");  }
+	public void turn_on_irrigation_sprinklers_manual() { assertTrue(outputBag.isEmpty()); p.publish("MANUAL_SPRINKLERS", "TURN_ON=All@MANUAL_SPRINKLERS");   }
 	@Given("turn off irrigation sprinklers manual")
-	public void turn_off_irrigation_sprinklers_manual() { p.publish("MANUAL_SPRINKLERS", "TURN_OFF=All@MANUAL_SPRINKLERS");  }
+	public void turn_off_irrigation_sprinklers_manual() { assertTrue(outputBag.isEmpty()); p.publish("MANUAL_SPRINKLERS", "TURN_OFF=All@MANUAL_SPRINKLERS");   }
 	@Given("turn on irrigation sprinklers automatic")
-	public void turn_on_irrigation_sprinklers_automatic() { p.publish("HOME", "ENV:CLOCK=14:00@HOME"); }
+	public void turn_on_irrigation_sprinklers_automatic() { assertTrue(outputBag.isEmpty()); p.publish("HOME", "ENV:CLOCK=14:00@HOME");   }
 	@Then("turn off irrigation sprinklers automatic")
-	public void turn_off_irrigation_sprinklers_automatic() { p.publish("HOME", "ENV:CLOCK=15:00@HOME"); }
+	public void turn_off_irrigation_sprinklers_automatic() { assertTrue(outputBag.isEmpty()); p.publish("HOME", "ENV:CLOCK=15:00@HOME");   }
 	
 	//UI
 	@Given("input via touchscreen")
-	public void input_via_touchscreen() { p.publish("TOUCH_SCREEN", "TOUCH=True@TOUCH_SCREEN"); }
+	public void input_via_touchscreen() { assertTrue(outputBag.isEmpty()); p.publish("TOUCH_SCREEN", "TOUCH=True@TOUCH_SCREEN"); }
 	@When("output via touchscreen")
-	public void output_via_touchscreen() { assertTrue(getLast20().contains("TOUCH_SCREEN responding to TOUCH=True")); }
+	public void output_via_touchscreen() { readOutputs(); assertTrue(getLast20().contains("TOUCH_SCREEN responding to TOUCH=True")); }
 	@Given("input via Internet")
-	public void input_via_Internet() { p.publish("INTERNET", "INTERNET=Input@INTERNET"); }
+	public void input_via_Internet() { assertTrue(outputBag.isEmpty()); p.publish("INTERNET", "INTERNET=Input@INTERNET"); }
 	@When("output via Internet")
-	public void output_via_Internet() { assertTrue(getLast20().contains("INTERNET creates response.")); }
+	public void output_via_Internet() { readOutputs(); assertTrue(getLast20().contains("INTERNET creates response.")); }
 	@Given("send RSA encrypted input message")
 	public void send_RSA_encrypted_input_message() { p.publish("INTERNET", "INTERNET=Input@INTERNET"); }
 	@Then("send RSA encrypted output message")
-	public void send_RSA_encrypted_output_message() { assertTrue(getLast20().contains("INTERNET creates RSA encrypted response.")); }
+	public void send_RSA_encrypted_output_message() { readOutputs(); assertTrue(getLast20().contains("INTERNET creates RSA encrypted response.")); }
 	@Given("send DES encrypted input message")
 	public void send_DES_encrypted_input_message() { p.publish("INTERNET", "INTERNET=Input@INTERNET");  }
 	@Then("send DES encrypted output message")
-	public void send_DES_encrypted_output_message() { assertTrue(getLast20().contains("INTERNET creates DES encrypted response.")); }
+	public void send_DES_encrypted_output_message() { readOutputs(); assertTrue(getLast20().contains("INTERNET creates DES encrypted response.")); }
 	
 	//FireControl
 	@Given("call fire department")
@@ -194,59 +225,40 @@ public class StepDefinitions {
 	public void turn_off_lights() { p.publish("HOME", "ENV:CLOCK=07:01@HOME"); }
 	
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	String[] logs = new String[20000];
-	int logIndex = -1;
+	private OutputBag outputBag;
+	private List<String> homeOutputs;
 	private String[] steps;
 	Publisher p;
 	App app;
 	int stepCounter;
-	
-	public StepDefinitions() {
-	    PrintStream origOut = System.out;
-	    PrintStream interceptor = new Interceptor(origOut);
-	    System.setOut(interceptor);
-	    
-	    app = new App();
-		app.init();
-		p = new Publisher();
-	}
-	
-	private String getLastLog() {
-		if (logs[logIndex] == null) {
+
+	private String getLastOutput() {
+		if (homeOutputs.size() > 0) {
+			return homeOutputs.get(homeOutputs.size()-1);
+		} else {
 			return "";
 		}
-		
-		return logs[logIndex];
 	}
 	
 	@Before
 	public void before(Scenario scenario) {
-		stepCounter = 0;
+	    homeOutputs = new ArrayList<String>();
+	    outputBag = OutputBag.getInstance();
+	    app = new App();
+		app.init();
+		p = new Publisher();
+		stepCounter = -1;
 	}
 	
 	@After
 	public void after(Scenario scenario) {
-		app.home.kill();
+		//app.home.kill();
 	}
 	
 	@AfterStep
 	public void afterStep() {
 		try {
-			Thread.sleep(20); //Wait so the messages can travel
-			//System.out.println(logs);
+			Thread.sleep(50);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
@@ -259,44 +271,22 @@ public class StepDefinitions {
 	}
 	
 	//Private Methods
-	private String nextStep() {
-		if (stepCounter < steps.length-1)
-			return steps[stepCounter+1];
-		return "";
-	}
-	
 	private String previousStep() {
 		if (stepCounter > 0)
-			return steps[stepCounter-1-1];
+			return steps[stepCounter-1];
 		return "";
 	}
 	
 	@Given("The environment is set up with {string}")
 	public void the_environment_is_set_up_with(String string) {
 		steps = string.split(",");
-		logs = new String[20000];
-		logIndex = -1;
-
+		homeOutputs.clear();
 	}
 
 	@When("[")
 	public void begin() {
-	    
-	}
-
-	private class Interceptor extends PrintStream {
-	    public Interceptor(OutputStream out) {
-	        super(out, true);
-	    }
-	    @Override
-	    public void println(String s) {
-	    	logIndex++;
-	        logs[logIndex] = s;
-	    }
-	}
-	
-	private void testprint(String s) {
-		System.out.print(s + "\n");
+		if (!steps[0].equals("turn on"))
+			fail();
 	}
 	
 	protected class Publisher extends Thread {
@@ -321,17 +311,18 @@ public class StepDefinitions {
 
 	private List<String> getLast20() {
  		List<String> results = new ArrayList<String>();
- 		for (int i = logIndex; i > logIndex - 20 && i >= 0; i--) {
- 			results.add(logs[i]);
+ 		for (int i = homeOutputs.size()-1; i >= homeOutputs.size()-20 && i >= 0; i--) {
+ 			results.add(homeOutputs.get(i));
  		}
  		return results;
  	}
 	
 	private List<String> getLast20(String stopCondition) {
  		List<String> results = new ArrayList<String>();
- 		for (int i = logIndex; i > logIndex - 20 && i >= 0; i--) {
- 			results.add(logs[i]);
- 			if (logs[i].equals(stopCondition))
+ 		for (int i = homeOutputs.size()-1; i >= homeOutputs.size()-20 && i >= 0; i--) {
+ 			String op = homeOutputs.get(i);
+ 			results.add(op);
+ 			if (op.equals(stopCondition))
  				break;
  		}
  		return results;

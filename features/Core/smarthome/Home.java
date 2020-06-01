@@ -17,33 +17,54 @@ public class Home extends AbstractSystem {
 	
 	private List<Rule> rules;
 	private Map<Channel, List<Rule>> ruleMap;
+	private boolean started;
+	private boolean turnedOff;
+	
+	public boolean isStarted() {
+		return started;
+	}
+	
+	public boolean isTurnedOff() {
+		return turnedOff;
+	}
 	
 	public Home() {
 		super();
 		rules = new ArrayList<Rule>();
 		RuleReader ruleReader = new RuleReader();
 		ruleMap = ruleReader.getMap();
+		started = false;
+		turnedOff = false;
 	}
 	
 	public Channel getChannel() {
 		return Channel.HOME;
 	}
 	
-	public void init() {
-		System.out.println("STARTED HOME");
+	public void init() throws Exception {
+		if (started || turnedOff)
+			throw new Exception();
+		output("STARTED HOME");
 		for (ISystem s : subsystems) {
 			if (s instanceof UI) {
 				((UI) s).init();
 			}
 		}
+		started = true;
 	}
 	
-	public void turnOff() {
-		System.out.println("STOPPED HOME");
+	public void turnOff() throws Exception {
+		if (!started || turnedOff)
+			throw new Exception();
+		output("STOPPED HOME");
+		started = false;
+		turnedOff = true;
 	}
 	
 	public void respondToEnvironment(String environmentLog) {
-		System.out.println(getChannel() + " analyzing environment logs: " + environmentLog);
+		if (!started || turnedOff)
+			return;
+		output(getChannel() + " analyzing environment logs: " + environmentLog);
 		String[] logStrings = environmentLog.split("&");
 		List<Code> logs = new ArrayList<Code>();
 		for (String logString : logStrings) {
@@ -89,7 +110,8 @@ public class Home extends AbstractSystem {
 				    		return;
 				    	
 				    	if (message.substring(0, 3).equals("ENV")) {
-				    		respondToEnvironment(message.substring(4));
+				    		if (started && alive)
+				    			respondToEnvironment(message.substring(4));
 				    	} else {
 				    		respond(new Command(message));
 				    	}
@@ -104,6 +126,7 @@ public class Home extends AbstractSystem {
 		
 		public void kill() {
 			alive = false;
+			turnedOff = true;
 		}
 	}
 	

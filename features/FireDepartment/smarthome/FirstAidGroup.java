@@ -18,6 +18,6 @@ public class FirstAidGroup extends AbstractSystem {
 	@Override
 	public void respond(Command command) {
 		if (command.getCode().getECode() == ECode.CALL)
-			System.out.println(getChannel() + " calls Fire Department.");
+			output(getChannel() + " calls Fire Department.");
 	}
 }
