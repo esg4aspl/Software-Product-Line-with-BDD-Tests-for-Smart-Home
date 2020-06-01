@@ -252,7 +252,7 @@ public class StepDefinitions {
 	
 	@After
 	public void after(Scenario scenario) {
-		//app.home.kill();
+		app.home.kill();
 	}
 	
 	@AfterStep
