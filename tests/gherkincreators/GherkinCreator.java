@@ -123,8 +123,8 @@ public class GherkinCreator {
 //				"WindowsManagement-ManualWindows",
 //				"WindowsManagement-ManualWindows-AutomatedWindows",
 												
-				"UI-TouchScreen",
-//				"UI-TouchScreen-Internet",
+//				"UI-TouchScreen",
+				"UI-TouchScreen-Internet",
 //				"UI-TouchScreen-Internet-Privacy-RSA",
 //				"UI-TouchScreen-Internet-Privacy-DES",
 //				"FireControl-FireDepartment",
@@ -173,7 +173,7 @@ public class GherkinCreator {
 		
 		String[] products = getProductsByConfiguration("all");
 		
-		String type = "complete"; //complete or faulty
+		String type = "faulty"; //complete or faulty
 		String sourcePrefix = "./sequences/" + type + "/";
 		
 		for (String product : products) {

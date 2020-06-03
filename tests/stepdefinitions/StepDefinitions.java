@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import application.App;
+import business.InternetBag;
 import business.OutputBag;
 import business.UIBag;
 import cucumber.api.Scenario;
@@ -64,6 +65,13 @@ public class StepDefinitions {
 		}
 	}
 	
+	private void readInternetMessages() {
+		List<String> messages = internetBag.clearMessages();
+		for (String s : messages) {
+			internetMessages.add(s);
+		}
+	}
+	
 	@When("output to console")
 	public void output_to_console() {
 		
@@ -111,8 +119,6 @@ public class StepDefinitions {
 			case "turn off irrigation sprinklers manual": assertTrue(getLast20().contains("IRRIGATION_SPRINKLERS responding to TURN_OFF=All")); found = true; break;
 			case "turn on irrigation sprinklers automatic": assertTrue(getLast20("Home analyzing environment logs: CLOCK=14:00@HOME").contains("IRRIGATION_SPRINKLERS responding to TURN_ON=All")); found = true; break;
 			case "turn off irrigation sprinklers automatic": assertTrue(getLast20("Home analyzing environment logs: CLOCK=15:00@HOME").contains("IRRIGATION_SPRINKLERS responding to TURN_OFF=All")); found = true; break;
-			//UI
-			case "output via internet": assertTrue(getLast20().contains("UI responding to INTERNET=Input")); found = true; break;
 			//FireControl
 			case "call fire department": assertTrue(getLast20().contains("FIRST_AID_GROUP calls Fire Department.")); found = true; break;
 			case "call other group for fire": assertTrue(getLast20().contains("FIRST_AID_GROUP calls Other Group.")); found = true; break;
@@ -130,6 +136,7 @@ public class StepDefinitions {
 		if (!found) {
 			switch(consoleOutputIsAbout) {
 				case "input via touchscreen": assertTrue(uiBag.isEmpty()); assertTrue(getLast20().contains("TOUCH_SCREEN responding to TOUCH=True")); found = true; break;
+				case "input via internet": assertTrue(internetBag.isEmpty()); assertTrue(getLast20().contains("INTERNET responding to INTERNET=Input")); found = true; break;
 			}
 		}
 	}
@@ -207,7 +214,8 @@ public class StepDefinitions {
 	@Given("input via Internet")
 	public void input_via_Internet() { assertTrue(outputBag.isEmpty()); consoleOutputIsAbout = "input via internet"; p.publish("INTERNET", "INTERNET=Input@INTERNET"); }
 	@When("output via Internet")
-	public void output_via_Internet() { readOutputs(); assertTrue(getLast20().contains("INTERNET creates response.")); }
+	public void output_via_Internet() { readInternetMessages(); assertTrue(getLastInternetMessage().equals("INTERNET creates response.")); }
+	
 	@Given("send RSA encrypted input message")
 	public void send_RSA_encrypted_input_message() { p.publish("INTERNET", "INTERNET=Input@INTERNET"); }
 	@Then("send RSA encrypted output message")
@@ -245,8 +253,10 @@ public class StepDefinitions {
 	private OutputBag outputBag;
 	private String consoleOutputIsAbout;
 	private UIBag uiBag;
+	private InternetBag internetBag;
 	private List<String> homeOutputs;
 	private List<String> uiMessages;
+	private List<String> internetMessages;
 	private String[] steps;
 	Publisher p;
 	App app;
@@ -260,13 +270,17 @@ public class StepDefinitions {
 		}
 	}
 	
+	
+	
 	@Before
 	public void before(Scenario scenario) {
 		consoleOutputIsAbout = "";
 	    homeOutputs = new ArrayList<String>();
 	    uiMessages = new ArrayList<String>();
+	    internetMessages = new ArrayList<String>();
 	    outputBag = OutputBag.getInstance();
 	    uiBag = UIBag.getInstance();
+	    internetBag = InternetBag.getInstance();
 	    app = new App();
 		app.init();
 		p = new Publisher();
@@ -338,6 +352,16 @@ public class StepDefinitions {
 		} else {
 			String r = uiMessages.get(uiMessages.size()-1);
 			uiMessages.clear();
+			return r;
+		}
+	} 
+	
+	private String getLastInternetMessage() {
+		if (internetMessages.size() == 0) {
+			return "";
+		} else {
+			String r = internetMessages.get(internetMessages.size()-1);
+			internetMessages.clear();
 			return r;
 		}
 	} 

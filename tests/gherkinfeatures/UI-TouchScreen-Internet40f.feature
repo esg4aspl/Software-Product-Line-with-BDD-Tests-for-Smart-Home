@@ -1,6 +1,6 @@
-Feature: UI-TouchScreen1
+Feature: UI-TouchScreen-Internet40
 Background: Setup
-Given The environment is set up with "turn on,output to console,input via touchscreen,output via touchscreen,output to console,turn off"
+Given The environment is set up with "turn on,output to console,input via touchscreen,output via touchscreen,input via touchscreen"
 
 Scenario: 0
 When [
@@ -22,13 +22,5 @@ Given turn on
 And output to console
 And input via touchscreen
 When output via touchscreen
-Then output to console
-
-Scenario: 4
-Given turn on
-And output to console
-And input via touchscreen
-And output via touchscreen
-When output to console
-Then turn off
+Then input via touchscreen
 
