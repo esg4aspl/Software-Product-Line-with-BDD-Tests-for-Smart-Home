@@ -10,6 +10,7 @@ import java.util.List;
 
 import application.App;
 import business.OutputBag;
+import business.UIBag;
 import cucumber.api.Scenario;
 import cucumber.api.java.After;
 import cucumber.api.java.AfterStep;
@@ -56,65 +57,80 @@ public class StepDefinitions {
 		}
 	}
 	
+	private void readUIMessages() {
+		List<String> messages = uiBag.clearMessages();
+		for (String s : messages) {
+			uiMessages.add(s);
+		}
+	}
+	
 	@When("output to console")
 	public void output_to_console() {
 		
 		readOutputs();
 		
+		boolean found = false;
+		
 		switch(previousStep()) {
 			//FCES
-			case "[": fail(); break;
-			case "output to console": fail(); break;
+			case "[": fail(); found = true; break;
+			case "output to console": fail(); found = true; break;
 			
 			//Core
-			case "turn on": assertEquals("STARTED HOME", getLastOutput()); break;
-			case "turn off": assertEquals("STOPPED HOME", getLastOutput()); fail(); break;
+			case "turn on": assertEquals("STARTED HOME", getLastOutput()); found = true; break;
+			case "turn off": assertEquals("STOPPED HOME", getLastOutput()); fail(); found = true; break;
 			//WindowsManagement
-			case "open windows manual": assertTrue(getLast20().contains("WINDOWS_MANAGEMENT responding to TURN_ON=All")); break;
-			case "close windows manual": assertTrue(getLast20().contains("WINDOWS_MANAGEMENT responding to TURN_OFF=All")); break;
-			case "open windows automatic": assertTrue(getLast20("Home analyzing environment logs: CLOCK=09:00@HOME").contains("WINDOWS_MANAGEMENT responding to TURN_ON=All")); break;
-			case "close windows automatic": assertTrue(getLast20("Home analyzing environment logs: CLOCK=19:00@HOME").contains("WINDOWS_MANAGEMENT responding to TURN_OFF=All")); break;
+			case "open windows manual": assertTrue(getLast20().contains("WINDOWS_MANAGEMENT responding to TURN_ON=All")); found = true; break;
+			case "close windows manual": assertTrue(getLast20().contains("WINDOWS_MANAGEMENT responding to TURN_OFF=All")); found = true; break;
+			case "open windows automatic": assertTrue(getLast20("Home analyzing environment logs: CLOCK=09:00@HOME").contains("WINDOWS_MANAGEMENT responding to TURN_ON=All")); found = true; break;
+			case "close windows automatic": assertTrue(getLast20("Home analyzing environment logs: CLOCK=19:00@HOME").contains("WINDOWS_MANAGEMENT responding to TURN_OFF=All")); found = true; break;
 			//BlindsManagement
-			case "open blinds manual": assertTrue(getLast20().contains("BLINDS_MANAGEMENT responding to TURN_ON=All")); break;
-			case "close blinds manual": assertTrue(getLast20().contains("BLINDS_MANAGEMENT responding to TURN_OFF=All")); break;
-			case "open blinds automatic": assertTrue(getLast20("Home analyzing environment logs: CLOCK=09:00@HOME").contains("BLINDS_MANAGEMENT responding to TURN_ON=All")); break;
-			case "close blinds automatic": assertTrue(getLast20("Home analyzing environment logs: CLOCK=19:00@HOME").contains("BLINDS_MANAGEMENT responding to TURN_OFF=All")); break;
+			case "open blinds manual": assertTrue(getLast20().contains("BLINDS_MANAGEMENT responding to TURN_ON=All")); found = true; break;
+			case "close blinds manual": assertTrue(getLast20().contains("BLINDS_MANAGEMENT responding to TURN_OFF=All")); found = true; break;
+			case "open blinds automatic": assertTrue(getLast20("Home analyzing environment logs: CLOCK=09:00@HOME").contains("BLINDS_MANAGEMENT responding to TURN_ON=All")); found = true; break;
+			case "close blinds automatic": assertTrue(getLast20("Home analyzing environment logs: CLOCK=19:00@HOME").contains("BLINDS_MANAGEMENT responding to TURN_OFF=All")); found = true; break;
 			//LightManagement
-			case "turn on light manual": assertTrue(getLast20().contains("LIGHT_MANAGEMENT responding to TURN_ON=All")); break;
-			case "turn off light manual": assertTrue(getLast20().contains("LIGHT_MANAGEMENT responding to TURN_OFF=All")); break;
-			case "turn on inhouse light automatic": assertTrue(getLast20("Home analyzing environment logs: CLOCK=07:00@HOME").contains("LIGHT_MANAGEMENT responding to TURN_ON=All Inhouse")); break;
-			case "turn off inhouse light automatic": assertTrue(getLast20("Home analyzing environment logs: CLOCK=23:00@HOME").contains("LIGHT_MANAGEMENT responding to TURN_OFF=All Inhouse")); break;
-			case "turn on perimeter light automatic": assertTrue(getLast20("Home analyzing environment logs: CLOCK=21:00@HOME").contains("LIGHT_MANAGEMENT responding to TURN_ON=All Perimeter")); break;
-			case "turn off perimeter light automatic": assertTrue(getLast20("Home analyzing environment logs: CLOCK=09:00@HOME").contains("LIGHT_MANAGEMENT responding to TURN_OFF=All Perimeter")); break;
+			case "turn on light manual": assertTrue(getLast20().contains("LIGHT_MANAGEMENT responding to TURN_ON=All")); found = true; break;
+			case "turn off light manual": assertTrue(getLast20().contains("LIGHT_MANAGEMENT responding to TURN_OFF=All")); found = true; break;
+			case "turn on inhouse light automatic": assertTrue(getLast20("Home analyzing environment logs: CLOCK=07:00@HOME").contains("LIGHT_MANAGEMENT responding to TURN_ON=All Inhouse")); found = true; break;
+			case "turn off inhouse light automatic": assertTrue(getLast20("Home analyzing environment logs: CLOCK=23:00@HOME").contains("LIGHT_MANAGEMENT responding to TURN_OFF=All Inhouse")); found = true; break;
+			case "turn on perimeter light automatic": assertTrue(getLast20("Home analyzing environment logs: CLOCK=21:00@HOME").contains("LIGHT_MANAGEMENT responding to TURN_ON=All Perimeter")); found = true; break;
+			case "turn off perimeter light automatic": assertTrue(getLast20("Home analyzing environment logs: CLOCK=09:00@HOME").contains("LIGHT_MANAGEMENT responding to TURN_OFF=All Perimeter")); found = true; break;
 			//AVManagement
-			case "start AV automatic": assertTrue(getLast20("Home analyzing environment logs: CLOCK=10:00@HOME").contains("AV_MANAGEMENT responding to TURN_ON=Start")); break;
-			case "stop AV automatic": assertTrue(getLast20("Home analyzing environment logs: CLOCK=19:00@HOME").contains("AV_MANAGEMENT responding to TURN_OFF=Stop")); break;
-			case "turn on AV automatic": assertTrue(getLast20("Home analyzing environment logs: CLOCK=07:00@HOME").contains("AV_MANAGEMENT responding to TURN_ON=Turn On")); break;
-			case "turn off AV automatic": assertTrue(getLast20("Home analyzing environment logs: CLOCK=22:00@HOME").contains("AV_MANAGEMENT responding to TURN_OFF=Turn Off")); break;
+			case "start AV automatic": assertTrue(getLast20("Home analyzing environment logs: CLOCK=10:00@HOME").contains("AV_MANAGEMENT responding to TURN_ON=Start")); found = true; break;
+			case "stop AV automatic": assertTrue(getLast20("Home analyzing environment logs: CLOCK=19:00@HOME").contains("AV_MANAGEMENT responding to TURN_OFF=Stop")); found = true; break;
+			case "turn on AV automatic": assertTrue(getLast20("Home analyzing environment logs: CLOCK=07:00@HOME").contains("AV_MANAGEMENT responding to TURN_ON=Turn On")); found = true; break;
+			case "turn off AV automatic": assertTrue(getLast20("Home analyzing environment logs: CLOCK=22:00@HOME").contains("AV_MANAGEMENT responding to TURN_OFF=Turn Off")); found = true; break;
 			//MoodsManagement
-			case "brighten moods automatic": assertTrue(getLast20("Home analyzing environment logs: CLOCK=16:00@HOME").contains("MOODS_MANAGEMENT responding to TURN_ON=Brighten")); break;
-			case "dim moods automatic": assertTrue(getLast20("Home analyzing environment logs: CLOCK=20:00@HOME").contains("MOODS_MANAGEMENT responding to TURN_ON=Dim")); break;
-			case "turn on moods automatic": assertTrue(getLast20("Home analyzing environment logs: CLOCK=07:00@HOME").contains("MOODS_MANAGEMENT responding to TURN_ON=Turn On")); break;
-			case "turn off moods automatic": assertTrue(getLast20("Home analyzing environment logs: CLOCK=22:00@HOME").contains("MOODS_MANAGEMENT responding to TURN_OFF=Turn Off")); break;
+			case "brighten moods automatic": assertTrue(getLast20("Home analyzing environment logs: CLOCK=16:00@HOME").contains("MOODS_MANAGEMENT responding to TURN_ON=Brighten")); found = true; break;
+			case "dim moods automatic": assertTrue(getLast20("Home analyzing environment logs: CLOCK=20:00@HOME").contains("MOODS_MANAGEMENT responding to TURN_ON=Dim")); found = true; break;
+			case "turn on moods automatic": assertTrue(getLast20("Home analyzing environment logs: CLOCK=07:00@HOME").contains("MOODS_MANAGEMENT responding to TURN_ON=Turn On")); found = true; break;
+			case "turn off moods automatic": assertTrue(getLast20("Home analyzing environment logs: CLOCK=22:00@HOME").contains("MOODS_MANAGEMENT responding to TURN_OFF=Turn Off")); found = true; break;
 			//IrrigationSprinklers
-			case "turn on irrigation sprinklers manual": assertTrue(getLast20().contains("IRRIGATION_SPRINKLERS responding to TURN_ON=All")); break;
-			case "turn off irrigation sprinklers manual": assertTrue(getLast20().contains("IRRIGATION_SPRINKLERS responding to TURN_OFF=All")); break;
-			case "turn on irrigation sprinklers automatic": assertTrue(getLast20("Home analyzing environment logs: CLOCK=14:00@HOME").contains("IRRIGATION_SPRINKLERS responding to TURN_ON=All")); break;
-			case "turn off irrigation sprinklers automatic": assertTrue(getLast20("Home analyzing environment logs: CLOCK=15:00@HOME").contains("IRRIGATION_SPRINKLERS responding to TURN_OFF=All")); break;
+			case "turn on irrigation sprinklers manual": assertTrue(getLast20().contains("IRRIGATION_SPRINKLERS responding to TURN_ON=All")); found = true; break;
+			case "turn off irrigation sprinklers manual": assertTrue(getLast20().contains("IRRIGATION_SPRINKLERS responding to TURN_OFF=All")); found = true; break;
+			case "turn on irrigation sprinklers automatic": assertTrue(getLast20("Home analyzing environment logs: CLOCK=14:00@HOME").contains("IRRIGATION_SPRINKLERS responding to TURN_ON=All")); found = true; break;
+			case "turn off irrigation sprinklers automatic": assertTrue(getLast20("Home analyzing environment logs: CLOCK=15:00@HOME").contains("IRRIGATION_SPRINKLERS responding to TURN_OFF=All")); found = true; break;
 			//UI
-			case "output via internet": assertTrue(getLast20().contains("UI responding to INTERNET=Input")); break;
+			case "output via internet": assertTrue(getLast20().contains("UI responding to INTERNET=Input")); found = true; break;
 			//FireControl
-			case "call fire department": assertTrue(getLast20().contains("FIRST_AID_GROUP calls Fire Department.")); break;
-			case "call other group for fire": assertTrue(getLast20().contains("FIRST_AID_GROUP calls Other Group.")); break;
-			case "open fire sprinklers": assertTrue(getLast20().contains("FIRE_SPRINKLERS responding to TURN_ON=All")); break;
-			case "close fire sprinklers": assertTrue(getLast20().contains("FIRE_SPRINKLERS responding to TURN_OFF=All")); break;
+			case "call fire department": assertTrue(getLast20().contains("FIRST_AID_GROUP calls Fire Department.")); found = true; break;
+			case "call other group for fire": assertTrue(getLast20().contains("FIRST_AID_GROUP calls Other Group.")); found = true; break;
+			case "open fire sprinklers": assertTrue(getLast20().contains("FIRE_SPRINKLERS responding to TURN_ON=All")); found = true; break;
+			case "close fire sprinklers": assertTrue(getLast20().contains("FIRE_SPRINKLERS responding to TURN_OFF=All")); found = true; break;
 			//Alarm
-			case "turn on bell": assertTrue(getLast20("Home analyzing environment logs: CLOCK=07:00@HOME").contains("Bell responding to TURN_ON=Morning Alarms")); break;
-			case "turn off bell": assertTrue(getLast20("Home analyzing environment logs: CLOCK=07:01@HOME").contains("Bell responding to TURN_OFF=Morning Alarms")); break;
-			case "turn on lights": assertTrue(getLast20("Home analyzing environment logs: CLOCK=07:00@HOME").contains("Lights responding to TURN_ON=Morning Alarms")); break;
-			case "turn off lights": assertTrue(getLast20("Home analyzing environment logs: CLOCK=07:01@HOME").contains("Lights responding to TURN_OFF=Morning Alarms")); break;
-			case "turn on siren": assertTrue(getLast20("Home analyzing environment logs: CLOCK=07:00@HOME").contains("Siren responding to TURN_ON=Morning Alarms")); break;
-			case "turn off siren": assertTrue(getLast20("Home analyzing environment logs: CLOCK=07:01@HOME").contains("Siren responding to TURN_OFF=Morning Alarms")); break;
+			case "turn on bell": assertTrue(getLast20("Home analyzing environment logs: CLOCK=07:00@HOME").contains("Bell responding to TURN_ON=Morning Alarms")); found = true; break;
+			case "turn off bell": assertTrue(getLast20("Home analyzing environment logs: CLOCK=07:01@HOME").contains("Bell responding to TURN_OFF=Morning Alarms")); found = true; break;
+			case "turn on lights": assertTrue(getLast20("Home analyzing environment logs: CLOCK=07:00@HOME").contains("Lights responding to TURN_ON=Morning Alarms")); found = true; break;
+			case "turn off lights": assertTrue(getLast20("Home analyzing environment logs: CLOCK=07:01@HOME").contains("Lights responding to TURN_OFF=Morning Alarms")); found = true; break;
+			case "turn on siren": assertTrue(getLast20("Home analyzing environment logs: CLOCK=07:00@HOME").contains("Siren responding to TURN_ON=Morning Alarms")); found = true; break;
+			case "turn off siren": assertTrue(getLast20("Home analyzing environment logs: CLOCK=07:01@HOME").contains("Siren responding to TURN_OFF=Morning Alarms")); found = true; break;
+		}
+		
+		if (!found) {
+			switch(consoleOutputIsAbout) {
+				case "input via touchscreen": assertTrue(uiBag.isEmpty()); assertTrue(getLast20().contains("TOUCH_SCREEN responding to TOUCH=True")); found = true; break;
+			}
 		}
 	}
 	
@@ -184,11 +200,12 @@ public class StepDefinitions {
 	
 	//UI
 	@Given("input via touchscreen")
-	public void input_via_touchscreen() { assertTrue(outputBag.isEmpty()); p.publish("TOUCH_SCREEN", "TOUCH=True@TOUCH_SCREEN"); }
+	public void input_via_touchscreen() { assertTrue(outputBag.isEmpty()); consoleOutputIsAbout = "input via touchscreen"; p.publish("TOUCH_SCREEN", "TOUCH=True@TOUCH_SCREEN"); }
 	@When("output via touchscreen")
-	public void output_via_touchscreen() { readOutputs(); assertTrue(getLast20().contains("TOUCH_SCREEN responding to TOUCH=True")); }
+	public void output_via_touchscreen() { readUIMessages(); assertTrue(getLastUIMessage().equals("TOUCH_SCREEN responding to TOUCH=True")); }
+	
 	@Given("input via Internet")
-	public void input_via_Internet() { assertTrue(outputBag.isEmpty()); p.publish("INTERNET", "INTERNET=Input@INTERNET"); }
+	public void input_via_Internet() { assertTrue(outputBag.isEmpty()); consoleOutputIsAbout = "input via internet"; p.publish("INTERNET", "INTERNET=Input@INTERNET"); }
 	@When("output via Internet")
 	public void output_via_Internet() { readOutputs(); assertTrue(getLast20().contains("INTERNET creates response.")); }
 	@Given("send RSA encrypted input message")
@@ -226,7 +243,10 @@ public class StepDefinitions {
 	
 
 	private OutputBag outputBag;
+	private String consoleOutputIsAbout;
+	private UIBag uiBag;
 	private List<String> homeOutputs;
+	private List<String> uiMessages;
 	private String[] steps;
 	Publisher p;
 	App app;
@@ -242,8 +262,11 @@ public class StepDefinitions {
 	
 	@Before
 	public void before(Scenario scenario) {
+		consoleOutputIsAbout = "";
 	    homeOutputs = new ArrayList<String>();
+	    uiMessages = new ArrayList<String>();
 	    outputBag = OutputBag.getInstance();
+	    uiBag = UIBag.getInstance();
 	    app = new App();
 		app.init();
 		p = new Publisher();
@@ -308,6 +331,16 @@ public class StepDefinitions {
 			super.run();
 		}
 	}
+	
+	private String getLastUIMessage() {
+		if (uiMessages.size() == 0) {
+			return "";
+		} else {
+			String r = uiMessages.get(uiMessages.size()-1);
+			uiMessages.clear();
+			return r;
+		}
+	} 
 
 	private List<String> getLast20() {
  		List<String> results = new ArrayList<String>();

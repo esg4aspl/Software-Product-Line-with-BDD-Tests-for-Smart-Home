@@ -110,26 +110,27 @@ public class GherkinCreator {
 		
 		
 		String[] allProducts = {
-				"AVManagement-AutomatedAV",
-				"BlindsManagement-ManualBlinds",
-				"BlindsManagement-ManualBlinds-AutomatedBlinds",
-				"Core",
+//				"AVManagement-AutomatedAV",
+//				"BlindsManagement-ManualBlinds",
+//				"BlindsManagement-ManualBlinds-AutomatedBlinds",
+//				"Core",
+//				"IrrigationSprinklers-ManualSprinklers",
+//				"IrrigationSprinklers-ManualSprinklers-AutomatedSprinklers",
+//				"LightManagement-ManualIllumination",
+//				"LightManagement-ManualIllumination-AutomatedInhouseIllumination",
+//				"LightManagement-ManualIllumination-AutomatedInhouseIllumination-AutomatedPerimeterIllumination",
+//				"MoodsManagement-AutomatedMoods",
+//				"WindowsManagement-ManualWindows",
+//				"WindowsManagement-ManualWindows-AutomatedWindows",
+												
+				"UI-TouchScreen",
+//				"UI-TouchScreen-Internet",
+//				"UI-TouchScreen-Internet-Privacy-RSA",
+//				"UI-TouchScreen-Internet-Privacy-DES",
 //				"FireControl-FireDepartment",
 //				"FireControl-FireDepartment-OtherGroup",
 //				"FireControl-FireDepartment-FireSprinklers",
 //				"FireControl-FireDepartment-OtherGroup-FireSprinklers",
-				"IrrigationSprinklers-ManualSprinklers",
-				"IrrigationSprinklers-ManualSprinklers-AutomatedSprinklers",
-				"LightManagement-ManualIllumination",
-				"LightManagement-ManualIllumination-AutomatedInhouseIllumination",
-				"LightManagement-ManualIllumination-AutomatedInhouseIllumination-AutomatedPerimeterIllumination",
-				"MoodsManagement-AutomatedMoods",
-				"UI-TouchScreen",
-				"UI-TouchScreen-Internet",
-				"UI-TouchScreen-Internet-Privacy-RSA",
-				"UI-TouchScreen-Internet-Privacy-DES",
-				"WindowsManagement-ManualWindows",
-				"WindowsManagement-ManualWindows-AutomatedWindows",
 //				"Alarm-Bell",
 //				"Alarm-Lights",
 //				"Alarm-Siren",
@@ -158,7 +159,7 @@ public class GherkinCreator {
 		String[] products = productsList.toArray(new String[productsList.size()]);
 		return products;
 	}
-	
+
 	public static void main(String[] args) {
 		
 		String resultPrefix = "./tests/gherkinfeatures/";

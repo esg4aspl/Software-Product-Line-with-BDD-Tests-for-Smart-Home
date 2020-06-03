@@ -13,6 +13,7 @@ import business.Channel;
 import business.Command;
 import business.ECode;
 import business.ISystem;
+import business.UIBag;
 
 /**
  * TODO description
@@ -46,8 +47,10 @@ public class TouchScreen extends AbstractSystem {
 	
 	@Override
 	public void respond(Command command) {
-		if (command.getCode().getECode() == ECode.TOUCH)
+		if (command.getCode().getECode() == ECode.TOUCH) {
+			UIBag.getInstance().addMessage(getChannel() + " responding to " + command.getCode());
 			output(getChannel() + " responding to " + command.getCode());
+		}
 	}
 	
 	private void handleInput(String input) {
