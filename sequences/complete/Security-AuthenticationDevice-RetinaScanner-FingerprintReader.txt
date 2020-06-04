@@ -1,0 +1,1 @@
+[, turn on, output to console, use retina scanner for authentication, output to console, use fingerprint reader for authentication, output to console, turn off, ]

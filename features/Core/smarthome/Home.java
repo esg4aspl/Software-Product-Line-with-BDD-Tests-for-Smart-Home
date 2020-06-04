@@ -82,12 +82,9 @@ public class Home extends AbstractSystem {
 		
 	}
 	
-	
-	
-	
-	
-	
-	
+	public void authenticate(String device) {
+		//Do Nothing
+	}
 	
 	//Overridden Subscriber Methods
 	@Override

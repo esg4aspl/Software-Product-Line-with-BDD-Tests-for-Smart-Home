@@ -57,6 +57,7 @@ public class StepDefinitions {
 		for (String s : outputs) {
 			homeOutputs.add(s);
 		}
+		this.lastOutputBagSize = 0;
 		return outputs;
 	}
 	
@@ -135,6 +136,12 @@ public class StepDefinitions {
 			case "call other group for fire": assertTrue(getLast20().contains("FIRST_AID_GROUP calls Other Group.")); found = true; break;
 			case "open fire sprinklers": assertTrue(getLast20().contains("FIRE_SPRINKLERS responding to TURN_ON=All")); found = true; break;
 			case "close fire sprinklers": assertTrue(getLast20().contains("FIRE_SPRINKLERS responding to TURN_OFF=All")); found = true; break;
+			
+			//Security
+			case "use keypad for authentication": assertTrue(getLast20().contains("Authenticated with keypad!")); found = true; break;
+			case "use retina scanner for authentication": assertTrue(getLast20().contains("Authenticated with retina scanner!")); found = true; break;
+			case "use fingerprint reader for authentication": assertTrue(getLast20().contains("Authenticated with fingerprint reader!")); found = true; break;
+			
 			//Alarm
 			case "turn on bell": assertTrue(getLast20("HOME analyzing environment logs: CLOCK=07:00@HOME").contains("Bell responding to TURN_ON=Morning Alarms")); found = true; break;
 			case "turn off bell": assertTrue(getLast20("HOME analyzing environment logs: CLOCK=07:01@HOME").contains("Bell responding to TURN_OFF=Morning Alarms")); found = true; break;
@@ -169,6 +176,8 @@ public class StepDefinitions {
 					
 			}
 		}
+		
+		this.consoleOutputIsAbout = "";
 	}
 	
 	//Windows Management
@@ -290,13 +299,46 @@ public class StepDefinitions {
 	@Then("close fire sprinklers")
 	public void close_fire_sprinklers() { assertTrue(outputBag.isEmpty()); p.publish("HOME", "ENV:FIRE=SprinklersOff@HOME"); }
 	@When("five minutes passed")
-	public void five_minutes_passed() { assertTrue(getLast20().contains("HOME analyzing environment logs: FIRE=On@HOME")); p.publish("HOME", "ENV:FIRE=FiveMinutes@HOME"); }
+	public void five_minutes_passed() { 
+		assertTrue(
+				outputBag.getOutputs().contains("HOME analyzing environment logs: FIRE=On@HOME")
+				|| outputBag.getOutputs().contains("HOME analyzing environment logs: GLASSBREAK=Kitchen@HOME")
+				); 
+		if (outputBag.getOutputs().contains("HOME analyzing environment logs: FIRE=On@HOME")) {
+			p.publish("HOME", "ENV:FIRE=FiveMinutes@HOME"); 
+		} else if (outputBag.getOutputs().contains("HOME analyzing environment logs: GLASSBREAK=Kitchen@HOME")) {
+			assertTrue(outputBag.getOutputs().contains("Bell responding to TURN_ON=Kitchen"));
+			p.publish("HOME", "ENV:GLASSBREAK=FiveMinutes@HOME"); 
+		}
+		
+	}
+	
+	private int lastOutputBagSize = 0;
 	
 	//Alarm
 	@Given("turn on bell")
-	public void turn_on_bell() { assertTrue(outputBag.isEmpty()); p.publish("HOME", "ENV:CLOCK=07:00@HOME"); }
+	public void turn_on_bell() { 
+		consoleOutputIsAbout = "glassbreak";
+		if (consoleOutputIsAbout.equals("glassbreak")) {
+			assertTrue(outputBag.getOutputs().size() > this.lastOutputBagSize);
+			this.lastOutputBagSize = outputBag.getOutputs().size();
+			assertTrue(outputBag.getOutputs().contains("Bell responding to TURN_ON=Kitchen"));
+		} else {
+			
+			assertTrue(outputBag.isEmpty()); p.publish("HOME", "ENV:CLOCK=07:00@HOME"); 
+		}
+	}
 	@Then("turn off bell")
-	public void turn_off_bell() { assertTrue(outputBag.isEmpty()); p.publish("HOME", "ENV:CLOCK=07:01@HOME"); }
+	public void turn_off_bell() {
+		consoleOutputIsAbout = "glassbreak";
+		if (consoleOutputIsAbout.equals("glassbreak")) {
+			assertTrue(outputBag.getOutputs().size() > this.lastOutputBagSize);
+			this.lastOutputBagSize = outputBag.getOutputs().size();
+			assertTrue(outputBag.getOutputs().contains("Bell responding to TURN_OFF=Kitchen"));
+		} else {
+			assertTrue(outputBag.isEmpty()); p.publish("HOME", "ENV:CLOCK=07:01@HOME"); 
+		}
+	}
 	
 	@Then("turn on siren")
 	public void turn_on_siren() { 
@@ -326,6 +368,37 @@ public class StepDefinitions {
 	@Then("turn off lights")
 	public void turn_off_lights() { assertTrue(outputBag.isEmpty()); p.publish("HOME", "ENV:CLOCK=07:01@HOME"); }
 	
+	
+	//Security
+	
+	@When("use keypad for authentication")
+	public void use_keypad_for_authentication() {
+		assertTrue(outputBag.isEmpty());
+	    app.home.authenticate("123456");
+	}
+	
+	@When("use fingerprint reader for authentication")
+	public void use_fingerprint_reader_for_authentication() {
+		assertTrue(outputBag.isEmpty());
+	    app.home.authenticate("gc46tr736t4r6dtux");
+	}
+	
+	@When("use retina scanner for authentication")
+	public void use_retina_scanner_for_authentication() {
+		assertTrue(outputBag.isEmpty());
+	    app.home.authenticate("n 8475yt8374c3b8 34bc384ygcn 3u4ry");
+	}
+	
+	@Then("intrusion detected via glassbreak sensor")
+	public void intrusion_detected_via_glassbreak_sensor() {
+			
+		//this.consoleOutputIsAbout = "intrusion";
+		assertTrue(outputBag.isEmpty());
+		assertFalse(app.home.isTurnedOff());
+		consoleOutputIsAbout = "glassbreak";
+		p.publish("HOME", "ENV:GLASSBREAK=Kitchen@HOME");
+	
+	}
 
 	private OutputBag outputBag;
 	private String consoleOutputIsAbout;

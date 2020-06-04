@@ -110,6 +110,18 @@ public class GherkinCreator {
 		
 		
 		String[] allProducts = {
+//				"Alarm-Bell",
+//				"Alarm-Lights",
+//				"Alarm-Siren",
+//				"Alarm-Bell-Lights",
+//				"Alarm-Bell-Siren",
+//				"Alarm-Lights-Siren",
+//				"Alarm-Bell-Lights-Siren",		
+//				"FireControl-FireDepartment",
+//				"FireControl-FireDepartment-OtherGroup",
+//				"FireControl-FireDepartment-FireSprinklers",
+//				"FireControl-FireDepartment-OtherGroup-FireSprinklers",
+				
 //				"AVManagement-AutomatedAV",
 //				"BlindsManagement-ManualBlinds",
 //				"BlindsManagement-ManualBlinds-AutomatedBlinds",
@@ -122,22 +134,19 @@ public class GherkinCreator {
 //				"MoodsManagement-AutomatedMoods",
 //				"WindowsManagement-ManualWindows",
 //				"WindowsManagement-ManualWindows-AutomatedWindows",
-//				"Alarm-Bell",
-//				"Alarm-Lights",
-//				"Alarm-Siren",
-//				"Alarm-Bell-Lights",
-//				"Alarm-Bell-Siren",
-//				"Alarm-Lights-Siren",
-//				"Alarm-Bell-Lights-Siren",			
 //				"UI-TouchScreen",
 //				"UI-TouchScreen-Internet",
 //				"UI-TouchScreen-Internet-Privacy-RSA",
 //				"UI-TouchScreen-Internet-Privacy-DES",
 				
-//				"FireControl-FireDepartment",
-//				"FireControl-FireDepartment-OtherGroup",
-//				"FireControl-FireDepartment-FireSprinklers",
-//				"FireControl-FireDepartment-OtherGroup-FireSprinklers",
+//				"Security-AuthenticationDevice-Keypad",
+//				"Security-AuthenticationDevice-RetinaScanner",
+//				"Security-AuthenticationDevice-FingerprintReader",
+//				"Security-AuthenticationDevice-Keypad-RetinaScanner",
+//				"Security-AuthenticationDevice-RetinaScanner-FingerprintReader",
+//				"Security-AuthenticationDevice-Keypad-RetinaScanner-FingerprintReader",
+				"Security-AuthenticationDevice-Keypad-IntrusionDetectionDevice-GlassbreakSensors"
+				
 
 		};
 		
@@ -183,7 +192,7 @@ public class GherkinCreator {
 		
 		String[] products = getProductsByConfiguration("all");
 		
-		String type = "complete"; //complete or faulty
+		String type = "faulty"; //complete or faulty
 		String sourcePrefix = "./sequences/" + type + "/";
 		
 		for (String product : products) {

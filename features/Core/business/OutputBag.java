@@ -37,5 +37,9 @@ public class OutputBag {
 		outputs.clear();
 		return temp;
 	}
+	
+	public List<String> getOutputs() {
+		return outputs;
+	}
 
 }

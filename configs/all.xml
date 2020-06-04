@@ -4,7 +4,7 @@
 	<feature automatic="selected" name="Core"/>
 	<feature automatic="selected" name="Alarm"/>
 	<feature automatic="selected" name="Siren"/>
-	<feature name="Bell"/>
+	<feature automatic="selected" name="Bell"/>
 	<feature name="Lights"/>
 	<feature automatic="selected" name="UI"/>
 	<feature automatic="selected" name="TouchScreen"/>
@@ -13,13 +13,13 @@
 	<feature automatic="selected" name="EncryptionAlgorithm"/>
 	<feature manual="selected" name="RSA"/>
 	<feature automatic="unselected" name="DES"/>
-	<feature name="Security"/>
-	<feature name="AuthenticationDevice"/>
-	<feature name="Keypad"/>
-	<feature name="RetinaScanner"/>
-	<feature name="FingerprintReader"/>
-	<feature name="IntrusionDetectionDevice"/>
-	<feature name="GlassbreakSensors"/>
+	<feature automatic="selected" name="Security"/>
+	<feature automatic="selected" name="AuthenticationDevice"/>
+	<feature manual="selected" name="Keypad"/>
+	<feature manual="selected" name="RetinaScanner"/>
+	<feature manual="selected" name="FingerprintReader"/>
+	<feature automatic="selected" name="IntrusionDetectionDevice"/>
+	<feature manual="selected" name="GlassbreakSensors"/>
 	<feature name="Cameras"/>
 	<feature name="MoodsManagement"/>
 	<feature name="AutomatedMoods"/>
