@@ -1,6 +1,11 @@
 package smarthome;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import business.Channel;
+import business.Code;
+import business.Command;
 import business.Rule;
 
 /**
@@ -14,4 +19,10 @@ public class Home {
 			rules.addAll(automatedFireRules);
 	}
 
+	public void respondToEnvironment(String environmentLog) {
+		original(environmentLog);
+		
+		System.out.println(logs);
+		
+	}
 }

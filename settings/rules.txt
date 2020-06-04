@@ -46,10 +46,12 @@ if CLOCK=15:00 then TURN_OFF=All
 
 [FIRST_AID_GROUP]
 if FIRE=On then CALL=Group
+if FIRE=On then TURN_ON=Fire at SIREN
+if FIRE=FiveMinutes then TURN_OFF=Fire at SIREN
 
 [FIRE_SPRINKLERS]
-if FIRE=On then TURN_ON=All
-if FIRE=Off then TURN_OFF=All
+if FIRE=SprinklersOn then TURN_ON=All
+if FIRE=SprinklersOff then TURN_OFF=All
 
 
 

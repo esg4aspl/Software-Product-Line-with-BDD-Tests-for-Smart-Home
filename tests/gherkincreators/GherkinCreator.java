@@ -128,12 +128,12 @@ public class GherkinCreator {
 //				"Alarm-Bell-Lights",
 //				"Alarm-Bell-Siren",
 //				"Alarm-Lights-Siren",
-//				"Alarm-Bell-Lights-Siren",
-												
+//				"Alarm-Bell-Lights-Siren",			
 //				"UI-TouchScreen",
-				"UI-TouchScreen-Internet",
-				"UI-TouchScreen-Internet-Privacy-RSA",
-				"UI-TouchScreen-Internet-Privacy-DES",
+//				"UI-TouchScreen-Internet",
+//				"UI-TouchScreen-Internet-Privacy-RSA",
+//				"UI-TouchScreen-Internet-Privacy-DES",
+				
 //				"FireControl-FireDepartment",
 //				"FireControl-FireDepartment-OtherGroup",
 //				"FireControl-FireDepartment-FireSprinklers",
@@ -161,6 +161,11 @@ public class GherkinCreator {
 			productsList.remove("UI-TouchScreen-Internet");
 		}
 		
+		if (features.contains("OtherGroup")) {
+			productsList.remove("FireControl-FireDepartment");
+			productsList.remove("FireControl-FireDepartment-FireSprinklers");
+		}
+		
 		String[] products = productsList.toArray(new String[productsList.size()]);
 		return products;
 	}
@@ -176,9 +181,9 @@ public class GherkinCreator {
 		       System.out.println("Failed to delete "+file);
 		
 		
-		String[] products = getProductsByConfiguration("int");
+		String[] products = getProductsByConfiguration("all");
 		
-		String type = "faulty"; //complete or faulty
+		String type = "complete"; //complete or faulty
 		String sourcePrefix = "./sequences/" + type + "/";
 		
 		for (String product : products) {

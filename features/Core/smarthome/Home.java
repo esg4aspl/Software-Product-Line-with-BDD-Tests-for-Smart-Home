@@ -18,6 +18,7 @@ public class Home extends AbstractSystem {
 	
 	private List<Rule> rules;
 	private Map<Channel, List<Rule>> ruleMap;
+	private List<Code> logs;
 	private boolean started;
 	private boolean turnedOff;
 	
@@ -67,7 +68,7 @@ public class Home extends AbstractSystem {
 			return;
 		output(getChannel() + " analyzing environment logs: " + environmentLog);
 		String[] logStrings = environmentLog.split("&");
-		List<Code> logs = new ArrayList<Code>();
+		logs = new ArrayList<Code>();
 		for (String logString : logStrings) {
 			logs.add((new Command(logString).getCode()));
 		}

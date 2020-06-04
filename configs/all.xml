@@ -2,8 +2,8 @@
 <configuration>
 	<feature automatic="selected" name="SmartHome"/>
 	<feature automatic="selected" name="Core"/>
-	<feature name="Alarm"/>
-	<feature name="Siren"/>
+	<feature automatic="selected" name="Alarm"/>
+	<feature automatic="selected" name="Siren"/>
 	<feature name="Bell"/>
 	<feature name="Lights"/>
 	<feature automatic="selected" name="UI"/>
@@ -23,17 +23,17 @@
 	<feature name="Cameras"/>
 	<feature name="MoodsManagement"/>
 	<feature name="AutomatedMoods"/>
-	<feature name="FireControl"/>
-	<feature name="FirstAidGroup"/>
-	<feature name="FireDepartment"/>
-	<feature name="OtherGroup"/>
-	<feature name="FireSprinklers"/>
+	<feature automatic="selected" manual="selected" name="FireControl"/>
+	<feature automatic="selected" name="FirstAidGroup"/>
+	<feature automatic="selected" name="FireDepartment"/>
+	<feature manual="selected" name="OtherGroup"/>
+	<feature manual="selected" name="FireSprinklers"/>
 	<feature name="PresenceSimulation"/>
 	<feature name="LightSimulation"/>
 	<feature name="BlindsSimulation"/>
 	<feature name="AVSimulation"/>
-	<feature name="AVManagement"/>
-	<feature name="AutomatedAV"/>
+	<feature manual="selected" name="AVManagement"/>
+	<feature automatic="selected" name="AutomatedAV"/>
 	<feature name="BlindsManagement"/>
 	<feature name="ManualBlinds"/>
 	<feature name="AutomatedBlinds"/>
