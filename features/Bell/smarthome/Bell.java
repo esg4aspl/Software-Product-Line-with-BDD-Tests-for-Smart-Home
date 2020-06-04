@@ -12,7 +12,7 @@ public class Bell extends AbstractSystem {
 	}
 
 	public Channel getChannel() {
-		return Channel.ALARM;
+		return Channel.BELL;
 	}
 	
 	@Override

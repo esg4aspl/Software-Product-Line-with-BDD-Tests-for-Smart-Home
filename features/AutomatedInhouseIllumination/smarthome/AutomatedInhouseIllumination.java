@@ -19,7 +19,7 @@ public class AutomatedInhouseIllumination extends AbstractSystem {
 	}
 	
 	@Override
-	public void respond(Command command) {
+	public void respond(Command command) throws Exception {
 		if (command.getCode().getECode() != ECode.AUTOMATE) {
 			if (!automation)
 				return;

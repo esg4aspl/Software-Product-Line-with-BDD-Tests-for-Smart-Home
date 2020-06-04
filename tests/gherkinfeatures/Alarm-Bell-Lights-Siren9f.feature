@@ -1,6 +1,6 @@
-Feature: UI-TouchScreen-Internet9
+Feature: Alarm-Bell-Lights-Siren9
 Background: Setup
-Given The environment is set up with "turn on,output to console,turn off,output to console"
+Given The environment is set up with "turn on,output to console,turn off,turn on"
 
 Scenario: 0
 When [
@@ -15,5 +15,5 @@ Scenario: 2
 Given turn on
 And output to console
 When turn off
-Then output to console
+Then turn on
 

@@ -15,7 +15,7 @@ public class Siren extends AbstractSystem {
 	}
 
 	public Channel getChannel() {
-		return Channel.ALARM;
+		return Channel.SIREN;
 	}
 	
 	@Override

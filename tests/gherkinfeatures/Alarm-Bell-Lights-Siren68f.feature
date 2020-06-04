@@ -1,4 +1,4 @@
-Feature: UI-TouchScreen-Internet42
+Feature: Alarm-Bell-Lights-Siren68
 Background: Setup
 Given The environment is set up with "turn off"
 

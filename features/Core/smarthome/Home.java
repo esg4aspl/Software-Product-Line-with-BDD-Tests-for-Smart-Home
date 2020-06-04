@@ -1,6 +1,7 @@
 package smarthome;
 
 import java.util.ArrayList;
+import static org.junit.Assert.assertTrue;
 import java.util.List;
 import java.util.Map;
 
@@ -113,7 +114,11 @@ public class Home extends AbstractSystem {
 				    		if (started && alive)
 				    			respondToEnvironment(message.substring(4));
 				    	} else {
-				    		respond(new Command(message));
+				    		try {
+				    			respond(new Command(message));
+				    		} catch (Exception e) {
+				    			//assertTrue(false);
+				    		}
 				    	}
 				    }
 				}, getChannel().toString());

@@ -12,7 +12,7 @@ public class Lights extends AbstractSystem {
 	}
 
 	public Channel getChannel() {
-		return Channel.ALARM;
+		return Channel.LIGHTS;
 	}
 	
 	@Override

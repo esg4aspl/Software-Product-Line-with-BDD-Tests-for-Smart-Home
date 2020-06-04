@@ -122,15 +122,6 @@ public class GherkinCreator {
 //				"MoodsManagement-AutomatedMoods",
 //				"WindowsManagement-ManualWindows",
 //				"WindowsManagement-ManualWindows-AutomatedWindows",
-												
-//				"UI-TouchScreen",
-				"UI-TouchScreen-Internet",
-//				"UI-TouchScreen-Internet-Privacy-RSA",
-//				"UI-TouchScreen-Internet-Privacy-DES",
-//				"FireControl-FireDepartment",
-//				"FireControl-FireDepartment-OtherGroup",
-//				"FireControl-FireDepartment-FireSprinklers",
-//				"FireControl-FireDepartment-OtherGroup-FireSprinklers",
 //				"Alarm-Bell",
 //				"Alarm-Lights",
 //				"Alarm-Siren",
@@ -138,6 +129,16 @@ public class GherkinCreator {
 //				"Alarm-Bell-Siren",
 //				"Alarm-Lights-Siren",
 //				"Alarm-Bell-Lights-Siren",
+												
+//				"UI-TouchScreen",
+//				"UI-TouchScreen-Internet",
+//				"UI-TouchScreen-Internet-Privacy-RSA",
+//				"UI-TouchScreen-Internet-Privacy-DES",
+//				"FireControl-FireDepartment",
+//				"FireControl-FireDepartment-OtherGroup",
+//				"FireControl-FireDepartment-FireSprinklers",
+//				"FireControl-FireDepartment-OtherGroup-FireSprinklers",
+
 		};
 		
 		List<String> productsList = new ArrayList<String>();

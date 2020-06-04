@@ -1,4 +1,4 @@
-Feature: UI-TouchScreen-Internet43
+Feature: Alarm-Bell-Lights-Siren69
 Background: Setup
 Given The environment is set up with "output to console"
 

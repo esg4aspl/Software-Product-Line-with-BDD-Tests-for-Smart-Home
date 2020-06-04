@@ -38,4 +38,8 @@ public class InternetBag {
 		messages.clear();
 		return temp;
 	}
+	
+	public List<String> getMessages() {
+		return messages;
+	}
 }

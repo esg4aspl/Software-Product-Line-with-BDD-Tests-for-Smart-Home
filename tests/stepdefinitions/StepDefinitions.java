@@ -1,6 +1,7 @@
 package stepdefinitions;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import java.io.OutputStream;
@@ -9,9 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import application.App;
-import business.InternetBag;
-import business.OutputBag;
-import business.UIBag;
+import business.*;
 import cucumber.api.Scenario;
 import cucumber.api.java.After;
 import cucumber.api.java.AfterStep;
@@ -20,6 +19,8 @@ import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import redis.clients.jedis.Jedis;
+import smarthome.Internet;
+import smarthome.UI;
 
 public class StepDefinitions {
 	
@@ -65,11 +66,12 @@ public class StepDefinitions {
 		}
 	}
 	
-	private void readInternetMessages() {
+	private int readInternetMessages() {
 		List<String> messages = internetBag.clearMessages();
 		for (String s : messages) {
 			internetMessages.add(s);
 		}
+		return messages.size();
 	}
 	
 	@When("output to console")
@@ -136,7 +138,11 @@ public class StepDefinitions {
 		if (!found) {
 			switch(consoleOutputIsAbout) {
 				case "input via touchscreen": assertTrue(uiBag.isEmpty()); assertTrue(getLast20().contains("TOUCH_SCREEN responding to TOUCH=True")); found = true; break;
-				case "input via internet": assertTrue(internetBag.isEmpty()); assertTrue(getLast20().contains("INTERNET responding to INTERNET=Input")); found = true; break;
+				case "input via internet": 
+					assertTrue(internetBag.isEmpty()); 
+					assertTrue(internetMessages.size() == 0); 
+					assertTrue(getLast20().contains("INTERNET responding to input."));
+					found = true; break;
 			}
 		}
 	}
@@ -214,16 +220,28 @@ public class StepDefinitions {
 	@Given("input via Internet")
 	public void input_via_Internet() { assertTrue(outputBag.isEmpty()); consoleOutputIsAbout = "input via internet"; p.publish("INTERNET", "INTERNET=Input@INTERNET"); }
 	@When("output via Internet")
-	public void output_via_Internet() { readInternetMessages(); assertTrue(getLastInternetMessage().equals("INTERNET creates response.")); }
+	public void output_via_Internet() { assertTrue(readInternetMessages() > 0); assertTrue(internetMessages.size() > 0); }
 	
 	@Given("send RSA encrypted input message")
-	public void send_RSA_encrypted_input_message() { p.publish("INTERNET", "INTERNET=Input@INTERNET"); }
+	public void send_RSA_encrypted_input_message() { 
+		//assertTrue(outputBag.isEmpty()); 
+		p.publish("INTERNET", "INTERNET=EncryptedInput@INTERNET");
+		try {
+			Thread.sleep(50);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		assertFalse(internetBag.getMessages().get(internetBag.getMessages().size()-1).contains("error"));
+	}
 	@Then("send RSA encrypted output message")
-	public void send_RSA_encrypted_output_message() { readOutputs(); assertTrue(getLast20().contains("INTERNET creates RSA encrypted response.")); }
+	public void send_RSA_encrypted_output_message() { 
+		assertTrue(getLastInternetMessage().equals("INTERNET creates RSA encrypted response.")); 
+	}
+	
 	@Given("send DES encrypted input message")
-	public void send_DES_encrypted_input_message() { p.publish("INTERNET", "INTERNET=Input@INTERNET");  }
+	public void send_DES_encrypted_input_message() {  }
 	@Then("send DES encrypted output message")
-	public void send_DES_encrypted_output_message() { readOutputs(); assertTrue(getLast20().contains("INTERNET creates DES encrypted response.")); }
+	public void send_DES_encrypted_output_message() { assertTrue(getLastInternetMessage().equals("INTERNET creates DES encrypted response.")); }
 	
 	//FireControl
 	@Given("call fire department")
@@ -237,17 +255,17 @@ public class StepDefinitions {
 	
 	//Alarm
 	@Given("turn on bell")
-	public void turn_on_bell() { p.publish("HOME", "ENV:CLOCK=07:00@HOME"); }
+	public void turn_on_bell() { assertTrue(outputBag.isEmpty()); p.publish("HOME", "ENV:CLOCK=07:00@HOME"); }
 	@Then("turn off bell")
-	public void turn_off_bell() { p.publish("HOME", "ENV:CLOCK=07:01@HOME"); }
+	public void turn_off_bell() { assertTrue(outputBag.isEmpty()); p.publish("HOME", "ENV:CLOCK=07:01@HOME"); }
 	@Then("turn on siren")
-	public void turn_on_siren() { p.publish("HOME", "ENV:CLOCK=07:00@HOME"); }
+	public void turn_on_siren() { assertTrue(outputBag.isEmpty()); p.publish("HOME", "ENV:CLOCK=07:00@HOME"); }
 	@Given("turn off siren")
-	public void turn_off_siren() { p.publish("HOME", "ENV:CLOCK=07:01@HOME"); }
+	public void turn_off_siren() { assertTrue(outputBag.isEmpty()); p.publish("HOME", "ENV:CLOCK=07:01@HOME"); }
 	@Given("turn on lights")
-	public void turn_on_lights() { p.publish("HOME", "ENV:CLOCK=07:00@HOME"); }
+	public void turn_on_lights() { assertTrue(outputBag.isEmpty()); p.publish("HOME", "ENV:CLOCK=07:00@HOME"); }
 	@Then("turn off lights")
-	public void turn_off_lights() { p.publish("HOME", "ENV:CLOCK=07:01@HOME"); }
+	public void turn_off_lights() { assertTrue(outputBag.isEmpty()); p.publish("HOME", "ENV:CLOCK=07:01@HOME"); }
 	
 
 	private OutputBag outputBag;
@@ -290,6 +308,9 @@ public class StepDefinitions {
 	@After
 	public void after(Scenario scenario) {
 		app.home.kill();
+		uiBag.clearMessages();
+		outputBag.clearOutputs();
+		internetBag.clearMessages();
 	}
 	
 	@AfterStep
@@ -364,6 +385,14 @@ public class StepDefinitions {
 			internetMessages.clear();
 			return r;
 		}
+	} 
+	
+	private List<String> getLast3InternetMessages() {
+ 		List<String> results = new ArrayList<String>();
+ 		for (int i = internetMessages.size()-1; i >= homeOutputs.size()-3 && i >= 0; i--) {
+ 			results.add(internetMessages.get(i));
+ 		}
+ 		return results;
 	} 
 
 	private List<String> getLast20() {

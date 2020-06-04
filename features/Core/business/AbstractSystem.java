@@ -1,5 +1,8 @@
 package business;
 
+
+
+import static org.junit.Assert.assertTrue;
 import java.util.List;
 
 import application.App;
@@ -26,7 +29,7 @@ public abstract class AbstractSystem implements ISystem {
 		this(null);
 	}
 	
-	public void kill() { 
+	public void kill() {
 		publisher.kill();
 		subscriber.kill();
 		for (ISystem s : subsystems) {
@@ -60,7 +63,7 @@ public abstract class AbstractSystem implements ISystem {
 	}
 
 	//PUBLIC METHODS
-	public void respond(Command command) {
+	public void respond(Command command) throws Exception {
 		if (parentSystem instanceof Home) {
 			if (!((Home) parentSystem).isStarted())
 				return;
@@ -105,8 +108,12 @@ public abstract class AbstractSystem implements ISystem {
 				jSubscriber.subscribe(new JedisPubSub() {
 				    @Override
 				    public void onMessage(String channel, String message) {
-				    	if (alive)
-				    		respond(new Command(message));
+				    	try {
+				    		if (alive)
+				    			respond(new Command(message));
+				    	} catch (Exception e) {
+				    		
+				    	}
 				    }
 				}, getChannel().toString());
 			} finally {
