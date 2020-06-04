@@ -131,9 +131,9 @@ public class GherkinCreator {
 //				"Alarm-Bell-Lights-Siren",
 												
 //				"UI-TouchScreen",
-//				"UI-TouchScreen-Internet",
-//				"UI-TouchScreen-Internet-Privacy-RSA",
-//				"UI-TouchScreen-Internet-Privacy-DES",
+				"UI-TouchScreen-Internet",
+				"UI-TouchScreen-Internet-Privacy-RSA",
+				"UI-TouchScreen-Internet-Privacy-DES",
 //				"FireControl-FireDepartment",
 //				"FireControl-FireDepartment-OtherGroup",
 //				"FireControl-FireDepartment-FireSprinklers",
@@ -157,6 +157,10 @@ public class GherkinCreator {
 			}
 		}
 		
+		if (features.contains("Privacy")) {
+			productsList.remove("UI-TouchScreen-Internet");
+		}
+		
 		String[] products = productsList.toArray(new String[productsList.size()]);
 		return products;
 	}
@@ -172,7 +176,7 @@ public class GherkinCreator {
 		       System.out.println("Failed to delete "+file);
 		
 		
-		String[] products = getProductsByConfiguration("all");
+		String[] products = getProductsByConfiguration("int");
 		
 		String type = "faulty"; //complete or faulty
 		String sourcePrefix = "./sequences/" + type + "/";

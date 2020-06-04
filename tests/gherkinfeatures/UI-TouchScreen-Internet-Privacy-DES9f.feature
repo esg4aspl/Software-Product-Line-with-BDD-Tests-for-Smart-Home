@@ -1,4 +1,4 @@
-Feature: Alarm-Bell-Lights-Siren9
+Feature: UI-TouchScreen-Internet-Privacy-DES9
 Background: Setup
 Given The environment is set up with "turn on,output to console,turn off,turn on"
 

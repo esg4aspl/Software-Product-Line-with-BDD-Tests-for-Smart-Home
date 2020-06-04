@@ -74,6 +74,14 @@ public class StepDefinitions {
 		return messages.size();
 	}
 	
+	private int readEncryptedInternetMessages() {
+		List<String> messages = encryptedInternetBag.clearMessages();
+		for (String s : messages) {
+			encryptedInternetMessages.add(s);
+		}
+		return messages.size();
+	}
+	
 	@When("output to console")
 	public void output_to_console() {
 		
@@ -140,6 +148,12 @@ public class StepDefinitions {
 				case "input via touchscreen": assertTrue(uiBag.isEmpty()); assertTrue(getLast20().contains("TOUCH_SCREEN responding to TOUCH=True")); found = true; break;
 				case "input via internet": 
 					assertTrue(internetBag.isEmpty()); 
+					assertTrue(internetMessages.size() == 0); 
+					assertTrue(getLast20().contains("INTERNET responding to input."));
+					found = true; break;
+				case "send encrypted input message":
+					assertTrue(internetBag.isEmpty()); 
+					assertTrue(encryptedInternetBag.isEmpty()); 
 					assertTrue(internetMessages.size() == 0); 
 					assertTrue(getLast20().contains("INTERNET responding to input."));
 					found = true; break;
@@ -220,11 +234,11 @@ public class StepDefinitions {
 	@Given("input via Internet")
 	public void input_via_Internet() { assertTrue(outputBag.isEmpty()); consoleOutputIsAbout = "input via internet"; p.publish("INTERNET", "INTERNET=Input@INTERNET"); }
 	@When("output via Internet")
-	public void output_via_Internet() { assertTrue(readInternetMessages() > 0); assertTrue(internetMessages.size() > 0); }
+	public void output_via_Internet() { assertTrue(readInternetMessages() > 0); assertTrue(getLastInternetMessage().equals("INTERNET completed transfer.")); }
 	
 	@Given("send RSA encrypted input message")
-	public void send_RSA_encrypted_input_message() { 
-		//assertTrue(outputBag.isEmpty()); 
+	public void send_RSA_encrypted_input_message() {
+		consoleOutputIsAbout = "send encrypted input message";
 		p.publish("INTERNET", "INTERNET=EncryptedInput@INTERNET");
 		try {
 			Thread.sleep(50);
@@ -234,14 +248,27 @@ public class StepDefinitions {
 		assertFalse(internetBag.getMessages().get(internetBag.getMessages().size()-1).contains("error"));
 	}
 	@Then("send RSA encrypted output message")
-	public void send_RSA_encrypted_output_message() { 
-		assertTrue(getLastInternetMessage().equals("INTERNET creates RSA encrypted response.")); 
+	public void send_RSA_encrypted_output_message() {
+		assertTrue(internetBag.isEmpty());
+		assertTrue(readEncryptedInternetMessages() > 0); assertTrue(getLastEncryptedInternetMessage().equals("INTERNET creates RSA encrypted response.")); 
 	}
 	
 	@Given("send DES encrypted input message")
-	public void send_DES_encrypted_input_message() {  }
+	public void send_DES_encrypted_input_message() { 
+		consoleOutputIsAbout = "send encrypted input message";
+		p.publish("INTERNET", "INTERNET=EncryptedInput@INTERNET");
+		try {
+			Thread.sleep(50);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		assertFalse(internetBag.getMessages().get(internetBag.getMessages().size()-1).contains("error"));
+	}
 	@Then("send DES encrypted output message")
-	public void send_DES_encrypted_output_message() { assertTrue(getLastInternetMessage().equals("INTERNET creates DES encrypted response.")); }
+	public void send_DES_encrypted_output_message() { 
+		assertTrue(internetBag.isEmpty());
+		assertTrue(readEncryptedInternetMessages() > 0); assertTrue(getLastEncryptedInternetMessage().equals("INTERNET creates DES encrypted response.")); 
+	}
 	
 	//FireControl
 	@Given("call fire department")
@@ -272,9 +299,11 @@ public class StepDefinitions {
 	private String consoleOutputIsAbout;
 	private UIBag uiBag;
 	private InternetBag internetBag;
+	private EncryptedInternetBag encryptedInternetBag;
 	private List<String> homeOutputs;
 	private List<String> uiMessages;
 	private List<String> internetMessages;
+	private List<String> encryptedInternetMessages;
 	private String[] steps;
 	Publisher p;
 	App app;
@@ -296,9 +325,11 @@ public class StepDefinitions {
 	    homeOutputs = new ArrayList<String>();
 	    uiMessages = new ArrayList<String>();
 	    internetMessages = new ArrayList<String>();
+	    encryptedInternetMessages = new ArrayList<String>();
 	    outputBag = OutputBag.getInstance();
 	    uiBag = UIBag.getInstance();
 	    internetBag = InternetBag.getInstance();
+	    encryptedInternetBag = EncryptedInternetBag.getInstance();
 	    app = new App();
 		app.init();
 		p = new Publisher();
@@ -311,6 +342,7 @@ public class StepDefinitions {
 		uiBag.clearMessages();
 		outputBag.clearOutputs();
 		internetBag.clearMessages();
+		encryptedInternetBag.clearMessages();
 	}
 	
 	@AfterStep
@@ -383,6 +415,16 @@ public class StepDefinitions {
 		} else {
 			String r = internetMessages.get(internetMessages.size()-1);
 			internetMessages.clear();
+			return r;
+		}
+	} 
+	
+	private String getLastEncryptedInternetMessage() {
+		if (encryptedInternetMessages.size() == 0) {
+			return "";
+		} else {
+			String r = encryptedInternetMessages.get(encryptedInternetMessages.size()-1);
+			encryptedInternetMessages.clear();
 			return r;
 		}
 	} 

@@ -2,17 +2,17 @@
 <configuration>
 	<feature automatic="selected" name="SmartHome"/>
 	<feature automatic="selected" name="Core"/>
-	<feature automatic="selected" name="Alarm"/>
-	<feature automatic="selected" name="Siren"/>
+	<feature name="Alarm"/>
+	<feature name="Siren"/>
 	<feature name="Bell"/>
 	<feature name="Lights"/>
 	<feature automatic="selected" name="UI"/>
 	<feature automatic="selected" name="TouchScreen"/>
-	<feature manual="selected" name="Internet"/>
-	<feature name="Privacy"/>
-	<feature name="EncryptionAlgorithm"/>
-	<feature name="RSA"/>
-	<feature name="DES"/>
+	<feature automatic="selected" manual="selected" name="Internet"/>
+	<feature automatic="selected" name="Privacy"/>
+	<feature automatic="selected" name="EncryptionAlgorithm"/>
+	<feature automatic="unselected" name="RSA"/>
+	<feature manual="selected" name="DES"/>
 	<feature name="Security"/>
 	<feature name="AuthenticationDevice"/>
 	<feature name="Keypad"/>
@@ -23,11 +23,11 @@
 	<feature name="Cameras"/>
 	<feature name="MoodsManagement"/>
 	<feature name="AutomatedMoods"/>
-	<feature automatic="selected" manual="selected" name="FireControl"/>
-	<feature automatic="selected" name="FirstAidGroup"/>
-	<feature automatic="selected" name="FireDepartment"/>
+	<feature name="FireControl"/>
+	<feature name="FirstAidGroup"/>
+	<feature name="FireDepartment"/>
 	<feature name="OtherGroup"/>
-	<feature manual="selected" name="FireSprinklers"/>
+	<feature name="FireSprinklers"/>
 	<feature name="PresenceSimulation"/>
 	<feature name="LightSimulation"/>
 	<feature name="BlindsSimulation"/>
