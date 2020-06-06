@@ -12,11 +12,16 @@ import business.*;
  */
 public class App {
 	
+	private static Jedis publisher = null;
 	private static JedisPool pool;
 	public Home home;
 	
 	public static Jedis getJedis() {
 		return pool.getResource();
+	}
+	
+	public static Jedis getPublisher() {
+		return publisher;
 	}
 	
 	public static void main(String[] args) {	
@@ -33,6 +38,7 @@ public class App {
 	public void init() {
 		final JedisPoolConfig poolConfig = buildPoolConfig();
 		pool = new JedisPool(poolConfig, "localhost");
+		publisher = App.getJedis();
 		home = new Home();
 		//home.init();
 		//(new App.Publisher()).start();

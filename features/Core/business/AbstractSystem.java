@@ -30,8 +30,8 @@ public abstract class AbstractSystem implements ISystem {
 	}
 	
 	public void kill() {
-		publisher.kill();
 		subscriber.kill();
+		publisher.kill();
 		for (ISystem s : subsystems) {
 			s.kill();
 		}
@@ -48,7 +48,7 @@ public abstract class AbstractSystem implements ISystem {
 			this.commands.addAll(commandsToAdd);
 		
 		subscriber.start();
-		publisher.start();
+//		publisher.start();
 	}
 	
 	protected void output(String str) {
@@ -97,17 +97,27 @@ public abstract class AbstractSystem implements ISystem {
 	
 	protected class Subscriber extends Thread implements ISubscriber {
 		private boolean alive = true;
+		Jedis jSubscriber = null;
+		String cn = "";
+		
+		public Subscriber() {
+			super();
+			jSubscriber = App.getJedis();
+		}
 		
 		@Override
 		public void run() {
-			super.run();
+			cn = getChannel().toString();
 			
-			Jedis jSubscriber = null;
 			try {
-				jSubscriber = App.getJedis();
 				jSubscriber.subscribe(new JedisPubSub() {
 				    @Override
 				    public void onMessage(String channel, String message) {
+				    	if (!alive) {
+				    		unsubscribe();
+				    		return;
+				    	}
+				    	
 				    	try {
 				    		if (alive)
 				    			respond(new Command(message));
@@ -115,20 +125,45 @@ public abstract class AbstractSystem implements ISystem {
 				    		
 				    	}
 				    }
-				}, getChannel().toString());
+				}, cn);
 			} finally {
 				if (jSubscriber != null)
 					jSubscriber.close();
 			}
-			
+			System.out.println("SUB RETURN FROM RUN");
 		}
 		
 		public void kill() {
 			alive = false;
+			publisher.publish("ANYTHING=ANYTHING@" + cn);
 		}
+		
 	}
 	
-	protected class Publisher extends Thread implements IPublisher {
+//	protected class Publisher implements IPublisher {
+//		private boolean alive = true;
+//		
+//		public void publish(String command) {
+//			if (!alive)
+//				return;
+//			Command c = new Command(command);
+//			Jedis jPublisher = App.getPublisher();
+//			jPublisher.publish(c.getChannel().toString(), c.toString());
+//		}
+//		
+//		public void start() {
+//			
+//		}
+//		
+//		public void kill() {
+//			alive = false;
+//		}
+//		
+//		
+//	}
+	
+	
+	protected class Publisher implements IPublisher {
 		private boolean alive = true;
 		
 		public void publish(String command) {
@@ -145,9 +180,12 @@ public abstract class AbstractSystem implements ISystem {
 			}
 		}
 		
-		@Override
+		public void start() {
+			//super.start();
+		}
+		
 		public void run() {
-			super.run();
+//			super.run();
 		}
 		
 		public void kill() {

@@ -95,18 +95,27 @@ public class Home extends AbstractSystem {
 	protected class Subscriber extends Thread implements ISubscriber {
 		private boolean alive = true;
 		
+		
+		Jedis jSubscriber = null;
+		
+		public Subscriber() {
+			super();
+			jSubscriber = App.getJedis();
+		}
+		
 		@Override
 		public void run() {
-			super.run();
-			
-			Jedis jSubscriber = null;
+			if (!alive)
+				return;
 			try {
-				jSubscriber = App.getJedis();
 				jSubscriber.subscribe(new JedisPubSub() {
 				    @Override
 				    public void onMessage(String channel, String message) {
-				    	if (!alive)
+				    	System.out.println(alive);
+				    	if (!alive) {
+				    		unsubscribe();
 				    		return;
+				    	}
 				    	
 				    	if (message.substring(0, 3).equals("ENV")) {
 				    		if (started && alive)
@@ -124,12 +133,13 @@ public class Home extends AbstractSystem {
 				if (jSubscriber != null)
 					jSubscriber.close();
 			}
-			
+			System.out.println("SUB RETURN FROM RUN");
 		}
 		
 		public void kill() {
 			alive = false;
 			turnedOff = true;
+			publisher.publish("ANYTHING=ANYTHING@" + "HOME");
 		}
 	}
 	

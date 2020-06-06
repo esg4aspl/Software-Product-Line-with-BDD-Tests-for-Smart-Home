@@ -140,12 +140,12 @@ public class GherkinCreator {
 //				"WindowsManagement-ManualWindows-AutomatedWindows",
 //				"HVACManagement-VentilationControl-ManualVentilationControl",
 //				"HVACManagement-VentilationControl-ManualVentilationControl-AutomatedVentilationControl",
-				"HVACManagement-VentilationControl-ManualVentilationControl-AutomatedVentilationControl-RemoteVentilationControl",
+//				"HVACManagement-VentilationControl-ManualVentilationControl-AutomatedVentilationControl-RemoteVentilationControl",
 				
 				
 //				"UI-TouchScreen",
 //				"UI-TouchScreen-Internet",
-//				"UI-TouchScreen-Internet-Privacy-RSA",
+				"UI-TouchScreen-Internet-Privacy-RSA",
 //				"UI-TouchScreen-Internet-Privacy-DES",
 				
 
@@ -203,7 +203,7 @@ public class GherkinCreator {
 		
 		
 		String[] products = getProductsByConfiguration("all");
-		String type = "complete"; //complete or faulty
+		String type = "faulty"; //complete or faulty
 		String sourcePrefix = "./sequences/" + type + "/";
 		
 		for (String product : products) {

@@ -8,11 +8,11 @@
 	<feature name="Lights"/>
 	<feature automatic="selected" name="UI"/>
 	<feature automatic="selected" name="TouchScreen"/>
-	<feature name="Internet"/>
-	<feature name="Privacy"/>
-	<feature name="EncryptionAlgorithm"/>
-	<feature name="RSA"/>
-	<feature name="DES"/>
+	<feature automatic="selected" name="Internet"/>
+	<feature automatic="selected" name="Privacy"/>
+	<feature automatic="selected" manual="selected" name="EncryptionAlgorithm"/>
+	<feature manual="selected" name="RSA"/>
+	<feature automatic="unselected" name="DES"/>
 	<feature name="Security"/>
 	<feature name="AuthenticationDevice"/>
 	<feature name="Keypad"/>
@@ -58,7 +58,7 @@
 	<feature name="AutomatedAirConditioningControl"/>
 	<feature name="RemoteAirConditioningControl"/>
 	<feature automatic="selected" name="VentilationControl"/>
-	<feature automatic="selected" manual="selected" name="ManualVentilationControl"/>
-	<feature automatic="selected" manual="selected" name="AutomatedVentilationControl"/>
-	<feature manual="selected" name="RemoteVentilationControl"/>
+	<feature manual="selected" name="ManualVentilationControl"/>
+	<feature name="AutomatedVentilationControl"/>
+	<feature name="RemoteVentilationControl"/>
 </configuration>

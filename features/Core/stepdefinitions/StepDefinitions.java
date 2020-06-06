@@ -23,6 +23,7 @@ public class StepDefinitions {
 	private List<String> consoleExpectations;
 	private Publisher p;
 	private App app;
+	private OutputBag op;
 	
 	public StepDefinitions() {
 		this.app = new App();
@@ -30,6 +31,7 @@ public class StepDefinitions {
 		this.p = new Publisher();
 		this.consoleOutputs = new ArrayList<String>();
 		this.consoleExpectations = new ArrayList<String>();
+		op = OutputBag.getInstance();
 	}
 
 	@Then("turn on")
@@ -88,20 +90,29 @@ public class StepDefinitions {
 	
 	@After
 	public void after(Scenario scenario) {
-		if (app.home.isTurnedOff()) {
+		if (app.home.isTurnedOff())
 			noPendingOutputs();
-		}
+		injectAfter();
 		app.kill();
 		OutputBag.getInstance().clearOutputs();
+		wait(20);
+	}
+	
+	private void injectAfter() {
+		//Nothing here
+	}
+	
+	private void wait (int milliseconds) {
+		try {
+			Thread.sleep(milliseconds);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	@AfterStep
 	public void afterStep() {
-		try {
-			Thread.sleep(50);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
+		wait(20);
 	}
 	
 	@Given("The environment is set up with {string}")
