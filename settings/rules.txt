@@ -18,7 +18,6 @@ if CLOCK=21:00 then TURN_ON=All Perimeter
 
 [GLASSBREAK_SENSORS]
 if GLASSBREAK=Kitchen then TURN_ON=Kitchen at BELL
-if GLASSBREAK=FiveMinutes then TURN_OFF=Kitchen at BELL
 
 [AUTOMATED_WINDOWS]
 if CLOCK=09:00 then TURN_ON=All
@@ -53,8 +52,12 @@ if FIRE=FiveMinutes then TURN_OFF=Fire at SIREN
 if FIRE=SprinklersOn then TURN_ON=All
 if FIRE=SprinklersOff then TURN_OFF=All
 
+[CAMERAS]
+if CAMERAS=Living Room then TURN_ON=Living Room at LIGHTS
 
-
+[AUTOMATED_VENTILATION_CONTROL]
+if AIR=Dirty then TURN_ON=All
+if AIR=Clean then TURN_OFF=All
 
 
 

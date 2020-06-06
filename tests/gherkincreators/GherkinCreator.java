@@ -122,6 +122,10 @@ public class GherkinCreator {
 //				"FireControl-FireDepartment-FireSprinklers",
 //				"FireControl-FireDepartment-OtherGroup-FireSprinklers",
 				
+				
+				
+				
+				
 //				"AVManagement-AutomatedAV",
 //				"BlindsManagement-ManualBlinds",
 //				"BlindsManagement-ManualBlinds-AutomatedBlinds",
@@ -134,18 +138,26 @@ public class GherkinCreator {
 //				"MoodsManagement-AutomatedMoods",
 //				"WindowsManagement-ManualWindows",
 //				"WindowsManagement-ManualWindows-AutomatedWindows",
+//				"HVACManagement-VentilationControl-ManualVentilationControl",
+//				"HVACManagement-VentilationControl-ManualVentilationControl-AutomatedVentilationControl",
+				"HVACManagement-VentilationControl-ManualVentilationControl-AutomatedVentilationControl-RemoteVentilationControl",
+				
+				
 //				"UI-TouchScreen",
 //				"UI-TouchScreen-Internet",
 //				"UI-TouchScreen-Internet-Privacy-RSA",
 //				"UI-TouchScreen-Internet-Privacy-DES",
 				
+
 //				"Security-AuthenticationDevice-Keypad",
 //				"Security-AuthenticationDevice-RetinaScanner",
 //				"Security-AuthenticationDevice-FingerprintReader",
 //				"Security-AuthenticationDevice-Keypad-RetinaScanner",
 //				"Security-AuthenticationDevice-RetinaScanner-FingerprintReader",
 //				"Security-AuthenticationDevice-Keypad-RetinaScanner-FingerprintReader",
-				"Security-AuthenticationDevice-Keypad-IntrusionDetectionDevice-GlassbreakSensors"
+				
+//				"Security-AuthenticationDevice-Keypad-IntrusionDetectionDevice-GlassbreakSensors",
+//				"Security-AuthenticationDevice-Keypad-IntrusionDetectionDevice-Cameras",
 				
 
 		};
@@ -191,8 +203,7 @@ public class GherkinCreator {
 		
 		
 		String[] products = getProductsByConfiguration("all");
-		
-		String type = "faulty"; //complete or faulty
+		String type = "complete"; //complete or faulty
 		String sourcePrefix = "./sequences/" + type + "/";
 		
 		for (String product : products) {

@@ -17,6 +17,7 @@ public enum ECode {
 	PRESENCE,
 	CLOCK,
 	GLASSBREAK,
+	CAMERAS,
 	FIRE,
 	
 	//UI

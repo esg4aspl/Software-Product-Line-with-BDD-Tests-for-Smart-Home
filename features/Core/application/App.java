@@ -25,6 +25,11 @@ public class App {
 
 	}
 	
+	public void kill() {
+		home.kill();
+		pool.close();
+	}
+	
 	public void init() {
 		final JedisPoolConfig poolConfig = buildPoolConfig();
 		pool = new JedisPool(poolConfig, "localhost");

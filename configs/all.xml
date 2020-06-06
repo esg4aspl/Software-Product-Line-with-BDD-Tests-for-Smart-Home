@@ -2,38 +2,38 @@
 <configuration>
 	<feature automatic="selected" name="SmartHome"/>
 	<feature automatic="selected" name="Core"/>
-	<feature automatic="selected" name="Alarm"/>
-	<feature automatic="selected" name="Siren"/>
-	<feature automatic="selected" name="Bell"/>
+	<feature name="Alarm"/>
+	<feature name="Siren"/>
+	<feature name="Bell"/>
 	<feature name="Lights"/>
 	<feature automatic="selected" name="UI"/>
 	<feature automatic="selected" name="TouchScreen"/>
-	<feature automatic="selected" manual="selected" name="Internet"/>
-	<feature automatic="selected" manual="selected" name="Privacy"/>
-	<feature automatic="selected" name="EncryptionAlgorithm"/>
-	<feature manual="selected" name="RSA"/>
-	<feature automatic="unselected" name="DES"/>
-	<feature automatic="selected" name="Security"/>
-	<feature automatic="selected" name="AuthenticationDevice"/>
-	<feature manual="selected" name="Keypad"/>
-	<feature manual="selected" name="RetinaScanner"/>
-	<feature manual="selected" name="FingerprintReader"/>
-	<feature automatic="selected" name="IntrusionDetectionDevice"/>
-	<feature manual="selected" name="GlassbreakSensors"/>
+	<feature name="Internet"/>
+	<feature name="Privacy"/>
+	<feature name="EncryptionAlgorithm"/>
+	<feature name="RSA"/>
+	<feature name="DES"/>
+	<feature name="Security"/>
+	<feature name="AuthenticationDevice"/>
+	<feature name="Keypad"/>
+	<feature name="RetinaScanner"/>
+	<feature name="FingerprintReader"/>
+	<feature name="IntrusionDetectionDevice"/>
+	<feature name="GlassbreakSensors"/>
 	<feature name="Cameras"/>
 	<feature name="MoodsManagement"/>
 	<feature name="AutomatedMoods"/>
-	<feature automatic="selected" manual="selected" name="FireControl"/>
-	<feature automatic="selected" name="FirstAidGroup"/>
-	<feature automatic="selected" name="FireDepartment"/>
-	<feature manual="selected" name="OtherGroup"/>
-	<feature manual="selected" name="FireSprinklers"/>
+	<feature name="FireControl"/>
+	<feature name="FirstAidGroup"/>
+	<feature name="FireDepartment"/>
+	<feature name="OtherGroup"/>
+	<feature name="FireSprinklers"/>
 	<feature name="PresenceSimulation"/>
 	<feature name="LightSimulation"/>
 	<feature name="BlindsSimulation"/>
 	<feature name="AVSimulation"/>
-	<feature manual="selected" name="AVManagement"/>
-	<feature automatic="selected" name="AutomatedAV"/>
+	<feature name="AVManagement"/>
+	<feature name="AutomatedAV"/>
 	<feature name="BlindsManagement"/>
 	<feature name="ManualBlinds"/>
 	<feature name="AutomatedBlinds"/>
@@ -48,7 +48,7 @@
 	<feature name="IrrigationSprinklers"/>
 	<feature name="ManualSprinklers"/>
 	<feature name="AutomatedSprinklers"/>
-	<feature name="HVACManagement"/>
+	<feature automatic="selected" name="HVACManagement"/>
 	<feature name="HeatingControl"/>
 	<feature name="ManualHeating"/>
 	<feature name="AutomatedHeating"/>
@@ -57,8 +57,8 @@
 	<feature name="ManualAirConditioningControl"/>
 	<feature name="AutomatedAirConditioningControl"/>
 	<feature name="RemoteAirConditioningControl"/>
-	<feature name="VentilationControl"/>
-	<feature name="ManualVentilationControl"/>
-	<feature name="AutomatedVentilationControl"/>
-	<feature name="RemoteVentilationControl"/>
+	<feature automatic="selected" name="VentilationControl"/>
+	<feature automatic="selected" manual="selected" name="ManualVentilationControl"/>
+	<feature automatic="selected" manual="selected" name="AutomatedVentilationControl"/>
+	<feature manual="selected" name="RemoteVentilationControl"/>
 </configuration>

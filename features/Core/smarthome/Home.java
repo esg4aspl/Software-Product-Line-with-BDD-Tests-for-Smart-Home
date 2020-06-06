@@ -58,7 +58,7 @@ public class Home extends AbstractSystem {
 	public void turnOff() throws Exception {
 		if (!started || turnedOff)
 			throw new Exception();
-		output("STOPPED HOME");
+//		output("STOPPED HOME");
 		started = false;
 		turnedOff = true;
 	}
