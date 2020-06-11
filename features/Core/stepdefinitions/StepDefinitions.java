@@ -24,6 +24,7 @@ public class StepDefinitions {
 	private Publisher p;
 	private App app;
 	private OutputBag op;
+	private List<String> testFeatures;
 	
 	public StepDefinitions() {
 		this.app = new App();
@@ -31,6 +32,7 @@ public class StepDefinitions {
 		this.p = new Publisher();
 		this.consoleOutputs = new ArrayList<String>();
 		this.consoleExpectations = new ArrayList<String>();
+		this.testFeatures = new ArrayList<String>();
 		op = OutputBag.getInstance();
 	}
 
@@ -118,6 +120,15 @@ public class StepDefinitions {
 	@Given("The environment is set up with {string}")
 	public void the_environment_is_set_up_with(String string) {
 		//Empty
+	}
+	
+	@When("Feature name is {string}")
+	public void feature_name_is(String string) {
+	    String leftHalf = string.split(":")[0];
+	    String[] featuresArr = leftHalf.split("-");
+	    for (String f : featuresArr) {
+	    	testFeatures.add(f);
+	    }
 	}
 	
 	@When("[")

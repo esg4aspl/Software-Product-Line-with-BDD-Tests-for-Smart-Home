@@ -1,1 +1,1 @@
-[, turn on, output to console, open fire sprinklers, output to console, close fire sprinklers, output to console, call other group for fire, output to console, call fire department, turn on siren, five minutes passed, turn off siren, output to console, turn off, ]
+[, turn on, output to console, close fire sprinklers, output to console, fire detected via smoke detector, call fire department, turn on siren, call other group for fire, open fire sprinklers, output to console, turn off, ]

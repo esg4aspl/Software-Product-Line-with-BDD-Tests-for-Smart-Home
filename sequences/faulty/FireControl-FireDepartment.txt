@@ -32,4 +32,4 @@
 [, output to console, 
 [, call fire department, 
 [, turn on siren, 
-[, fire detected via smoke detector,
+[, fire detected via smoke detector, 

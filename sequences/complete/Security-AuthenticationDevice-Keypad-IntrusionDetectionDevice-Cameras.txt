@@ -1,1 +1,1 @@
-[, turn on, output to console, intrusion detected via cameras, turn on lights, output to console, use keypad for authentication, output to console, turn off, ]
+[, turn on, output to console, intrusion detected via cameras, turn on lights, five minutes passed, turn off lights, intrusion detected via cameras, output to console, use keypad for authentication, output to console, turn off, ]

@@ -1,8 +1,8 @@
 package smarthome;
 
 import business.Command;
-import business.EncryptedInternetBag;
 import business.InternetBag;
+import business.EncryptedInternetBag;
 
 /**
  * TODO description

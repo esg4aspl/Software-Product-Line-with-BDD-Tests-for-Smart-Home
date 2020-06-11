@@ -1,0 +1,1 @@
+[, turn on, output to console, turn off light simulation, output to console, turn on light simulation, output to console, turn off, ]

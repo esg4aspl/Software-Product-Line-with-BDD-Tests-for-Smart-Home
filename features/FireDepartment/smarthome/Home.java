@@ -19,10 +19,4 @@ public class Home {
 			rules.addAll(automatedFireRules);
 	}
 
-	public void respondToEnvironment(String environmentLog) {
-		original(environmentLog);
-		
-		System.out.println(logs);
-		
-	}
 }

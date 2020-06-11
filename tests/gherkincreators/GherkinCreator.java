@@ -46,7 +46,7 @@ public class GherkinCreator {
 		
 		
 		List<Scenario> scenarios = new ArrayList<Scenario>();
-		scenarios.add(new Scenario(true, "Setup", "The environment is set up with \"" + testSequenceString + "\"", null, null));
+		scenarios.add(new Scenario(true, "Setup", "The environment is set up with \"" + testSequenceString + "\"", "Feature name is \"" + featureName + "\"", null));
 		System.out.println(testSequenceString);
 		
 		if (size > 2) {
@@ -90,15 +90,15 @@ public class GherkinCreator {
 	
 	private static List<String> parseTestSequence(String sequence) {
 		List<String> result = new ArrayList<String>();
-		String[] steps = sequence.strip().split(",");
+		String[] steps = sequence.trim().split(",");
 		
 		int decrement = 0;
-		if (steps[steps.length-1].strip().equals("]"))
+		if (steps[steps.length-1].trim().equals("]"))
 			decrement = 1;
 		
 		//Not counting [ and ]
 		for (int i = 1; i < steps.length-decrement; i++) {
-			result.add(steps[i].strip());
+			result.add(steps[i].trim());
 		}
 		
 		return result;
@@ -110,56 +110,73 @@ public class GherkinCreator {
 		
 		
 		String[] allProducts = {
-//				"Alarm-Bell",
-//				"Alarm-Lights",
-//				"Alarm-Siren",
-//				"Alarm-Bell-Lights",
-//				"Alarm-Bell-Siren",
-//				"Alarm-Lights-Siren",
-//				"Alarm-Bell-Lights-Siren",		
-//				"FireControl-FireDepartment",
-//				"FireControl-FireDepartment-OtherGroup",
-//				"FireControl-FireDepartment-FireSprinklers",
-//				"FireControl-FireDepartment-OtherGroup-FireSprinklers",
-				
-				
-				
-				
-				
 //				"AVManagement-AutomatedAV",
+//				"Alarm-Bell",
+//				"Alarm-Bell-Lights",
+//				"Alarm-Bell-Lights-Siren",
+//				"Alarm-Bell-Siren",
+//				"Alarm-Lights",
+//				"Alarm-Lights-Siren",
+//				"Alarm-Siren",
 //				"BlindsManagement-ManualBlinds",
 //				"BlindsManagement-ManualBlinds-AutomatedBlinds",
 //				"Core",
+//				"FireControl-FireDepartment",
+//				"FireControl-FireDepartment-FireSprinklers",
+//				"FireControl-FireDepartment-OtherGroup",
+				"FireControl-FireDepartment-OtherGroup-FireSprinklers",
+//				"HVACManagement-AirConditioningControl-ManualAirConditioningControl",
+//				"HVACManagement-AirConditioningControl-ManualAirConditioningControl-AutomatedAirConditioningControl",
+//				"HVACManagement-AirConditioningControl-ManualAirConditioningControl-AutomatedAirConditioningControl-RemoteAirConditioningControl",
+//				"HVACManagement-HeatingControl-ManualHeating",
+//				"HVACManagement-HeatingControl-ManualHeating-AutomatedHeating",
+//				"HVACManagement-HeatingControl-ManualHeating-AutomatedHeating-RemoteHeatingControl",
+//				"HVACManagement-VentilationControl-ManualVentilationControl",
+//				"HVACManagement-VentilationControl-ManualVentilationControl-AutomatedVentilationControl",
+//				"HVACManagement-VentilationControl-ManualVentilationControl-AutomatedVentilationControl-RemoteVentilationControl",
 //				"IrrigationSprinklers-ManualSprinklers",
 //				"IrrigationSprinklers-ManualSprinklers-AutomatedSprinklers",
 //				"LightManagement-ManualIllumination",
 //				"LightManagement-ManualIllumination-AutomatedInhouseIllumination",
 //				"LightManagement-ManualIllumination-AutomatedInhouseIllumination-AutomatedPerimeterIllumination",
 //				"MoodsManagement-AutomatedMoods",
-//				"WindowsManagement-ManualWindows",
-//				"WindowsManagement-ManualWindows-AutomatedWindows",
-//				"HVACManagement-VentilationControl-ManualVentilationControl",
-//				"HVACManagement-VentilationControl-ManualVentilationControl-AutomatedVentilationControl",
-//				"HVACManagement-VentilationControl-ManualVentilationControl-AutomatedVentilationControl-RemoteVentilationControl",
-				
-				
+//				"PresenceSimulation-AVSimulation",
+//				"PresenceSimulation-BlindsSimulation",
+//				"PresenceSimulation-BlindsSimulation-AVSimulation",
+//				"PresenceSimulation-LightSimulation",
+//				"PresenceSimulation-LightSimulation-AVSimulation",
+//				"PresenceSimulation-LightSimulation-BlindsSimulation",
+//				"PresenceSimulation-LightSimulation-BlindsSimulation-AVSimulation",
+//				"Security-AuthenticationDevice-FingerprintReader",
+//				"Security-AuthenticationDevice-FingerprintReader-IntrusionDetectionDevice-Cameras",
+//				"Security-AuthenticationDevice-FingerprintReader-IntrusionDetectionDevice-Cameras-GlassbreakSensors",
+//				"Security-AuthenticationDevice-FingerprintReader-IntrusionDetectionDevice-GlassbreakSensors",
+//				"Security-AuthenticationDevice-FingerprintReader-RetinaScanner",
+//				"Security-AuthenticationDevice-FingerprintReader-RetinaScanner-IntrusionDetectionDevice-Cameras",
+//				"Security-AuthenticationDevice-FingerprintReader-RetinaScanner-IntrusionDetectionDevice-Cameras-GlassbreakSensors",
+//				"Security-AuthenticationDevice-FingerprintReader-RetinaScanner-IntrusionDetectionDevice-GlassbreakSensors",
+//				"Security-AuthenticationDevice-Keypad",
+//				"Security-AuthenticationDevice-Keypad-FingerprintReader-RetinaScanner",
+//				"Security-AuthenticationDevice-Keypad-FingerprintReader-RetinaScanner-IntrusionDetectionDevice-Cameras",
+//				"Security-AuthenticationDevice-Keypad-FingerprintReader-RetinaScanner-IntrusionDetectionDevice-Cameras-GlassbreakSensors",
+//				"Security-AuthenticationDevice-Keypad-FingerprintReader-RetinaScanner-IntrusionDetectionDevice-GlassbreakSensors",
+//				"Security-AuthenticationDevice-Keypad-IntrusionDetectionDevice-Cameras",
+//				"Security-AuthenticationDevice-Keypad-IntrusionDetectionDevice-Cameras-GlassbreakSensors",
+//				"Security-AuthenticationDevice-Keypad-IntrusionDetectionDevice-GlassbreakSensors",
+//				"Security-AuthenticationDevice-Keypad-RetinaScanner",
+//				"Security-AuthenticationDevice-Keypad-RetinaScanner-IntrusionDetectionDevice-Cameras",
+//				"Security-AuthenticationDevice-Keypad-RetinaScanner-IntrusionDetectionDevice-Cameras-GlassbreakSensors",
+//				"Security-AuthenticationDevice-Keypad-RetinaScanner-IntrusionDetectionDevice-GlassbreakSensors",
+//				"Security-AuthenticationDevice-RetinaScanner",
+//				"Security-AuthenticationDevice-RetinaScanner-IntrusionDetectionDevice-Cameras",
+//				"Security-AuthenticationDevice-RetinaScanner-IntrusionDetectionDevice-Cameras-GlassbreakSensors",
+//				"Security-AuthenticationDevice-RetinaScanner-IntrusionDetectionDevice-GlassbreakSensors",
 //				"UI-TouchScreen",
 //				"UI-TouchScreen-Internet",
-				"UI-TouchScreen-Internet-Privacy-RSA",
 //				"UI-TouchScreen-Internet-Privacy-DES",
-				
-
-//				"Security-AuthenticationDevice-Keypad",
-//				"Security-AuthenticationDevice-RetinaScanner",
-//				"Security-AuthenticationDevice-FingerprintReader",
-//				"Security-AuthenticationDevice-Keypad-RetinaScanner",
-//				"Security-AuthenticationDevice-RetinaScanner-FingerprintReader",
-//				"Security-AuthenticationDevice-Keypad-RetinaScanner-FingerprintReader",
-				
-//				"Security-AuthenticationDevice-Keypad-IntrusionDetectionDevice-GlassbreakSensors",
-//				"Security-AuthenticationDevice-Keypad-IntrusionDetectionDevice-Cameras",
-				
-
+//				"UI-TouchScreen-Internet-Privacy-RSA",
+//				"WindowsManagement-ManualWindows",
+//				"WindowsManagement-ManualWindows-AutomatedWindows",
 		};
 		
 		List<String> productsList = new ArrayList<String>();
@@ -182,8 +199,15 @@ public class GherkinCreator {
 			productsList.remove("UI-TouchScreen-Internet");
 		}
 		
-		if (features.contains("OtherGroup")) {
+		if (features.contains("OtherGroup") && !features.contains("FireSprinklers")) {
 			productsList.remove("FireControl-FireDepartment");
+			productsList.remove("FireControl-FireDepartment-FireSprinklers");
+		} else if (!features.contains("OtherGroup") && features.contains("FireSprinklers")) {
+			productsList.remove("FireControl-FireDepartment");
+			productsList.remove("FireControl-FireDepartment-OtherGroup");
+		} else if (features.contains("OtherGroup") && features.contains("FireSprinklers")) {
+			productsList.remove("FireControl-FireDepartment");
+			productsList.remove("FireControl-FireDepartment-OtherGroup");
 			productsList.remove("FireControl-FireDepartment-FireSprinklers");
 		}
 		
@@ -203,7 +227,7 @@ public class GherkinCreator {
 		
 		
 		String[] products = getProductsByConfiguration("all");
-		String type = "faulty"; //complete or faulty
+		String type = "complete"; //complete or faulty
 		String sourcePrefix = "./sequences/" + type + "/";
 		
 		for (String product : products) {
@@ -215,9 +239,9 @@ public class GherkinCreator {
 			      while (myReader.hasNextLine()) {
 						lineCounter++;
 						String data = myReader.nextLine();
-						GherkinCreator gc = new GherkinCreator(product + String.valueOf(lineCounter), data);
+						GherkinCreator gc = new GherkinCreator(product + ":" +  String.valueOf(lineCounter), data);
 						
-						String resultName = resultPrefix + product + String.valueOf(lineCounter) + String.valueOf(type.charAt(0)) + ".feature";
+						String resultName = resultPrefix + product + ":" + String.valueOf(lineCounter) + String.valueOf(type.charAt(0)) + ".feature";
 						
 						try {
 						    FileWriter myWriter = new FileWriter(resultName);

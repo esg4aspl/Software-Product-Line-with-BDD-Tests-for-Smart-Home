@@ -46,10 +46,9 @@ if CLOCK=15:00 then TURN_OFF=All
 [FIRST_AID_GROUP]
 if FIRE=On then CALL=Group
 if FIRE=On then TURN_ON=Fire at SIREN
-if FIRE=FiveMinutes then TURN_OFF=Fire at SIREN
 
 [FIRE_SPRINKLERS]
-if FIRE=SprinklersOn then TURN_ON=All
+if FIRE=On then TURN_ON=All
 if FIRE=SprinklersOff then TURN_OFF=All
 
 [CAMERAS]
@@ -59,5 +58,12 @@ if CAMERAS=Living Room then TURN_ON=Living Room at LIGHTS
 if AIR=Dirty then TURN_ON=All
 if AIR=Clean then TURN_OFF=All
 
+[AUTOMATED_HEATING]
+if TEMPERATURE<22 then TURN_ON=All
+if TEMPERATURE>27 then TURN_OFF=All
+
+[AUTOMATED_AIR_CONDITIONING_CONTROL]
+if TEMPERATURE>30 then TURN_ON=All
+if TEMPERATURE<23 then TURN_OFF=All
 
 

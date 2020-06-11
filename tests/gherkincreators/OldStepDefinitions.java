@@ -223,6 +223,7 @@ public class OldStepDefinitions {
 	public void turn_off_perimeter_light_automatic() { assertTrue(outputBag.isEmpty()); p.publish("HOME", "ENV:CLOCK=09:00@HOME");  }
 	
 	//AVManagement
+	
 	@Given("start AV automated")
 	public void start_AV_automated() { assertTrue(outputBag.isEmpty()); p.publish("HOME", "ENV:CLOCK=10:00@HOME");  }
 	@Then("stop AV automated")

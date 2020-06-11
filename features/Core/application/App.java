@@ -4,8 +4,9 @@ import smarthome.Home;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
-import java.time.Duration;
 import business.*;
+import java.time.Duration;
+
 
 /**
  * TODO description

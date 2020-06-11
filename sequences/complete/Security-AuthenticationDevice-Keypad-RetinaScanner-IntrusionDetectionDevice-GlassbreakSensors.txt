@@ -1,0 +1,1 @@
+[, turn on, output to console, use retina scanner for authentication, output to console, intrusion detected via glassbreak sensor, turn on bell, output to console, use keypad for authentication, output to console, turn off, ]

@@ -1,0 +1,1 @@
+[, turn on, output to console, turn on heating automatic, output to console, turn off heating automatic, output to console, turn on heating remote, output to console, turn off heating remote, output to console, turn off heating manual, output to console, turn on heating manual, output to console, turn off, ]

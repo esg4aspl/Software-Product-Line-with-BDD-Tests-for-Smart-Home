@@ -130,7 +130,6 @@ public abstract class AbstractSystem implements ISystem {
 				if (jSubscriber != null)
 					jSubscriber.close();
 			}
-			System.out.println("SUB RETURN FROM RUN");
 		}
 		
 		public void kill() {

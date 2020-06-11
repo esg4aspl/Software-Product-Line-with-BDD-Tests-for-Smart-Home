@@ -1,0 +1,1 @@
+[, turn on, output to console, turn on AV simulation, output to console, turn off AV simulation, output to console, turn off, ]

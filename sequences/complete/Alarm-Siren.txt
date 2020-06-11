@@ -1,1 +1,1 @@
-[, turn on, output to console, turn off siren, output to console, turn on siren, output to console, turn off, ]
+[, turn on, output to console, turn off siren manual, output to console, turn on siren manual, output to console, turn off, ]

@@ -111,7 +111,6 @@ public class Home extends AbstractSystem {
 				jSubscriber.subscribe(new JedisPubSub() {
 				    @Override
 				    public void onMessage(String channel, String message) {
-				    	System.out.println(alive);
 				    	if (!alive) {
 				    		unsubscribe();
 				    		return;
@@ -133,7 +132,6 @@ public class Home extends AbstractSystem {
 				if (jSubscriber != null)
 					jSubscriber.close();
 			}
-			System.out.println("SUB RETURN FROM RUN");
 		}
 		
 		public void kill() {

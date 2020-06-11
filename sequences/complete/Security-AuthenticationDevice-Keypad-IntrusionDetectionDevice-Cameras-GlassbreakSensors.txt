@@ -1,0 +1,1 @@
+[, turn on, output to console, intrusion detected via glassbreak sensor, turn on bell, five minutes passed, turn off bell, intrusion detected via glassbreak sensor, output to console, intrusion detected via cameras, turn on lights, five minutes passed, turn off lights, intrusion detected via cameras, output to console, use keypad for authentication, output to console, turn off, ]
