@@ -13,11 +13,18 @@
 		<and abstract="true" mandatory="true" name="SmartHome">
 			<and mandatory="true" name="Core">
 				<graphics key="collapsed" value="false"/>
-				<or name="Alarm">
-					<feature name="Siren"/>
-					<feature name="Bell"/>
-					<feature name="Lights"/>
-				</or>
+				<and name="Alarm">
+					<or name="ManualAlarm">
+						<feature name="ManualLights"/>
+						<feature name="ManualSiren"/>
+						<feature name="ManualBell"/>
+					</or>
+					<or name="AutomaticAlarm">
+						<feature name="AutomaticLights"/>
+						<feature name="AutomaticBell"/>
+						<feature name="AutomaticSiren"/>
+					</or>
+				</and>
 				<and mandatory="true" name="UI">
 					<feature mandatory="true" name="TouchScreen"/>
 					<and name="Internet">
@@ -104,19 +111,19 @@
 		<rule>
 			<imp>
 				<var>FireDepartment</var>
-				<var>Siren</var>
+				<var>AutomaticSiren</var>
 			</imp>
 		</rule>
 		<rule>
 			<imp>
 				<var>GlassbreakSensors</var>
-				<var>Bell</var>
+				<var>AutomaticBell</var>
 			</imp>
 		</rule>
 		<rule>
 			<imp>
 				<var>Cameras</var>
-				<var>Lights</var>
+				<var>AutomaticLights</var>
 			</imp>
 		</rule>
 	</constraints>

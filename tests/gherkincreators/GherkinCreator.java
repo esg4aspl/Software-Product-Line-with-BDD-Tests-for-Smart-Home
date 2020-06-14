@@ -47,7 +47,7 @@ public class GherkinCreator {
 		
 		List<Scenario> scenarios = new ArrayList<Scenario>();
 		scenarios.add(new Scenario(true, "Setup", "The environment is set up with \"" + testSequenceString + "\"", "Feature name is \"" + featureName + "\"", null));
-		System.out.println(testSequenceString);
+//		System.out.println(testSequenceString);
 		
 		if (size > 2) {
 			scenarios.add(new Scenario("0", null, "[", testSequence.get(0)));
@@ -110,73 +110,73 @@ public class GherkinCreator {
 		
 		
 		String[] allProducts = {
-//				"AVManagement-AutomatedAV",
-//				"Alarm-Bell",
-//				"Alarm-Bell-Lights",
-//				"Alarm-Bell-Lights-Siren",
-//				"Alarm-Bell-Siren",
-//				"Alarm-Lights",
-//				"Alarm-Lights-Siren",
-//				"Alarm-Siren",
-//				"BlindsManagement-ManualBlinds",
-//				"BlindsManagement-ManualBlinds-AutomatedBlinds",
-//				"Core",
-//				"FireControl-FireDepartment",
-//				"FireControl-FireDepartment-FireSprinklers",
-//				"FireControl-FireDepartment-OtherGroup",
+				"AVManagement-AutomatedAV",
+				"Alarm-Bell",
+				"Alarm-Bell-Lights",
+				"Alarm-Bell-Lights-Siren",
+				"Alarm-Bell-Siren",
+				"Alarm-Lights",
+				"Alarm-Lights-Siren",
+				"Alarm-Siren",
+				"BlindsManagement-ManualBlinds",
+				"BlindsManagement-ManualBlinds-AutomatedBlinds",
+				"Core",
+				"FireControl-FireDepartment",
+				"FireControl-FireDepartment-FireSprinklers",
+				"FireControl-FireDepartment-OtherGroup",
 				"FireControl-FireDepartment-OtherGroup-FireSprinklers",
-//				"HVACManagement-AirConditioningControl-ManualAirConditioningControl",
-//				"HVACManagement-AirConditioningControl-ManualAirConditioningControl-AutomatedAirConditioningControl",
-//				"HVACManagement-AirConditioningControl-ManualAirConditioningControl-AutomatedAirConditioningControl-RemoteAirConditioningControl",
-//				"HVACManagement-HeatingControl-ManualHeating",
-//				"HVACManagement-HeatingControl-ManualHeating-AutomatedHeating",
-//				"HVACManagement-HeatingControl-ManualHeating-AutomatedHeating-RemoteHeatingControl",
-//				"HVACManagement-VentilationControl-ManualVentilationControl",
-//				"HVACManagement-VentilationControl-ManualVentilationControl-AutomatedVentilationControl",
-//				"HVACManagement-VentilationControl-ManualVentilationControl-AutomatedVentilationControl-RemoteVentilationControl",
-//				"IrrigationSprinklers-ManualSprinklers",
-//				"IrrigationSprinklers-ManualSprinklers-AutomatedSprinklers",
-//				"LightManagement-ManualIllumination",
-//				"LightManagement-ManualIllumination-AutomatedInhouseIllumination",
-//				"LightManagement-ManualIllumination-AutomatedInhouseIllumination-AutomatedPerimeterIllumination",
-//				"MoodsManagement-AutomatedMoods",
-//				"PresenceSimulation-AVSimulation",
-//				"PresenceSimulation-BlindsSimulation",
-//				"PresenceSimulation-BlindsSimulation-AVSimulation",
-//				"PresenceSimulation-LightSimulation",
-//				"PresenceSimulation-LightSimulation-AVSimulation",
-//				"PresenceSimulation-LightSimulation-BlindsSimulation",
-//				"PresenceSimulation-LightSimulation-BlindsSimulation-AVSimulation",
-//				"Security-AuthenticationDevice-FingerprintReader",
-//				"Security-AuthenticationDevice-FingerprintReader-IntrusionDetectionDevice-Cameras",
-//				"Security-AuthenticationDevice-FingerprintReader-IntrusionDetectionDevice-Cameras-GlassbreakSensors",
-//				"Security-AuthenticationDevice-FingerprintReader-IntrusionDetectionDevice-GlassbreakSensors",
-//				"Security-AuthenticationDevice-FingerprintReader-RetinaScanner",
-//				"Security-AuthenticationDevice-FingerprintReader-RetinaScanner-IntrusionDetectionDevice-Cameras",
-//				"Security-AuthenticationDevice-FingerprintReader-RetinaScanner-IntrusionDetectionDevice-Cameras-GlassbreakSensors",
-//				"Security-AuthenticationDevice-FingerprintReader-RetinaScanner-IntrusionDetectionDevice-GlassbreakSensors",
-//				"Security-AuthenticationDevice-Keypad",
-//				"Security-AuthenticationDevice-Keypad-FingerprintReader-RetinaScanner",
-//				"Security-AuthenticationDevice-Keypad-FingerprintReader-RetinaScanner-IntrusionDetectionDevice-Cameras",
-//				"Security-AuthenticationDevice-Keypad-FingerprintReader-RetinaScanner-IntrusionDetectionDevice-Cameras-GlassbreakSensors",
-//				"Security-AuthenticationDevice-Keypad-FingerprintReader-RetinaScanner-IntrusionDetectionDevice-GlassbreakSensors",
-//				"Security-AuthenticationDevice-Keypad-IntrusionDetectionDevice-Cameras",
-//				"Security-AuthenticationDevice-Keypad-IntrusionDetectionDevice-Cameras-GlassbreakSensors",
-//				"Security-AuthenticationDevice-Keypad-IntrusionDetectionDevice-GlassbreakSensors",
-//				"Security-AuthenticationDevice-Keypad-RetinaScanner",
-//				"Security-AuthenticationDevice-Keypad-RetinaScanner-IntrusionDetectionDevice-Cameras",
-//				"Security-AuthenticationDevice-Keypad-RetinaScanner-IntrusionDetectionDevice-Cameras-GlassbreakSensors",
-//				"Security-AuthenticationDevice-Keypad-RetinaScanner-IntrusionDetectionDevice-GlassbreakSensors",
-//				"Security-AuthenticationDevice-RetinaScanner",
-//				"Security-AuthenticationDevice-RetinaScanner-IntrusionDetectionDevice-Cameras",
-//				"Security-AuthenticationDevice-RetinaScanner-IntrusionDetectionDevice-Cameras-GlassbreakSensors",
-//				"Security-AuthenticationDevice-RetinaScanner-IntrusionDetectionDevice-GlassbreakSensors",
-//				"UI-TouchScreen",
-//				"UI-TouchScreen-Internet",
-//				"UI-TouchScreen-Internet-Privacy-DES",
-//				"UI-TouchScreen-Internet-Privacy-RSA",
-//				"WindowsManagement-ManualWindows",
-//				"WindowsManagement-ManualWindows-AutomatedWindows",
+				"HVACManagement-AirConditioningControl-ManualAirConditioningControl",
+				"HVACManagement-AirConditioningControl-ManualAirConditioningControl-AutomatedAirConditioningControl",
+				"HVACManagement-AirConditioningControl-ManualAirConditioningControl-AutomatedAirConditioningControl-RemoteAirConditioningControl",
+				"HVACManagement-HeatingControl-ManualHeating",
+				"HVACManagement-HeatingControl-ManualHeating-AutomatedHeating",
+				"HVACManagement-HeatingControl-ManualHeating-AutomatedHeating-RemoteHeatingControl",
+				"HVACManagement-VentilationControl-ManualVentilationControl",
+				"HVACManagement-VentilationControl-ManualVentilationControl-AutomatedVentilationControl",
+				"HVACManagement-VentilationControl-ManualVentilationControl-AutomatedVentilationControl-RemoteVentilationControl",
+				"IrrigationSprinklers-ManualSprinklers",
+				"IrrigationSprinklers-ManualSprinklers-AutomatedSprinklers",
+				"LightManagement-ManualIllumination",
+				"LightManagement-ManualIllumination-AutomatedInhouseIllumination",
+				"LightManagement-ManualIllumination-AutomatedInhouseIllumination-AutomatedPerimeterIllumination",
+				"MoodsManagement-AutomatedMoods",
+				"PresenceSimulation-AVSimulation",
+				"PresenceSimulation-BlindsSimulation",
+				"PresenceSimulation-BlindsSimulation-AVSimulation",
+				"PresenceSimulation-LightSimulation",
+				"PresenceSimulation-LightSimulation-AVSimulation",
+				"PresenceSimulation-LightSimulation-BlindsSimulation",
+				"PresenceSimulation-LightSimulation-BlindsSimulation-AVSimulation",
+				"Security-AuthenticationDevice-FingerprintReader",
+				"Security-AuthenticationDevice-FingerprintReader-IntrusionDetectionDevice-Cameras",
+				"Security-AuthenticationDevice-FingerprintReader-IntrusionDetectionDevice-Cameras-GlassbreakSensors",
+				"Security-AuthenticationDevice-FingerprintReader-IntrusionDetectionDevice-GlassbreakSensors",
+				"Security-AuthenticationDevice-FingerprintReader-RetinaScanner",
+				"Security-AuthenticationDevice-FingerprintReader-RetinaScanner-IntrusionDetectionDevice-Cameras",
+				"Security-AuthenticationDevice-FingerprintReader-RetinaScanner-IntrusionDetectionDevice-Cameras-GlassbreakSensors",
+				"Security-AuthenticationDevice-FingerprintReader-RetinaScanner-IntrusionDetectionDevice-GlassbreakSensors",
+				"Security-AuthenticationDevice-Keypad",
+				"Security-AuthenticationDevice-Keypad-FingerprintReader-RetinaScanner",
+				"Security-AuthenticationDevice-Keypad-FingerprintReader-RetinaScanner-IntrusionDetectionDevice-Cameras",
+				"Security-AuthenticationDevice-Keypad-FingerprintReader-RetinaScanner-IntrusionDetectionDevice-Cameras-GlassbreakSensors",
+				"Security-AuthenticationDevice-Keypad-FingerprintReader-RetinaScanner-IntrusionDetectionDevice-GlassbreakSensors",
+				"Security-AuthenticationDevice-Keypad-IntrusionDetectionDevice-Cameras",
+				"Security-AuthenticationDevice-Keypad-IntrusionDetectionDevice-Cameras-GlassbreakSensors",
+				"Security-AuthenticationDevice-Keypad-IntrusionDetectionDevice-GlassbreakSensors",
+				"Security-AuthenticationDevice-Keypad-RetinaScanner",
+				"Security-AuthenticationDevice-Keypad-RetinaScanner-IntrusionDetectionDevice-Cameras",
+				"Security-AuthenticationDevice-Keypad-RetinaScanner-IntrusionDetectionDevice-Cameras-GlassbreakSensors",
+				"Security-AuthenticationDevice-Keypad-RetinaScanner-IntrusionDetectionDevice-GlassbreakSensors",
+				"Security-AuthenticationDevice-RetinaScanner",
+				"Security-AuthenticationDevice-RetinaScanner-IntrusionDetectionDevice-Cameras",
+				"Security-AuthenticationDevice-RetinaScanner-IntrusionDetectionDevice-Cameras-GlassbreakSensors",
+				"Security-AuthenticationDevice-RetinaScanner-IntrusionDetectionDevice-GlassbreakSensors",
+				"UI-TouchScreen",
+				"UI-TouchScreen-Internet",
+				"UI-TouchScreen-Internet-Privacy-DES",
+				"UI-TouchScreen-Internet-Privacy-RSA",
+				"WindowsManagement-ManualWindows",
+				"WindowsManagement-ManualWindows-AutomatedWindows",
 		};
 		
 		List<String> productsList = new ArrayList<String>();
@@ -216,6 +216,10 @@ public class GherkinCreator {
 	}
 
 	public static void main(String[] args) {
+		long startTime = System.nanoTime();
+
+
+
 		
 		String resultPrefix = "./tests/gherkinfeatures/";
 		File directory = new File(resultPrefix);
@@ -227,7 +231,7 @@ public class GherkinCreator {
 		
 		
 		String[] products = getProductsByConfiguration("all");
-		String type = "complete"; //complete or faulty
+		String type = "faulty"; //complete or faulty
 		String sourcePrefix = "./sequences/" + type + "/";
 		
 		for (String product : products) {
@@ -247,7 +251,7 @@ public class GherkinCreator {
 						    FileWriter myWriter = new FileWriter(resultName);
 						    myWriter.write(gc.getFeature().toString());
 						    myWriter.close();
-						    System.out.println("Successfully wrote to the file.");
+//						    System.out.println("Successfully wrote to the file.");
 						} catch (IOException e) {
 						    System.out.println("An error occurred.");
 						    e.printStackTrace();
@@ -263,7 +267,15 @@ public class GherkinCreator {
 		}
 		
 		
+		long endTime = System.nanoTime();
+
+		// get difference of two nanoTime values
+		long timeElapsed = endTime - startTime;
 		
+		System.out.println("Gherkin feature files are created in ./tests/gherkinfeatures. Now run the TestRunner and after it finishes run the ReportCreator to see the results of your tests.");
+
+		System.out.println("Execution time in milliseconds : " +
+								timeElapsed / 1000000);
 		
 	}
 	

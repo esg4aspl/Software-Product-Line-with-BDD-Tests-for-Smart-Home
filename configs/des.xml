@@ -3,9 +3,14 @@
 	<feature automatic="selected" name="SmartHome"/>
 	<feature automatic="selected" name="Core"/>
 	<feature automatic="selected" name="Alarm"/>
-	<feature manual="selected" name="Siren"/>
-	<feature name="Bell"/>
-	<feature name="Lights"/>
+	<feature name="ManualAlarm"/>
+	<feature name="ManualLights"/>
+	<feature manual="selected" name="ManualSiren"/>
+	<feature name="ManualBell"/>
+	<feature name="AutomaticAlarm"/>
+	<feature name="AutomaticLights"/>
+	<feature name="AutomaticBell"/>
+	<feature name="AutomaticSiren"/>
 	<feature automatic="selected" name="UI"/>
 	<feature automatic="selected" name="TouchScreen"/>
 	<feature automatic="selected" manual="selected" name="Internet"/>
