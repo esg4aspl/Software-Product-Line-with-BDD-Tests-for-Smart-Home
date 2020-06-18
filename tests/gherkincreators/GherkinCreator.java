@@ -230,7 +230,19 @@ public class GherkinCreator {
 		       System.out.println("Failed to delete "+file);
 		
 		
-		String[] products = getProductsByConfiguration("all");
+		String[] products = getProductsByConfiguration("Product01");
+		
+		for (int i = 1; i < 21; i++) {
+			
+			String iS = "";
+			if (i < 10)
+				iS += "0";
+			iS += i;
+			
+			List<String> featuresx = new FeatureExtractor("SmartHome", "./configs/" + "Product" + iS + ".xml").getFeatures();
+			System.out.print(featuresx.size() + ",");
+		}
+		
 		String type = "faulty"; //complete or faulty
 		String sourcePrefix = "./sequences/" + type + "/";
 		

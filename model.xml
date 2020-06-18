@@ -126,5 +126,23 @@
 				<var>AutomaticLights</var>
 			</imp>
 		</rule>
+		<rule>
+			<imp>
+				<var>AVSimulation</var>
+				<var>AVManagement</var>
+			</imp>
+		</rule>
+		<rule>
+			<imp>
+				<var>BlindsSimulation</var>
+				<var>BlindsManagement</var>
+			</imp>
+		</rule>
+		<rule>
+			<imp>
+				<var>LightSimulation</var>
+				<var>LightManagement</var>
+			</imp>
+		</rule>
 	</constraints>
 </featureModel>
