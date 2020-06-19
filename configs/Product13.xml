@@ -41,12 +41,12 @@
 	<feature name="AutomatedAV"/>
 	<feature automatic="selected" name="BlindsManagement"/>
 	<feature automatic="selected" name="ManualBlinds"/>
-	<feature manual="selected" name="AutomatedBlinds"/>
+	<feature automatic="selected" manual="selected" name="AutomatedBlinds"/>
 	<feature automatic="selected" name="LightManagement"/>
 	<feature automatic="selected" name="ManualIllumination"/>
-	<feature name="AutomatedIllumination"/>
-	<feature name="AutomatedPerimeterIllumination"/>
-	<feature name="AutomatedInhouseIllumination"/>
+	<feature automatic="selected" name="AutomatedIllumination"/>
+	<feature manual="selected" name="AutomatedPerimeterIllumination"/>
+	<feature manual="selected" name="AutomatedInhouseIllumination"/>
 	<feature automatic="selected" name="WindowsManagement"/>
 	<feature automatic="selected" name="ManualWindows"/>
 	<feature name="AutomatedWindows"/>

@@ -129,19 +129,19 @@
 		<rule>
 			<imp>
 				<var>AVSimulation</var>
-				<var>AVManagement</var>
+				<var>AutomatedAV</var>
 			</imp>
 		</rule>
 		<rule>
 			<imp>
 				<var>BlindsSimulation</var>
-				<var>BlindsManagement</var>
+				<var>AutomatedBlinds</var>
 			</imp>
 		</rule>
 		<rule>
 			<imp>
 				<var>LightSimulation</var>
-				<var>LightManagement</var>
+				<var>AutomatedIllumination</var>
 			</imp>
 		</rule>
 	</constraints>

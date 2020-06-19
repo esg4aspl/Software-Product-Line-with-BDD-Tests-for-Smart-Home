@@ -44,8 +44,8 @@
 	<feature name="AutomatedBlinds"/>
 	<feature automatic="selected" name="LightManagement"/>
 	<feature automatic="selected" name="ManualIllumination"/>
-	<feature name="AutomatedIllumination"/>
-	<feature name="AutomatedPerimeterIllumination"/>
+	<feature automatic="selected" name="AutomatedIllumination"/>
+	<feature manual="selected" name="AutomatedPerimeterIllumination"/>
 	<feature name="AutomatedInhouseIllumination"/>
 	<feature automatic="selected" name="WindowsManagement"/>
 	<feature automatic="selected" name="ManualWindows"/>
