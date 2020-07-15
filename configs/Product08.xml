@@ -6,7 +6,7 @@
 	<feature automatic="selected" name="ManualAlarm"/>
 	<feature manual="selected" name="ManualLights"/>
 	<feature name="ManualSiren"/>
-	<feature manual="selected" name="ManualBell"/>
+	<feature name="ManualBell"/>
 	<feature name="AutomaticAlarm"/>
 	<feature name="AutomaticLights"/>
 	<feature name="AutomaticBell"/>
@@ -18,7 +18,7 @@
 	<feature name="EncryptionAlgorithm"/>
 	<feature name="RSA"/>
 	<feature name="DES"/>
-	<feature automatic="selected" manual="selected" name="Security"/>
+	<feature automatic="selected" name="Security"/>
 	<feature automatic="selected" name="AuthenticationDevice"/>
 	<feature name="Keypad"/>
 	<feature name="RetinaScanner"/>
@@ -53,10 +53,10 @@
 	<feature manual="selected" name="IrrigationSprinklers"/>
 	<feature automatic="selected" name="ManualSprinklers"/>
 	<feature name="AutomatedSprinklers"/>
-	<feature automatic="selected" manual="selected" name="HVACManagement"/>
-	<feature automatic="selected" manual="selected" name="HeatingControl"/>
+	<feature automatic="selected" name="HVACManagement"/>
+	<feature automatic="selected" name="HeatingControl"/>
 	<feature automatic="selected" name="ManualHeating"/>
-	<feature automatic="selected" manual="selected" name="AutomatedHeating"/>
+	<feature automatic="selected" name="AutomatedHeating"/>
 	<feature manual="selected" name="RemoteHeatingControl"/>
 	<feature name="AirConditioningControl"/>
 	<feature name="ManualAirConditioningControl"/>

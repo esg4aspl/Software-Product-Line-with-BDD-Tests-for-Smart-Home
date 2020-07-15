@@ -8,9 +8,9 @@ import business.ISystem;
 /**
  * TODO description
  */
-public class Siren extends AbstractSystem {
+public class AutomaticSiren extends AbstractSystem {
 
-	public Siren(ISystem parentSystem) {
+	public AutomaticSiren(ISystem parentSystem) {
 		super(parentSystem);
 	}
 

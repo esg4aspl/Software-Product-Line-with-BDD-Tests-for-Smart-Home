@@ -5,19 +5,19 @@ import business.*;
 /**
  * TODO description
  */
-public class Bell extends AbstractSystem {
+public class AutomaticAlarm extends AbstractSystem {
 
-	public Bell(ISystem parentSystem) {
+	public AutomaticAlarm(ISystem parentSystem) {
 		super(parentSystem);
 	}
 
 	public Channel getChannel() {
-		return Channel.BELL;
+		return Channel.ALARM;
 	}
 	
 	@Override
 	public void respond(Command command) {
-		output("Bell responding to " + command.getCode());
+		//DO NOTHING
 	}
 	
 }

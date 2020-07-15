@@ -8,7 +8,7 @@ import business.*;
 public class Home {
 	
 	public Home() {
-		this.subsystems.add(new Alarm(this));
+		this.subsystems.add(new AutomaticAlarm(this));
 		
 		List<Rule> automatedAlarmRules = ruleMap.get(Channel.ALARM);
 		if (automatedAlarmRules != null)
