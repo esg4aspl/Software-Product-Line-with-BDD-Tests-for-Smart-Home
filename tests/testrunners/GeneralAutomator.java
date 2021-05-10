@@ -48,7 +48,9 @@ public class GeneralAutomator {
 	}
 	
 	public static void main(String[] args) {
-		GeneralAutomator.run("Product01", "complete");
+		String productName = "Product01";
+		String sequenceType = "complete"; // "complete" or "faulty"
+		GeneralAutomator.run(productName, sequenceType);
 	}
 
 }
