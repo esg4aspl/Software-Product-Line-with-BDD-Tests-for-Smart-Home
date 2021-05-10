@@ -72,7 +72,7 @@ public class StepDefinitions {
 		assertTrue(consoleOutputs.contains(oName));
 		consoleExpectations.remove(eName);
 		consoleOutputs.remove(oName);
-		System.out.println("Checked " + eName + " -- " + oName);
+		// System.out.println("Checked " + eName + " -- " + oName);
 		return true;
 	}
 	

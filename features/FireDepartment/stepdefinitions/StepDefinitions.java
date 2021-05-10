@@ -72,7 +72,7 @@ public class StepDefinitions {
 	}
 	
 	private void copyTurnOnSiren() {
-		System.out.println("Siren fire control checks");
+		// System.out.println("Siren fire control checks");
 		assertFalse(fireDepartmentOutputCache.isEmpty());
 		assertFalse(fireDepartmentOutputCache.contains(TURN_ON_SIREN_OUTPUT));
 		firePrecedesCheck(CALL_DEPT_EXPECTATION, CALL_DEPT_OUTPUT, TURN_ON_SIREN_EXPECTATION, TURN_ON_SIREN_OUTPUT);
