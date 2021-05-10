@@ -35,6 +35,11 @@ public class StepDefinitions {
 		this.testFeatures = new ArrayList<String>();
 		op = OutputBag.getInstance();
 	}
+	
+	@When("five minutes passed")
+	public void five_minutes_passed() {
+		p.publish("HOME", "ENV:CLOCK=FiveMinutesSinceDetection@HOME");
+	}
 
 	@Then("turn on")
 	public void turn_on() {

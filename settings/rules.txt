@@ -11,6 +11,9 @@ if CLOCK=07:00 then TURN_ON=Morning Alarms at SIREN
 if CLOCK=07:01 then TURN_OFF=Morning Alarms at BELL
 if CLOCK=07:01 then TURN_OFF=Morning Alarms at LIGHTS
 if CLOCK=07:01 then TURN_OFF=Morning Alarms at SIREN
+if CLOCK=FiveMinutesSinceDetection then TURN_OFF=All at BELL
+if CLOCK=FiveMinutesSinceDetection then TURN_OFF=All at LIGHTS
+if CLOCK=FiveMinutesSinceDetection then TURN_OFF=All at SIREN
 
 [AUTOMATED_PERIMETER_ILLUMINATION]
 if CLOCK=09:00 then TURN_OFF=All Perimeter
