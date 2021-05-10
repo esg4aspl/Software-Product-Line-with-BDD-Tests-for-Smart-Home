@@ -223,7 +223,9 @@ public class GherkinCreator {
 		
 		String resultPrefix = "./tests/gherkinfeatures/";
 		File directory = new File(resultPrefix);
-
+		if (!directory.exists()){
+			directory.mkdirs();
+		}
 		File[] files = directory.listFiles();
 		for (File file : files)
 		   if (!file.delete())
