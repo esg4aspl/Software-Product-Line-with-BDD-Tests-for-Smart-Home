@@ -215,12 +215,11 @@ public class GherkinCreator {
 		return products;
 	}
 
-	public static void main(String[] args) {
+	//Product name -> "Product01", "Product02" etc.
+	//Sequence type -> "complete" or "faulty"
+	public static long automate(String productName, String sequenceType) {
 		long startTime = System.nanoTime();
 
-
-
-		
 		String resultPrefix = "./tests/gherkinfeatures/";
 		File directory = new File(resultPrefix);
 		if (!directory.exists()){
@@ -232,10 +231,9 @@ public class GherkinCreator {
 		       System.out.println("Failed to delete "+file);
 		
 		
-		String[] products = getProductsByConfiguration("Product01");
-		
-		String type = "faulty"; //complete or faulty
-		String sourcePrefix = "./sequences/" + type + "/";
+		String[] products = getProductsByConfiguration(productName);
+		 
+		String sourcePrefix = "./sequences/" + sequenceType + "/";
 		
 		for (String product : products) {
 			String fileName = sourcePrefix + product + ".txt";
@@ -248,7 +246,7 @@ public class GherkinCreator {
 						String data = myReader.nextLine();
 						GherkinCreator gc = new GherkinCreator(product + ":" +  String.valueOf(lineCounter), data);
 						
-						String resultName = resultPrefix + product + ":" + String.valueOf(lineCounter) + String.valueOf(type.charAt(0)) + ".feature";
+						String resultName = resultPrefix + product + ":" + String.valueOf(lineCounter) + String.valueOf(sequenceType.charAt(0)) + ".feature";
 						
 						try {
 						    FileWriter myWriter = new FileWriter(resultName);
@@ -273,12 +271,11 @@ public class GherkinCreator {
 		long endTime = System.nanoTime();
 
 		// get difference of two nanoTime values
-		long timeElapsed = endTime - startTime;
+		long timeElapsedMilliseconds = (endTime - startTime) / 1000000;
+		return timeElapsedMilliseconds;
 		
-		System.out.println("Gherkin feature files are created in ./tests/gherkinfeatures. Now run the TestRunner and after it finishes run the ReportCreator to see the results of your tests.");
-
-		System.out.println("Execution time in milliseconds : " +
-								timeElapsed / 1000000);
+//		System.out.println("Gherkin feature files are created in ./tests/gherkinfeatures. Now run the TestRunner and after it finishes run the ReportCreator to see the results of your tests.");
+//		System.out.println("Feature creation execution time in milliseconds : " + timeElapsedMilliseconds);
 		
 	}
 	

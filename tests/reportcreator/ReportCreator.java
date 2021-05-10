@@ -192,7 +192,7 @@ public class ReportCreator {
 		return finalSummary + "\n\n" + header + "\n" + formattedResult; 
 	}
 
-	public static void main (String[] args) {
+	public static long automate () {
 		
 		long startTime = System.nanoTime();
 		
@@ -200,9 +200,10 @@ public class ReportCreator {
 		rc.createReport("./target/customized-results.txt");
 		
 		long endTime = System.nanoTime();
-		long timeElapsed = endTime - startTime;
-		System.out.println("Execution time in milliseconds : " +
-								timeElapsed / 1000000);
+		long timeElapsedMilliseconds = (endTime - startTime) / 1000000;
+		return timeElapsedMilliseconds;
+		
+//		System.out.println("Report creation execution time in milliseconds : " + timeElapsedMilliseconds);
 		
 	}
 	
