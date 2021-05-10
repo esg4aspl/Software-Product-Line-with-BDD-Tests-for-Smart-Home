@@ -27,7 +27,6 @@ public class StepDefinitions {
 	    readyForAction();
 	    p.publish("INTERNET", "INTERNET=Input@INTERNET");
 	    consoleExpectations.add(REGULAR_INTERNET_EXPECTATION);
-	    System.out.println();
 	}
 	
 	@Then("output via Internet")
