@@ -17,7 +17,6 @@ public class StepDefinitions {
 		consoleExpectations.add(TURN_OFF_BELL_EXPECTATION);
 		wait(75);
 		assertTrue(extractOutputs().size() > 0);
-		System.out.println(OutputBag.getInstance().isEmpty());
 		route();
 	}
 	
