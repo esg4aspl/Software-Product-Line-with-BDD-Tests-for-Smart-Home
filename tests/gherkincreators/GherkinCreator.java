@@ -46,11 +46,14 @@ public class GherkinCreator {
 		
 		
 		List<Scenario> scenarios = new ArrayList<Scenario>();
-		scenarios.add(new Scenario(true, "Setup", "The environment is set up with \"" + testSequenceString + "\"", "Feature name is \"" + featureName + "\"", null));
+		List<String> backgroundGivens = new ArrayList<String>();
+		backgroundGivens.add("The environment is set up with \"" + testSequenceString + "\"");
+		backgroundGivens.add("Feature name is \"" + featureName + "\"");
+		scenarios.add(new Scenario(true, "Setup", backgroundGivens, new ArrayList<String>(), new ArrayList<String>()));
 //		System.out.println(testSequenceString);
 		
 		if (size > 2) {
-			scenarios.add(new Scenario("0", null, "[", testSequence.get(0)));
+			scenarios.add(new Scenario("0", null, testSequence.get(0), testSequence.get(1)));
 			
 			for (int origin = 0; origin < testSequence.size() - 2; origin++) {
 				List<String> givens = new ArrayList<String>();
@@ -71,7 +74,6 @@ public class GherkinCreator {
 		} else if (size > 0) {
 			scenarios.add(new Scenario("0", null, "[", testSequence.get(0)));			
 		}
-		
 		feature = new Feature(featureName, scenarios);
 	}
 
@@ -106,7 +108,6 @@ public class GherkinCreator {
 	
 	private static String[] getProductsByConfiguration(String configName) {
 		List<String> features = new FeatureExtractor("SmartHome", "./configs/" + configName + ".xml").getFeatures();
-		
 		
 		
 		String[] allProducts = {
@@ -235,6 +236,9 @@ public class GherkinCreator {
 		 
 		String sourcePrefix = "./sequences/" + sequenceType + "/";
 		
+		int featureCount = 0;
+		int scenarioCount = 0;
+		int stepCount = 0;
 		for (String product : products) {
 			String fileName = sourcePrefix + product + ".txt";
 			try {
@@ -258,7 +262,10 @@ public class GherkinCreator {
 						    e.printStackTrace();
 						}
 			        
-			        
+						featureCount++;
+						scenarioCount += gc.getFeature().getScenarioCount();
+						stepCount += gc.getFeature().getStepCount();
+						
 			      }
 			      myReader.close();
 			    } catch (FileNotFoundException e) {
@@ -266,7 +273,6 @@ public class GherkinCreator {
 			      e.printStackTrace();
 			    }
 		}
-		
 		
 		long endTime = System.nanoTime();
 
@@ -277,6 +283,35 @@ public class GherkinCreator {
 //		System.out.println("Gherkin feature files are created in ./tests/gherkinfeatures. Now run the TestRunner and after it finishes run the ReportCreator to see the results of your tests.");
 //		System.out.println("Feature creation execution time in milliseconds : " + timeElapsedMilliseconds);
 		
+	}
+	
+	public static void main(String[] args) {
+		String[] productNames = {
+				"Product01",
+				"Product02",
+				"Product03",
+				"Product04",
+				"Product05",
+				"Product06",
+				"Product07",
+				"Product08",
+				"Product09",
+				"Product10",
+				"Product11",
+				"Product12",
+				"Product13",
+				"Product14",
+				"Product15",
+				"Product16",
+				"Product17",
+				"Product18",
+				"Product19",
+				"Product20"
+		};
+		
+		for (String x : productNames) {
+			GherkinCreator.automate(x, "complete");
+		}
 	}
 	
 	
