@@ -3,3 +3,4 @@
 src/
 .vscode
 tests/gherkinfeatures/
+.DS_Store
