@@ -20,6 +20,20 @@ public class Feature {
 	public List<Scenario> getScenarios() {
 		return scenarios;
 	}
+	
+	public int getScenarioCount() {
+		return scenarios.size();
+	}
+	
+	public int getStepCount() {
+		int stepCount = 0;
+		for (Scenario s : scenarios) {
+			stepCount += s.getGivens().size();
+			stepCount += s.getWhens().size();
+			stepCount += s.getThens().size();
+		}
+		return stepCount;
+	}
 
 	@Override
 	public String toString() {
