@@ -1,1 +1,1 @@
-[, turn on, output to console, turn on ventilation automatic, output to console, turn off ventilation automatic, output to console, turn off ventilation manual, output to console, turn on ventilation manual, output to console, turn off, ]
+[, turn on, output to console, turn on ventilation automatic, output to console, turn off ventilation automatic, output to console, turn on ventilation remote, output to console, turn off ventilation remote, output to console, turn off ventilation manual, output to console, turn on ventilation manual, output to console, turn off, ]
